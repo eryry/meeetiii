@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 if(empty($_SESSION["s_id"])) {
@@ -15,7 +13,8 @@ function h($str) {
 
 $obj =new Meeting();
 
-
+//予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
+$s_day=$obj->getScheduleDateByGId($_GET["group_id"]);
 
 //撮影予約日の表示（曜日も日本語で）
 $reserve_day = $_SESSION["reserve_day"];
@@ -25,6 +24,24 @@ $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 //時間表示
 $time=date('H:i',strtotime($_GET["group_id"]));
+
+$b2d = date('w', strtotime($s_day["before_2day"]));
+$b3d = date('w', strtotime($s_day["before_3day"]));
+$b2w = date('w', strtotime($s_day["before_2week"]));
+$b3w = date('w', strtotime($s_day["before_3week"]));
+$b1m = date('w', strtotime($s_day["before_1month"]));
+$b2dy=$week[$b2d];
+$b3dy=$week[$b3d];
+$b2wy=$week[$b2w];
+$b3wy=$week[$b3w];
+$b1my=$week[$b1m];
+$b2de =  date('Y年n月j日', strtotime($s_day["before_2day"]))."(".$b2dy.")";
+$b3de =  date('Y年n月j日', strtotime($s_day["before_3day"]))."(".$b3dy.")";
+$b2we =  date('Y年n月j日', strtotime($s_day["before_2week"]))."(".$b2wy.")";
+$b3we =  date('Y年n月j日', strtotime($s_day["before_3week"]))."(".$b3wy.")";
+$b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
+
+
 
 ?>
 
@@ -47,28 +64,28 @@ $time=date('H:i',strtotime($_GET["group_id"]));
 					</tr>
 					
 					<tr>
-						<th>撮影判断※ロケ撮影の場合、2・3日前までに</th><td>日付表示箇所</td>
+						<th>撮影判断※ロケ撮影の場合、2・3日前までに</th><td><?php echo h($b2de); ?></td>
 					</tr>
 					<tr>
-						<th>お支払い</th><td>日付表示箇所</td>
+						<th>お支払い</th><td><?php echo h($b2we); ?>までに</td>
 					</tr>
 					<tr>
-						<th>請求書発行</th><td>日付表示箇所</td>
+						<th>請求書発行</th><td><?php echo h($b3we); ?>頃までに</td>
 					</tr>
 					<tr>
-						<th>ヘアメイクリハーサル</th><td>日付表示箇所</td>
+						<th>ヘアメイクリハーサル</th><td><?php echo h($b3we); ?>頃までに</td>
 					</tr>
 					<tr>
-						<th>撮影場所決定</th><td>日付表示箇所</td>
+						<th>撮影場所決定</th><td><?php echo h($b1me); ?>頃までに</td>
 					</tr>
 					<tr>
-						<th>衣装決定</th><td>日付表示箇所</td>
+						<th>衣装決定</th><td><?php echo h($b1me); ?>頃までに</td>
 					</tr>
 					<tr>
-						<th>衣装試着予約</th><td>日付表示箇所</td>
+						<th>衣装試着予約</th><td>お早めに</td>
 					</tr>
 					<tr>
-						<th>見積り書発行</th><td>日付表示箇所</td>
+						<th>見積り書発行</th><td>ご契約時にお渡し</td>
 					</tr>
 					
 					

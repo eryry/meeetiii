@@ -48,7 +48,6 @@ $rows =$obj->getGroomBrideGrouopAllDate();
 					<?php endwhile; ?>
 					</table>
 				
-				<p><a href="staff_top.php">STAFFページTOPへ</a></p>
 
 			
 			</section>

@@ -231,6 +231,21 @@ class Meeting{
 		return $row;
 	}
 	
+	//スケジュール用に、G_IDの予約日から逆算日取得
+	public function getScheduleDateByGId($c_group_id) {
+	 $sql  ="SELECT reserve_day,DATE_ADD(reserve_day, INTERVAL -2 DAY) AS before_2day, ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 DAY) AS before_3day, ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL -2 WEEK) AS before_2week, ";/*2週間前*/
+	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 WEEK) AS before_3week, ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL -1 MONTH) AS before_1month ";
+	 $sql .="FROM c_groups WHERE c_group_id=:c_group_id";
+	 $stmt = $this->pdo->prepare($sql);
+	 $stmt ->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
+	 $stmt ->execute();
+	 $row =  $stmt->fetch(PDO::FETCH_ASSOC);
+	 return $row;
+	}
+	
 	
 	//プラン情報更新UPDATE
 	public function planUpdate($p_id,$p_name,$p_wear){ 

@@ -72,7 +72,7 @@ print_r($res);
 								<select id="invoce" name="invoce">
 									<option value="">発行状況</option>
 									<option value="0" <?php if($res["invoce"]==0){ echo "selected";} ?>>発行未</option>
-									<option value="1" <?php if($res["invoce"]==0){ echo "selected";} ?>>発行済</option>
+									<option value="1" <?php if($res["invoce"]==1){ echo "selected";} ?>>発行済</option>
 								</select>
 							</td>
 						</tr>
@@ -82,7 +82,7 @@ print_r($res);
 								<select id="payment"  name="payment">
 									<option value="">支払状況</option>
 									<option value="0" <?php if($res["payment"]==0){ echo "selected";} ?>>支払未</option>
-									<option value="1" <?php if($res["payment"]==0){ echo "selected";} ?>>支払済</option>
+									<option value="1" <?php if($res["payment"]==1){ echo "selected";} ?>>支払済</option>
 								</select>
 							</td>
 						</tr>
@@ -92,7 +92,7 @@ print_r($res);
 								<select id="d_product" name="d_product">
 									<option value="">納品状況</option>
 									<option value="0" <?php if($res["d_product"]==0){ echo "selected";} ?>>納品未</option>
-									<option value="1" <?php if($res["d_product"]==0){ echo "selected";} ?>>納品済</option>
+									<option value="1" <?php if($res["d_product"]==1){ echo "selected";} ?>>納品済</option>
 								</select>
 							</td>
 						</tr>
