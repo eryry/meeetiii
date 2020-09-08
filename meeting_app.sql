@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-09-06 22:38:26
+-- 生成日時: 2020-09-08 23:15:44
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.5
 
@@ -46,7 +46,8 @@ INSERT INTO `board` (`b_id`, `c_group_id`, `submit_member_id`, `body`, `b_image`
 (2, 2, 'dora', 'ちなみに、特別サイズのおおきいどらやき持参予定です。', '', '2020-09-06 13:23:19', 0),
 (3, 9, 'eri', '次回打合せに、9月7日11時に伺いたいのですが、予約可能でしょうか？', '', '2020-09-06 13:24:07', 0),
 (4, 9, 'eri', 'あと、ドレス試着も打合せのあとにしたいので、予約取れそうならお願いしたいですー！', '', '2020-09-06 13:25:15', 0),
-(5, 9, 'kiyo', '僕もタキシード再度みたいです！明日、急ですが、予約可能だったらうれしいです。\r\n無理なら来週月曜日も調べてほしいです。', '', '2020-09-06 13:28:11', 0);
+(5, 9, 'kiyo', '僕もタキシード再度みたいです！明日、急ですが、予約可能だったらうれしいです。\r\n無理なら来週月曜日も調べてほしいです。', '', '2020-09-06 13:28:11', 0),
+(6, 2, 'dora', '', '', '2020-09-06 14:25:04', 0);
 
 -- --------------------------------------------------------
 
@@ -71,11 +72,15 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`c_id`, `c_group_id`, `c_name`, `c_pass`, `c_mail`, `c_tell`, `c_zip`, `c_address`, `c_gender`) VALUES
+('aka', 3, '赤川', '$2y$10$kgfwUD5Dr7KKq/3tC4RFJ.2Ne2CAuXQ9pohS7Q./CVbxUG/4USKJq', '', '0753332212', '', '', 0),
+('ao', 3, '青山', '$2y$10$5F5i0F7yolKdbpj79XlLBOqMZFdx2D55/MJ2qmXMRDaGt48W5HhU2', '', '', '', '', 1),
 ('dora', 2, 'どらえもん', '$2y$10$ryj6F2wbXA7HP35f6OcC.Oope6Daj3KhZ5NP0UpXwKfuMLqPk3ON6', 'dora@dora', '090', '', '', 0),
+('dorami', 2, 'どらみ', '$2y$10$LEJZSnNH.y2vp1/WA0NcteMJV8PLFP2WOJDS5lEZYUhj4jRxzu4ru', '', '', '', '', 1),
 ('eri', 9, 'えり', '$2y$10$8sfu65jsmKMB0GaXv/KP4O4vzRXx5gy0O/UZD1EVrYNXsBp6WYdly', 'eri@eri.net', '000', '6020802', '', 1),
 ('kiyo', 9, 'きよ', '$2y$10$5xo1iqHCkJkYvFrNnLnTXujtStJI4cx2vRJcPMLVTCs78eM2DrXp.', 'kiyo@gmail.com', '09036133955', '6020802', '鶴山町1-12-001', 0),
 ('sora', 11, 'そら', '$2y$10$oM2vp9IWwUONZ.TvjO3pgOkr1qJ9u/T2ZVmZVn1Jj2/2Vj2h7wlua', '', '', '', '', 0),
-('yama', 3, 'やましたうえ', '$2y$10$FExFb9tx2RQ6OtFEGKupseDj.sHSVwEeOfiu20AIzh4bszA.lzLH2', 'yama@yama', '075', '', '', 0);
+('umi', 11, 'うみ', '$2y$10$E/MolE94kvQqJ0Otr53Gfu98BpPAjOhuDCZg21MYGjhtD797J0FSy', '', '', '', '', 1),
+('yama', 4, 'やましたうえ', '$2y$10$FExFb9tx2RQ6OtFEGKupseDj.sHSVwEeOfiu20AIzh4bszA.lzLH2', 'yama@yama', '075', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -102,12 +107,12 @@ CREATE TABLE `c_groups` (
 
 INSERT INTO `c_groups` (`c_group_id`, `p_id`, `reserve_day`, `reserve_time`, `estimate`, `invoce`, `payment`, `d_product`, `new_zip`, `new_address`) VALUES
 (1, 5, '2020-12-31', '12:00:00', 0, 0, 0, 0, '', ''),
-(2, 6, '2021-04-01', '11:00:00', 0, 0, 0, 0, '', ''),
-(3, 1, '2020-12-11', '07:00:00', 0, 0, 0, 0, '', ''),
+(2, 5, '2021-04-01', '11:00:00', 1, 1, 1, 0, '', ''),
+(3, 3, '2020-12-01', '09:30:00', 1, 0, 0, 0, '', ''),
 (7, 5, '2020-10-30', '12:00:00', 1, 1, 0, 0, '', ''),
-(9, 2, '2020-10-10', '15:50:00', 1, 0, 0, 0, '0', ''),
+(9, 2, '2020-12-12', '05:00:00', 1, 1, 1, 0, '6669999', 'nagoya'),
 (10, 6, '2020-09-30', '10:00:00', 0, 0, 0, 0, '', ''),
-(11, 4, '2020-11-11', '00:00:00', 0, 0, 0, 0, '', '');
+(11, 4, '2020-11-10', '06:00:00', 0, 1, 1, 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -133,9 +138,8 @@ INSERT INTO `list` (`list_id`, `c_group_id`, `list_item`) VALUES
 (6, 9, 'ネイルチップ'),
 (7, 9, 'お金'),
 (8, 2, 'どらやき'),
-(9, 2, 'のびたくん'),
-(10, 2, 'タケコプター'),
-(11, 9, '水筒');
+(12, 2, '今川焼'),
+(15, 2, 'のびたくん');
 
 -- --------------------------------------------------------
 
@@ -147,8 +151,8 @@ CREATE TABLE `managements` (
   `m_id` int(11) NOT NULL,
   `c_group_id` int(11) NOT NULL,
   `todo` varchar(64) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `s_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `s_id` varchar(32) NOT NULL,
   `todo_check` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -254,13 +258,13 @@ ALTER TABLE `staff`
 -- テーブルのAUTO_INCREMENT `board`
 --
 ALTER TABLE `board`
-  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- テーブルのAUTO_INCREMENT `list`
 --
 ALTER TABLE `list`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- テーブルのAUTO_INCREMENT `managements`

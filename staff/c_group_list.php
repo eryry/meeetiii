@@ -12,8 +12,7 @@ function h($str) {
 }
 
 $obj =new Meeting();
-$rows  = $obj->getCustomerAllData();
-
+$rows =$obj->getGroomBrideGrouopAllDate();
 
 ?>
 
@@ -22,7 +21,7 @@ $rows  = $obj->getCustomerAllData();
 		<main>
 			<h1>お客様グループ一覧</h1>
 			<section>
-			<h2>お客様一覧（新郎新婦でひとセット）</h2>
+			<h2>予約日順</h2>
 
 					<table class="list">
 					
@@ -31,7 +30,7 @@ $rows  = $obj->getCustomerAllData();
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<tr>
-						<td class="list_id_num"><a href="c_group_each.php?c_group_id=<?php echo $row["c_group_id"];?>"><?php echo h($row["c_group_id"]);?></a></td>
+						<td class="list_id_num"><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></td>
 						<td class="list_r_day"><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];
@@ -42,8 +41,8 @@ $rows  = $obj->getCustomerAllData();
 							echo h($rd); 
 						?></td>
 						<td class="list_p_name"><?php echo h($row["p_name"]); ?></td>
-						<td class="list_c_name">郎：<?php if($row["c_gender"]==0) {echo h($row["c_name"]);}; ?></td>
-						<td class="list_c_name">婦：<?php if($row["c_gender"]==1) {echo h($row["c_name"]);}; ?></td>
+						<td class="list_c_name">郎：<?php echo h($row["g_name"]); ?></td>
+						<td class="list_c_name">婦：<?php echo h($row["b_name"]); ?></td>
 						
 					</tr>
 					<?php endwhile; ?>

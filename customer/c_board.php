@@ -27,11 +27,14 @@ $rows = $obj->getBoardDataByGId($_SESSION["c_group_id"]);
 			<section class="second">
 				<p>投稿エリア</p>
 				
-				<form action="exec_board_submit.php" method="post">
+				<form action="exec_board_submit.php" method="post"  enctype="multipart/form-data">
 					<p><input type="hidden" name="c_group_id" id="" value="<?php echo $_SESSION["c_group_id"]; ?>"></p>
 					<p><input type="hidden" name="submit_member_id" id="" value="<?php echo $_SESSION["c_id"]; ?>"></p>
 					<p><textarea name="body" id=""></textarea></p>
-					<p><input type="image" name="b_image" id="">画像</p>
+					
+					<!-- <input type="hidden" name="MAX_FILE_SIZE" value="30000" /> -->
+					
+					<p>画像<input type="file" name="b_image" id=""></p>
 					<p><input type="submit" value="投稿する"></p>
 				</form>
 				

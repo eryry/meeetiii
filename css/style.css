@@ -31,18 +31,16 @@ ul {
 a {
 	color:#707070;
 }
-
 section {
-	//background-color: #fee;
 	margin:20px;
 }
 form{
-	border:solid 1px gray;
+	//border:solid 1px gray;
 }
 
 section form{
 	margin:auto;
-	padding:20px;
+	//padding:20px;
 }
 table {
 	margin-bottom:20px;
@@ -65,7 +63,25 @@ input[type="submit"] {
 	line-height:30px;
 	margin:4px;
 }
+input[type="text"],
+textarea[name="body"] {
+	border: solid 1px gray;
+}
 
+table {
+	width:100%;
+}
+table.list_noborder tr{
+	display:flex;
+	flex-direction:row;
+	//border:dotted 1px gray;
+}
+table.row3 td,th{
+	width:33%;
+}
+table.row2 td,th{
+	width:200px;
+}
 table.list tr{
 	display:flex;
 	flex-direction:row;
@@ -74,6 +90,12 @@ table.list tr{
 table.list th,table.list td {
 	border:dotted 1px gray;
 	//width:200px;
+}
+
+
+//class
+.u_line {
+	background: linear-gradient(transparent 50%, pink 50%);
 }
 .list_id_num {
 	width:50px;
@@ -84,8 +106,6 @@ table.list th,table.list td {
 .list_p_wear,.list_r_day,.list_c_name{
 	width:150px;
 }
-
-
 
 section.second{
 	margin-top:20px;
@@ -98,5 +118,18 @@ section.second{
 	background-color:white;
 	border-radius: 25px;
 	border:solid 1px #EBC5E3;
+}
+
+.add_list_btn {
+	border:1px solid gray;
+	margin-left: 8px;
+	padding: 0 3px;
+	font-size: 14px;
+}	
+.del_btn {
+	border:1px solid gray;
+	margin-left: 8px;
+	padding: 0 3px;
+	font-size: 12px;
 }
 

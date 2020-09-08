@@ -3,7 +3,7 @@
 <html lang="ja">
 	<head>
 		<mate charset="utf-8">
-		<title>meeting app | customer add</title>
+		<title>meeting app | staff page</title>
 		<link rel="stylesheet" href="../css/style.css">
 		<meta name="viewport" content="width=device-width">
 		<!-- fontAwsome -->

@@ -5,15 +5,12 @@ if(empty($_SESSION["c_id"])) {
 	exit();
 }
 require_once("../class/meeting.class.php");
+$obj= new Meeting();
 
 //サニタイズ関数
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
-
-$obj= new Meeting();
-
-
 
 
 ?>

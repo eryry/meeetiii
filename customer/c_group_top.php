@@ -16,12 +16,16 @@ function h($str) {
 $today = date('y-m-d');
 $day= $obj->dayDiff($today,$_SESSION["reserve_day"]);
 $reserve_day = $_SESSION["reserve_day"];
-
 //撮影予約日の表示（曜日も日本語で）
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
+
+
+
+$row = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
+
 
 ?>
 
@@ -37,14 +41,17 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 				<p><a href="c_update.php">お客様情報確認・変更ページへ</a></p>
 				
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
+				<p>撮影プラン： <?php echo h($row["p_name"]);	?> </p>
+				
 				<div>
 					<img src="" alt="新郎画像">
-					<p>新郎：<?php echo h($_SESSION["c_name"]); ?></p>
+					<p>新郎：<?php echo h($row["g_name"]); ?></p>
 				</div>
 				<div>
 					<img src="" alt="新婦画像">
-					<p>新婦：<?php echo h($_SESSION["c_name"]); ?></p>
+					<p>新婦：<?php echo h($row["b_name"]); ?></p>
 				</div>
+				
 				<div>
 					<p> *message area*</p>
 				</div>
@@ -55,7 +62,7 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 			<section class="second">
 				<h3>お知らせ</h3>
 				
-				<table class="list">
+				<table class="list_noborder row3">
 					<tr>
 						<th>掲示板</th><th>未読投稿</th><td>あり・なし</td>
 					</tr>

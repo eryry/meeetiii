@@ -91,7 +91,7 @@ function h($str) {
 							<td><input type="number" name="new_zip" id="zip"></td>
 						</tr>
 						<tr>
-							<th><label for="address">新居住所　※ajaxで郵便番号API自動取得して表示変更予定</label></th>
+							<th><label for="address">新居住所</label></th>
 							<td><input type="text" name="new_address" id="address"></td>
 						</tr>
 
