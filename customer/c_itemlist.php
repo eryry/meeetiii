@@ -14,6 +14,16 @@ function h($str) {
 $obj= new Meeting();
 $rows=$obj->getItemListByGId($_SESSION["c_group_id"]);
 
+
+//予約日表示用
+$reserve_day = $_SESSION["reserve_day"];
+$week = ["日","月","火","水","木","金","土"];
+$hi = date('w', strtotime($reserve_day));
+$youbi = $week[$hi];
+$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
+//予約プラン名表示用
+$r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
+
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
@@ -22,9 +32,10 @@ $rows=$obj->getItemListByGId($_SESSION["c_group_id"]);
 			<h1>持ち物リスト</h1>
 			<section>
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
+				<p>撮影予約日： <?php echo h($rd);	?> </p>
+				<p>撮影プラン： <?php echo h($r["p_name"]);	?> </p>
 				
-				<div>
-					<p>プラン情報取得してきて、衣裳種類に合わせて表示する内容変えるエリア</p>
+				<div class="itemlist_cos">
 					
 					<?php if($_SESSION["p_wear"]=="kimono"): ?>
 					<h3>和装用持ち物リスト</h3>
@@ -87,23 +98,24 @@ $rows=$obj->getItemListByGId($_SESSION["c_group_id"]);
 				<div>
 				
 			</section>
-			<section class="second">
+			<section class="second toukou">
 				<div>
-					<p>お客様がご自身で投稿してリスト追加できるエリア</p>
+					<p>ふたり専用アイテムリスト</p>
 					<form action="exec_listitem_add.php" method="post">
 						<p><input type="hidden" name="c_group_id" id="" value="<?php echo $_SESSION["c_group_id"]; ?>"></p>
-						<p>追加アイテム<input type="text" name="list_item" id=""><button class="add_list_btn" type="submit" value="リストに追加">リストに追加</button></p>
+						<p>追加アイテム</p>
+						<p><input type="text" name="list_item" id="list_item"><button class="add_list_btn" type="submit" value="リストに追加">リストに追加</button></p>
 					</form>
 			</section>
-			<section>
+			<section class="itemllist_sub second">
 					<p class="u_line">追加アイテムリスト</p>
 					<table class="list_noborder row2">
 					<?php foreach($rows as $row): ?>
 						<form action="exec_delete_item.php" method="post">
 							<tr>
+								<input type="hidden" name="list_id" value="<?php echo $row["list_id"]; ?>">
 								<td>□<?php echo h($row["list_item"]); ?></td>
 								<td><button class="del_btn" type="submit" value="削除する">リストから削除</button></td>
-								<input type="hidden" name="list_id" value="<?php echo $row["list_id"]; ?>">
 							</tr>
 						</form>
 					<?php endforeach; ?>

@@ -30,7 +30,7 @@ $c_address=$row["c_address"];
 $c_gender=$row["c_gender"];
 
 
-print_r($row);
+//print_r($row);
 
 ?>
 
@@ -39,8 +39,7 @@ print_r($row);
 		<main>
 			<h1>お客様情報更新ページ</h1>
 			<section>
-			<h2>お客様情報ページ</h2>
-				<form action="exec_c_update.php" method="post">
+				<form action="exec_c_update.php" method="post"  enctype="multipart/form-data">
 					<table>
 						<tr>
 							<th>グループID</th>
@@ -74,30 +73,29 @@ print_r($row);
 							<th><label for="c_name">お客様名</label></th>
 							<td><input type="text" name="c_name" id="c_name" value="<?php echo h($c_name); ?>"></td>
 						</tr>
-
 						<tr>
-							<th><label for="c_pass">パスワード</th>
+							<th><label for="c_pass">パスワード</label></th>
 							<!-- お客様更新可能ページで、パスワード変更できるようにしたほうがよい？ -->
 							<td><input type="password" name="c_pass" id="c_pass" value=""></td>
 						</tr>
 						<tr>
-							<th><label for="c_tell">電話番号</th>
+							<th><label for="c_tell">電話番号</label></th>
 							<td><input type="number" name="c_tell" id="c_tell" value="<?php echo h($c_tell); ?>"></td>
 						</tr>
 						<tr>
-							<th><label for="c_mail">メールアドレス</th>
+							<th><label for="c_mail">メールアドレス</label></th>
 							<td><input type="text" name="c_mail" id="c_mail" value="<?php echo h($c_mail); ?>"></td>
 						</tr>
 						<tr>
-							<th><label for="zip">郵便番号</th>
+							<th><label for="zip">郵便番号></label></th>
 							<td><input type="number" name="c_zip" id="zip" value="<?php echo h($c_zip); ?>"></td>
 						</tr>
 						<tr>
-							<th><label for="address">住所</th>
+							<th><label for="address">住所</label></th>
 							<td><input type="text" name="c_address" id="address" value="<?php echo h($c_address); ?>"></td>
 						</tr>
 						<tr>
-							<th><label for="c_gender">新郎/新婦</th>
+							<th><label for="c_gender">新郎/新婦</label></th>
 							<td>
 								<select name="c_gender">
 									<option value="">お選びください</option>
@@ -110,13 +108,15 @@ print_r($row);
 								</select>
 							</td>
 						</tr>
-						
+						<tr>
+							<th><label for="c_myphoto">登録画像</label><span class="font_mini">※円形にトリミングされます</span></th>
+							<td><input type="file" name="c_myphoto" id="c_myphoto"></td>
+						</tr>
 					</table>
 				
-				<p><input class="sub_btn" type="submit" value="お客様情報更新"></p>
+				<button><input class="sub_btn" type="submit" value="お客様情報更新"></button>
 				</form>
-				
-				<p><a href="c_group_top.php">お客様ページTOPへ</a></p>
+
 			
 			</section>
 		</main>

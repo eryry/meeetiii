@@ -12,11 +12,7 @@ function h($str) {
 }
 
 $obj= new Meeting();
-$rows=$obj->getCustomerGrouop($c_group_id);
-$row = $rows->fetch(PDO::FETCH_ASSOC);
 
-$_SESSION["c_group_id"]=$row["c_group_id"];
-echo $_SESSION["c_group_id"];
 
 
 //撮影当日までの日数表示用

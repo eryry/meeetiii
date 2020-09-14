@@ -14,6 +14,7 @@ function h($str) {
 $obj =new Meeting();
 $rows =$obj->getGroomBrideGrouopAllDate();
 
+
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
@@ -21,16 +22,25 @@ $rows =$obj->getGroomBrideGrouopAllDate();
 		<main>
 			<h1>お客様グループ一覧</h1>
 			<section>
-			<h2>予約日順</h2>
+				<p><button class="sort_day_btn all_day activ_page_btn">予約日順</button>
+				<button class="sort_day_btn today"><a href="c_group_list_today.php">本日の予約</a></button>
+				<button class="sort_day_btn feature_day"><a href="c_group_list_f.php">撮影未</a></button>
+				<button class="sort_day_btn past_day"><a href="c_group_list_p.php">撮影済</a></button>
+				<button class="sort_day_btn no_d"><a href="c_group_list_nd.php">納品未</a></button>
+				</p>
 
+				<div id="mainView">
 					<table class="list">
 					
 					<tr>
-						<th class="list_id_num">g_ID</th><th class="list_r_day">予約日</th><th class="list_p_name">プラン</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th>
+						<th class="list_id_num">ID</th><th class="list_id_num">board</th><th class="list_id_num">書類</th>
+						<th class="list_r_day">予約日</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th><th class="list_p_name">プラン</th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<tr>
 						<td class="list_id_num"><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></td>
+						<td class="list_id_num"><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>">掲示板</a></td>
+						<td class="list_id_num"><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>">投稿</a></td>
 						<td class="list_r_day"><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];
@@ -40,16 +50,15 @@ $rows =$obj->getGroomBrideGrouopAllDate();
 							$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 							echo h($rd); 
 						?></td>
+						<td class="list_c_name"><?php echo h($row["g_name"]); ?></td>
+						<td class="list_c_name"><?php echo h($row["b_name"]); ?></td>
 						<td class="list_p_name"><?php echo h($row["p_name"]); ?></td>
-						<td class="list_c_name">郎：<?php echo h($row["g_name"]); ?></td>
-						<td class="list_c_name">婦：<?php echo h($row["b_name"]); ?></td>
 						
 					</tr>
 					<?php endwhile; ?>
 					</table>
 				
-
-			
+				</div>
 			</section>
 		</main>
 <?php include("footer_for_staffpage.php"); ?>

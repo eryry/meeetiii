@@ -6,9 +6,9 @@ if(empty($_SESSION["s_id"])) {
 }
 
 require_once("../class/meeting.class.php");
-
 $obj =new Meeting();
 $rows =$obj->getPlan();
+$rows2=$obj->getStaff();
 
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
@@ -47,44 +47,20 @@ function h($str) {
 							<td><input type="time" name="reserve_time" id="reserve_time"></td>
 						</tr>
 						<tr>
-							<th><label for="estimate">見積もり発行状況</label></th>
-							<td>
-								<select id="estimate" name="estimate">
-									<option value="">発行状況</option>
-									<option value="0">発行未</option>
-									<option value="1">発行済</option>
-								</select>
-							</td>
+							<th><label for="estimate">見積もり発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済見積もりを投稿してください</span></th>
+							<td>発行未</td>
 						</tr>
 						<tr>
-							<th><label for="invoce">請求書発行状況</label></th>
-							<td>
-								<select id="invoce" name="invoce">
-									<option value="">発行状況</option>
-									<option value="0">発行未</option>
-									<option value="1">発行済</option>
-								</select>
-							</td>
+							<th><label for="invoce">請求書発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済請求書を投稿してください</span></th>
+							<td>発行未</td>
 						</tr>
 						<tr>
-							<th><label for="payment">支払い状況</label></th>
-							<td>
-								<select id="payment"  name="payment">
-									<option value="">支払状況</option>
-									<option value="0">支払未</option>
-									<option value="1">支払済</option>
-								</select>
-							</td>
+							<th><label for="payment">支払い状況</label><span class="font_mini">※支払い済みの場合はマネジメント画面で更新してください</span></th>
+							<td>支払未</td>
 						</tr>
 						<tr>
-							<th><label for="d_product">商品納品状況</label></th>
-							<td>
-								<select id="d_product" name="d_product">
-									<option value="">納品状況</option>
-									<option value="0">納品未</option>
-									<option value="1">納品済</option>
-								</select>
-							</td>
+							<th><label for="d_product">商品納品状況</label><span class="font_mini">※納品済みの場合はマネジメント画面で更新してください</span></th>
+							<td>納品未</td>
 						</tr>
 						<tr>
 							<th><label for="zip">新居郵便番号</label></th>
@@ -94,8 +70,17 @@ function h($str) {
 							<th><label for="address">新居住所</label></th>
 							<td><input type="text" name="new_address" id="address"></td>
 						</tr>
-
-					</table>
+							<th><label for="s_id">担当者名</label></th>
+							<td>
+								<select name="s_id">
+									<option>担当スタッフを選択</option>
+									<?php while($row2=$rows2->fetch(PDO::FETCH_ASSOC)): ?>
+									<option value="<?php echo $row2["s_id"]; ?>"><?php echo h($row2["s_name"]); ?></option>
+									<?php endwhile; ?>
+								</select>
+							</td>
+						</tr>
+						</table>
 				
 				<p><input class="sub_btn" type="submit" value="新規顧客グループ登録"></p>
 				</form>

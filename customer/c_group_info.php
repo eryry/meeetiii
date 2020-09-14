@@ -7,12 +7,11 @@ if(empty($_SESSION["c_id"])) {
 }
 
 require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
-
-$obj =new Meeting();
 
 $reserve_day = $_SESSION["reserve_day"];
 //撮影予約日の表示（曜日も日本語で）
@@ -47,12 +46,12 @@ if($_SESSION["d_product"]==0) {
 
 //入力がない場合も想定した新居表示設定
 if(empty($_SESSION["new_zip"])) {
-	$new_zip="☐未";
+	$new_zip="☐未入力";
 }else {
 	$new_zip=$_SESSION["new_zip"];
 }
 if(empty($_SESSION["new_address"])) {
-	$new_address="☐未";
+	$new_address="☐未入力";
 }else {
 	$new_address=$_SESSION["new_address"];
 }
@@ -62,10 +61,11 @@ if(empty($_SESSION["new_address"])) {
 
 <?php require_once("header_for_customer.php"); ?>
 		<main>
-			<h1>予約情報＆状況一覧確認ページ</h1>
+			<h1>予約内容＆進捗一覧</h1>
 			<section>
-			<p>内容に間違いがある場合は、お電話または掲示板からご連絡ください</p>
-
+				<p>ご新居情報は、ご自身で入力・更新可能です。
+				<button class="update_btn"><a href="c_group_newaddress_update.php">ご新居入力・更新ページへ</a></button></p>
+				<p class="font_mini">※ご新居情報以外で間違いがある場合は、お電話または掲示板からご連絡ください</p>
 					<table>
 						<tr>
 							<th>グループID</th>
@@ -81,7 +81,7 @@ if(empty($_SESSION["new_address"])) {
 						</tr>
 						<tr>
 							<th>予約日来店時間</th>
-							<td>支度開始：<?php echo h($time); ?><br>※開始時間に支度スタートできるよう、10分前を目安に来店ください</td>
+							<td>支度開始：<?php echo h($time); ?><br><span class="font_mini">※支度開始10分前を目安に来店ください</span></td>
 						</tr>
 						<tr>
 							<th>見積もり発行状況</th>
@@ -107,9 +107,7 @@ if(empty($_SESSION["new_address"])) {
 							<th>新居住所</th>
 							<td><?php echo h($new_address); ?></td>
 						</tr>
-
 					</table>
-			
 			</section>
 		</main>
 		<?php include("footer_for_customerpage.php"); ?>

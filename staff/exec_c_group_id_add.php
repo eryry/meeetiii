@@ -12,7 +12,8 @@ if(empty($_POST["c_group_id"])) {
 require_once("../class/meeting.class.php");
 
 $obj = new Meeting();
-$obj->customerGroupAdd($_POST["c_group_id"],$_POST["p_id"],$_POST["reserve_day"],$_POST["reserve_time"],$_POST["estimate"],$_POST["invoce"],$_POST["payment"],$_POST["new_zip"],$_POST["d_product"],$_POST["new_address"]);
+$obj->customerGroupAdd($_POST["c_group_id"],$_POST["p_id"],$_POST["reserve_day"],$_POST["reserve_time"],$_POST["new_zip"],$_POST["new_address"],$_POST["s_id"]);
+
 //print_r($_POST);
 header("Location:c_gropu_id_add_fin.php");
 

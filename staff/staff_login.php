@@ -25,7 +25,7 @@ session_destroy();
 		<link rel="shortcut icon" href="" />
 	</head>
 	<body>
-		<header>
+		<header class="staff">
 			<h1>スタッフログイン</h1>
 		</header>
 		<main>
@@ -43,12 +43,12 @@ session_destroy();
 
 					</table>
 				
-				<p><input class="sub_btn" type="submit" value="LOGIN"></p>
+				<p><input class="sub_btn" type="submit" value="staff LOGIN"></p>
 				</form>			
 			
 			</section>
 		</main>
-		<footer>
+		<footer class="staff">
 		
 		</footer>
 	<script src="../jquery-3.5.1.min.js"></script>

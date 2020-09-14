@@ -17,8 +17,8 @@
 	<body>
 		<header>
 			<ul>
-				<li><a href="c_group_top.php">ふたりのTOPページ</a></li>
-				<li><a href="c_top.php">個人のTOPページ</a></li>
+				<li><a href="c_group_top.php">ふたりTOP</a></li>
+				<li><a href="c_top.php">個人TOP</a></li>
 				<li><a href="">あとなんか</a></li>
 				<li><a href="exec_logout.php">ログアウト</a></li>
 			</ul>

@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+* {
+	//border:1px red solid;
+}
+
+
 body {
 	color: #707070;
 	margin:auto;
@@ -13,6 +18,9 @@ header{
 	text-align:center;
 	padding:20px;
 }
+header.staff{
+	background-color: #afc;
+}
 header ul{
 	display:flex;
 	justify-content:space-between;
@@ -21,7 +29,11 @@ footer{
 	background-color: #EBC5E3;
 	padding:20px;
 }
+footer.staff{
+	background-color: #afc;
+}
 main {
+	width:100%;
 	padding:20px;
 }
 
@@ -31,21 +43,27 @@ ul {
 a {
 	color:#707070;
 }
+h1 {
+	font-size:20px;
+	text-align:center;
+}
 section {
+	max-width:100%;
 	margin:20px;
 }
-form{
-	//border:solid 1px gray;
-}
+
 
 section form{
+	max-width:100%;
 	margin:auto;
 	//padding:20px;
 }
 table {
+	max-width:100%;
 	margin-bottom:20px;
 }
 table tr {
+	max-width:100%;
 	display:flex;
 	flex-direction:column;
 }
@@ -67,9 +85,13 @@ input[type="text"],
 textarea[name="body"] {
 	border: solid 1px gray;
 }
-
-table {
-	width:100%;
+input#c_myphoto,
+input.b_photo{
+	font-size:10px;
+	margin-left:4px;
+}
+input#list_item{
+	width:150px;
 }
 table.list_noborder tr{
 	display:flex;
@@ -77,10 +99,11 @@ table.list_noborder tr{
 	//border:dotted 1px gray;
 }
 table.row3 td,th{
-	width:33%;
+	//width:33%;
 }
 table.row2 td,th{
-	width:200px;
+	//c_group_topのテーブルがスマホ表示ではみ出るので、一旦コメントアウト中
+	//width:200px;
 }
 table.list tr{
 	display:flex;
@@ -91,10 +114,22 @@ table.list th,table.list td {
 	border:dotted 1px gray;
 	//width:200px;
 }
-
-
+table tr th.check,
+table tr td.check {
+	width:80px;
+}
+table tr th.todo,
+table tr td.todo {
+	width:180px;
+}
+table tr th.limit,
+table tr td.limit {
+	width:240px;
+}
 //class
+
 .u_line {
+	//反映できていないCSS
 	background: linear-gradient(transparent 50%, pink 50%);
 }
 .list_id_num {
@@ -108,8 +143,9 @@ table.list th,table.list td {
 }
 
 section.second{
-	margin-top:20px;
-	margin-bottom:20px;
+	margin:20px;
+	//margin-top:20px;
+	//margin-bottom:20px;
 }
 
 .sub_btn {
@@ -119,7 +155,6 @@ section.second{
 	border-radius: 25px;
 	border:solid 1px #EBC5E3;
 }
-
 .add_list_btn {
 	border:1px solid gray;
 	margin-left: 8px;
@@ -131,5 +166,88 @@ section.second{
 	margin-left: 8px;
 	padding: 0 3px;
 	font-size: 12px;
+	background-color:white;
+}
+.sort_day_btn {
+	border:1px solid gray;
+	//margin-left: 8px;
+	padding: 0 3px;
+	font-size: 18px;
+}
+.sort_day_btn a {
+	text-decoration:none;
+}
+.activ_page_btn {
+	border:solid 1px #EBC5E3;
+	background-color:#EBC5E3;
+}
+.pay_btn,
+.update_btn {
+	border:solid 2px #EBC5E3;
+	margin:0 10px;
+}
+.pay_btn a,
+.update_btn a{
+	text-decoration:none;
+	padding:0 6px;
+}
+#mainView table{
+	border:solid 1px #EBC5E3;
+	background-color:#EBC5E3;
+}
+#mainView{
+	//display:none;
 }
 
+.c_photo img {
+	width:100px;
+	height:100px;
+	border-radius:50px;
+	border:solid 4px #afc;
+	object-fit: cover;
+	overflow:hidden;
+}
+.c_photo {
+	margin:8px;
+	width:150px;
+	text-align:center;
+}
+.c_photo_and_name_area {
+	display:flex;
+}
+
+.toukou {
+	background-color: white;
+	margin:10px auto;
+	padding:10px;
+	border-radius: 5px;
+	border: solid 5px #afc;
+}
+.toukou form{
+	
+}
+.itemlist_cos{
+	background-color: #EBC5E3;
+	margin:10px auto;
+	padding:10px;
+	border-radius: 5px;
+}
+.keijiban {
+	background-color: white;
+}
+.keijiban_sub,
+.itemllist_sub {
+	background-color: #afc;
+	margin:10px auto;
+	padding:10px;
+	border-radius: 5px;
+}
+.keijiban_sub img {
+	max-width:300px;
+	border:solid 3px #ccc;
+	border-radius: 5px;
+}
+.font_mini {
+	font-size:12px;
+	margin-left:4px;
+}

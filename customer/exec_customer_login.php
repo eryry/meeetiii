@@ -26,11 +26,24 @@ $_SESSION["d_product"]   =$resg["d_product"];
 $_SESSION["new_zip"]     =$resg["new_zip"];
 $_SESSION["new_address"] =$resg["new_address"];
 $_SESSION["p_id"] 			 =$resg["p_id"];
+$_SESSION["before2days"] =$resg["before2days"];
+$_SESSION["make_reh"]    =$resg["make_reh"];
+$_SESSION["cos_fixed"]   =$resg["cos_fixed"];
+$_SESSION["cos_fitting"] =$resg["cos_fitting"];
+$_SESSION["place_fixed"] =$resg["place_fixed"];
 
 //グループのp_id情報からプラン名、プラン衣装取ってきてセッションデータに格納
 $resp=$obj->getPlanById($_SESSION["p_id"]);
 $_SESSION["p_name"]=$resp["p_name"];
 $_SESSION["p_wear"]=$resp["p_wear"];
+
+$reserve_day = $_SESSION["reserve_day"];
+//撮影予約日の表示（曜日も日本語で）
+$week = ["日","月","火","水","木","金","土"];
+$hi = date('w', strtotime($reserve_day));
+$youbi = $week[$hi];
+$_SESSION["rd"] =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
+
 
 header("Location: c_top.php");
 

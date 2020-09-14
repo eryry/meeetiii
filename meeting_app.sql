@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-09-09 02:02:41
+-- 生成日時: 2020-09-15 01:44:15
 -- サーバのバージョン： 10.4.11-MariaDB
 -- PHP のバージョン: 7.4.5
 
@@ -32,7 +32,7 @@ CREATE TABLE `board` (
   `c_group_id` int(11) NOT NULL,
   `submit_member_id` varchar(32) NOT NULL,
   `body` text NOT NULL,
-  `b_image` mediumblob NOT NULL,
+  `board_photo` tinyint(1) NOT NULL DEFAULT 0,
   `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `unread` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -41,13 +41,24 @@ CREATE TABLE `board` (
 -- テーブルのデータのダンプ `board`
 --
 
-INSERT INTO `board` (`b_id`, `c_group_id`, `submit_member_id`, `body`, `b_image`, `created`, `unread`) VALUES
-(1, 2, 'dora', 'どらやきは、撮影小物になりますか？\r\n大切な思い出の品なんです。\r\n和装でどらやき食べさせあいっこしたいのです。', '', '2020-09-06 13:22:51', 0),
-(2, 2, 'dora', 'ちなみに、特別サイズのおおきいどらやき持参予定です。', '', '2020-09-06 13:23:19', 0),
-(3, 9, 'eri', '次回打合せに、9月7日11時に伺いたいのですが、予約可能でしょうか？', '', '2020-09-06 13:24:07', 0),
-(4, 9, 'eri', 'あと、ドレス試着も打合せのあとにしたいので、予約取れそうならお願いしたいですー！', '', '2020-09-06 13:25:15', 0),
-(5, 9, 'kiyo', '僕もタキシード再度みたいです！明日、急ですが、予約可能だったらうれしいです。\r\n無理なら来週月曜日も調べてほしいです。', '', '2020-09-06 13:28:11', 0),
-(6, 2, 'dora', '', '', '2020-09-06 14:25:04', 0);
+INSERT INTO `board` (`b_id`, `c_group_id`, `submit_member_id`, `body`, `board_photo`, `created`, `unread`) VALUES
+(1, 2, 'dora', 'どらやきは、撮影小物になりますか？\r\n大切な思い出の品なんです。\r\n和装でどらやき食べさせあいっこしたいのです。', 0, '2020-09-06 13:22:51', 0),
+(2, 2, 'dora', 'ちなみに、特別サイズのおおきいどらやき持参予定です。', 0, '2020-09-06 13:23:19', 0),
+(3, 9, 'eri', '次回打合せに、9月7日11時に伺いたいのですが、予約可能でしょうか？', 0, '2020-09-06 13:24:07', 0),
+(4, 9, 'eri', 'あと、ドレス試着も打合せのあとにしたいので、予約取れそうならお願いしたいですー！', 0, '2020-09-06 13:25:15', 0),
+(5, 9, 'kiyo', '僕もタキシード再度みたいです！明日、急ですが、予約可能だったらうれしいです。\r\n無理なら来週月曜日も調べてほしいです。', 0, '2020-09-06 13:28:11', 0),
+(7, 2, 'dora', 'お返事くれないのは、どらやきはだめってことですか？\r\n\r\nおにぎりなら問題ないですか？', 0, '2020-09-09 03:59:36', 0),
+(29, 2, 'dorami', '写真投稿した画像どら焼きテスト', 1, '2020-09-09 07:41:47', 0),
+(30, 2, 'dorami', 'いめーじです。', 1, '2020-09-09 07:31:52', 0),
+(31, 2, 'dorami', 'どらやき', 1, '2020-09-09 07:40:43', 0),
+(32, 2, 'dorami', '投稿自由自在でうれしいな。', 1, '2020-09-09 07:45:21', 0),
+(33, 9, 'eri', '質問です！\r\n撮影小物として「どらやき」が流行っているみたいなんですが、持ち込み可能でしょうか？\r\n小物イメージ送付します。', 1, '2020-09-10 06:30:44', 0),
+(51, 9, 'kiyo', '投稿テスト２', 1, '2020-09-12 04:36:35', 0),
+(54, 11, 'umi', '私もたのしみです。\r\n宜しくです。', 1, '2020-09-13 09:15:21', 0),
+(55, 11, 'ume', '楽しみにしてくれてうれしいです！', 1, '2020-09-13 09:16:22', 0),
+(57, 5, 'nobita', 'のび太です。', 1, '2020-09-14 05:17:55', 0),
+(68, 11, 'katoeri', '画像投稿調整テスト（画像なし）', 0, '2020-09-14 16:21:13', 0),
+(69, 5, 'katoeri', 'のび太さん、\r\nよろしくです！', 1, '2020-09-14 16:22:34', 0);
 
 -- --------------------------------------------------------
 
@@ -74,13 +85,22 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`c_id`, `c_group_id`, `c_name`, `c_pass`, `c_mail`, `c_tell`, `c_zip`, `c_address`, `c_gender`) VALUES
 ('aka', 3, '赤川', '$2y$10$kgfwUD5Dr7KKq/3tC4RFJ.2Ne2CAuXQ9pohS7Q./CVbxUG/4USKJq', '', '0753332212', '', '', 0),
 ('ao', 3, '青山', '$2y$10$5F5i0F7yolKdbpj79XlLBOqMZFdx2D55/MJ2qmXMRDaGt48W5HhU2', '', '', '', '', 1),
-('dora', 2, 'どらえもん', '$2y$10$ryj6F2wbXA7HP35f6OcC.Oope6Daj3KhZ5NP0UpXwKfuMLqPk3ON6', 'dora@dora', '090', '', '', 0),
-('dorami', 2, 'どらみ', '$2y$10$LEJZSnNH.y2vp1/WA0NcteMJV8PLFP2WOJDS5lEZYUhj4jRxzu4ru', '', '', '', '', 1),
-('eri', 9, 'えり', '$2y$10$8sfu65jsmKMB0GaXv/KP4O4vzRXx5gy0O/UZD1EVrYNXsBp6WYdly', 'eri@eri.net', '000', '6020802', '', 1),
-('kiyo', 9, 'きよ', '$2y$10$5xo1iqHCkJkYvFrNnLnTXujtStJI4cx2vRJcPMLVTCs78eM2DrXp.', 'kiyo@gmail.com', '09036133955', '6020802', '鶴山町1-12-001', 0),
-('sora', 11, 'そら', '$2y$10$oM2vp9IWwUONZ.TvjO3pgOkr1qJ9u/T2ZVmZVn1Jj2/2Vj2h7wlua', '', '', '', '', 0),
-('umi', 11, 'うみ', '$2y$10$E/MolE94kvQqJ0Otr53Gfu98BpPAjOhuDCZg21MYGjhtD797J0FSy', '', '', '', '', 1),
-('yama', 4, 'やましたうえ', '$2y$10$FExFb9tx2RQ6OtFEGKupseDj.sHSVwEeOfiu20AIzh4bszA.lzLH2', 'yama@yama', '075', '', '', 0);
+('azusa', 10, '加藤あずさ', '$2y$10$SbfhGE6Tt5wO06UzOKGG/eqsriZ5bwsR0F6x3StFLIBszNj/DTwgK', '', '', '', '', 1),
+('dora', 2, 'どらえもん', '$2y$10$nBcTwHrkRsEhLgLQyAQtZureHTY5QDtefvDxFbgz197Du2aRyrP8y', 'dora@dora', '090', '', '', 0),
+('dorami', 2, 'どらみ', '$2y$10$O3hJ8/Dgj8OG3/f5Cxebl.Ia4DE1xOJYmYyfVLtn/C.sk.vYfI2r2', 'dorami@dorami.com', '0751234567', '', '', 1),
+('eri', 9, 'えり', '$2y$10$pr4p7iMBOr2NVVDdlGWgUOK4.LMlErfWYHBK2wRoXl9fWBtY.Kq6K', 'eri@eri.net', '000', '6020802', '', 1),
+('kawachi', 12, '河内', '$2y$10$HzKgT3pmk9bXRiIAHd66me0uSL2nS.48qkWKoMHuPCzF.asmszWI.', '', '', '', '', 0),
+('kawada', 6, '川田', '$2y$10$XOjjeMNNDsa30.te/OKZxeJGflYMZFEl6Sry8mRBReeCYNcTZeygG', '', '', '', '', 1),
+('kiyo', 9, 'きよ', '$2y$10$T7OiooR6OVtDcRs44u23Su7kf.tbjGX3KImRsXcts9cxl89KjCkOS', 'kiyo@gmail.com', '09036133955', '6020802', '京都府京都市上京区鶴山町', 0),
+('moe', 4, 'もえ', '$2y$10$MVkZJoo1XwR2oCm.rsi7UePnnDXHjnMPI7rRULzgpYdhWE8Dd7KLW', '', '', '', '', 1),
+('nobita', 5, '野比のび太', '$2y$10$4pDuuMz7DAMjrQh3lPgPXu6WYdspd644cfj3MkxAW8Vw0hXH5IH2K', 'nobi@nobita.net', '0903330000', '', '', 0),
+('shizuka', 5, 'しずか', '$2y$10$59tSn92djWcIJp.QyTNHB.ARjp/MZpC2CSrERDpkz3a4dR3Q9sZi6', '', '', '', '', 1),
+('sora', 11, 'そら', '$2y$10$MQYpU2QV3./mXeqp..Vmh.X5gMwoOZaPwGDrgfDc7t3npBkrnfPkW', '', '', '', '', 0),
+('tanaka', 12, '田中千尋', '$2y$10$RfLaObIFCw44k7BRBmaSU.1rsHdXK403pha5KnqUZHaa2LCAKQf6G', '', '', '', '', 1),
+('umi', 11, 'うみ', '$2y$10$vYQVjuLqpPjSAQNz2iGXWe8mZb8eq58ojGEuNRViDeZPYfjq./Y8S', '', '', '', '', 1),
+('yama', 4, 'やましたうえ', '$2y$10$FExFb9tx2RQ6OtFEGKupseDj.sHSVwEeOfiu20AIzh4bszA.lzLH2', 'yama@yama', '075', '', '', 0),
+('yamada', 6, '山田', '$2y$10$CacSIQB7sqNkPEtPXSU/4.JCv0w..QJOXJE75YnP/oKGAOS1VEtWi', '', '', '', '', 0),
+('yusuke', 10, '加藤ユウスケ', '$2y$10$ieQqM7vhU7syGJ9vEmD5ZemPwmxSpZExT5ofaSKREJHTplxYLh.Tu', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -98,21 +118,32 @@ CREATE TABLE `c_groups` (
   `payment` tinyint(1) NOT NULL,
   `d_product` tinyint(1) NOT NULL,
   `new_zip` char(7) NOT NULL,
-  `new_address` varchar(64) NOT NULL
+  `new_address` varchar(64) NOT NULL,
+  `before2days` tinyint(1) NOT NULL DEFAULT 0,
+  `make_reh` tinyint(1) NOT NULL DEFAULT 0,
+  `cos_fixed` tinyint(1) NOT NULL DEFAULT 0,
+  `cos_fitting` tinyint(1) NOT NULL DEFAULT 0,
+  `place_fixed` tinyint(1) NOT NULL DEFAULT 0,
+  `s_id` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- テーブルのデータのダンプ `c_groups`
 --
 
-INSERT INTO `c_groups` (`c_group_id`, `p_id`, `reserve_day`, `reserve_time`, `estimate`, `invoce`, `payment`, `d_product`, `new_zip`, `new_address`) VALUES
-(1, 5, '2020-12-31', '12:00:00', 0, 0, 0, 0, '', ''),
-(2, 5, '2021-04-01', '11:00:00', 1, 1, 1, 0, '', ''),
-(3, 3, '2020-12-01', '09:30:00', 1, 0, 0, 0, '', ''),
-(7, 5, '2020-10-30', '12:00:00', 1, 1, 0, 0, '', ''),
-(9, 2, '2020-12-19', '05:00:00', 0, 0, 0, 0, '6669999', '名'),
-(10, 6, '2020-09-30', '10:00:00', 0, 0, 0, 0, '', ''),
-(11, 4, '2020-11-11', '06:00:00', 0, 0, 0, 0, '', '');
+INSERT INTO `c_groups` (`c_group_id`, `p_id`, `reserve_day`, `reserve_time`, `estimate`, `invoce`, `payment`, `d_product`, `new_zip`, `new_address`, `before2days`, `make_reh`, `cos_fixed`, `cos_fitting`, `place_fixed`, `s_id`) VALUES
+(1, 5, '2020-12-31', '12:00:00', 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, ''),
+(2, 5, '2021-04-01', '11:00:00', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 'sawara'),
+(3, 3, '2020-12-01', '09:30:00', 1, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 'tome'),
+(4, 4, '2020-08-01', '06:20:00', 1, 1, 1, 1, '1', '', 1, 1, 1, 1, 1, 'sawara'),
+(5, 5, '2020-09-03', '14:30:00', 1, 1, 1, 0, '6038451', '京都府京都市北区衣笠鏡石町1－12', 0, 0, 0, 0, 0, 'ume'),
+(6, 2, '2020-09-10', '10:22:00', 1, 1, 1, 0, '1', '', 0, 0, 0, 0, 0, 'ume'),
+(7, 5, '2020-10-30', '12:00:00', 1, 1, 0, 0, '', '', 0, 0, 0, 0, 0, ''),
+(8, 6, '2020-06-05', '07:00:00', 1, 1, 1, 1, '', '', 0, 0, 0, 0, 0, ''),
+(9, 2, '2020-12-19', '05:00:00', 1, 0, 0, 0, '2223333', '夢の国', 1, 1, 1, 1, 1, ''),
+(10, 6, '2020-09-30', '10:00:00', 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 'ume'),
+(11, 4, '2020-11-11', '06:00:00', 1, 1, 0, 0, '1234567', 'Firenze Via della cernaia102', 0, 1, 1, 1, 1, 'katoeri'),
+(12, 9, '2020-09-16', '11:30:00', 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 'katoeri');
 
 -- --------------------------------------------------------
 
@@ -139,7 +170,12 @@ INSERT INTO `list` (`list_id`, `c_group_id`, `list_item`) VALUES
 (7, 9, 'お金'),
 (8, 2, 'どらやき'),
 (12, 2, '今川焼'),
-(15, 2, 'のびたくん');
+(15, 2, 'のびたくん'),
+(17, 2, 'どらやき大'),
+(18, 11, 'どらやき'),
+(19, 11, 'おにぎり'),
+(20, 5, 'どらやき大'),
+(21, 5, 'おにぎり');
 
 -- --------------------------------------------------------
 
@@ -150,11 +186,19 @@ INSERT INTO `list` (`list_id`, `c_group_id`, `list_item`) VALUES
 CREATE TABLE `managements` (
   `m_id` int(11) NOT NULL,
   `c_group_id` int(11) NOT NULL,
-  `todo` varchar(64) NOT NULL,
-  `date` date NOT NULL,
-  `s_id` varchar(32) NOT NULL,
-  `todo_check` tinyint(1) NOT NULL
+  `before2days` tinyint(1) NOT NULL,
+  `make_reh` tinyint(1) NOT NULL,
+  `cos_fixed` tinyint(1) NOT NULL,
+  `cos_fiting` tinyint(1) NOT NULL,
+  `place_fixed` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `managements`
+--
+
+INSERT INTO `managements` (`m_id`, `c_group_id`, `before2days`, `make_reh`, `cos_fixed`, `cos_fiting`, `place_fixed`) VALUES
+(1, 9, 0, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -173,12 +217,15 @@ CREATE TABLE `plans` (
 --
 
 INSERT INTO `plans` (`p_id`, `p_name`, `p_wear`) VALUES
-(1, '和装スタジオ撮影プラン', 'kimono'),
-(2, '京都ロケーション撮影プラン', 'both'),
+(1, 'STUDIO -和装-', 'kimono'),
+(2, 'STUDIO -洋装-', 'dress'),
 (3, '和装＆洋装撮影プラン　よくばり', 'both'),
 (4, '和装＆洋装撮影プラン「TSUMUGI」', 'both'),
 (5, '大覚寺撮影プラン', 'kimono'),
-(6, 'インクライン撮影プラン', 'dress');
+(6, '蹴上インクライン -INCLINE-', 'dress'),
+(7, '東山 -HIGASHIYAMA-', 'kimono'),
+(8, '祇園＋東山', 'kimono'),
+(9, '祇園 -GION-', 'kimono');
 
 -- --------------------------------------------------------
 
@@ -258,25 +305,25 @@ ALTER TABLE `staff`
 -- テーブルのAUTO_INCREMENT `board`
 --
 ALTER TABLE `board`
-  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- テーブルのAUTO_INCREMENT `list`
 --
 ALTER TABLE `list`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- テーブルのAUTO_INCREMENT `managements`
 --
 ALTER TABLE `managements`
-  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- テーブルのAUTO_INCREMENT `plans`
 --
 ALTER TABLE `plans`
-  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

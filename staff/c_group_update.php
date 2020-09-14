@@ -15,10 +15,33 @@ function h($str) {
 
 //選択用プラン一覧取得
 $rows= $obj->getPlan();
-
+//スタッフ一覧取得
+$rows2=$obj->getStaff();
 //グループIDから情報引っ張ってくる
-$res=$obj->getGroomBrideGrouopByGId($_GET["group_id"]);
-print_r($res);
+$res=$obj->getCustomerGrouopByGId($_GET["group_id"]);
+//print_r($res);
+
+//未・完了表示
+if($res["estimate"]==0) {
+	$estimate="☐未発行";
+}else {
+	$estimate="☑発行済";
+}
+if($res["invoce"]==0) {
+	$invoce="☐未発行";
+}else {
+	$invoce="☑発行済";
+}
+if($res["payment"]==0) {
+	$payment="☐支払未";
+}else {
+	$payment="☑支払済";
+}
+if($res["d_product"]==0) {
+	$d_product="☐納品未";
+}else {
+	$d_product="☑納品済";
+}
 
 
 ?>
@@ -57,43 +80,23 @@ print_r($res);
 							<td><input type="time" name="reserve_time" id="reserve_time" value="<?php echo $res["reserve_time"]?>"></td>
 						</tr>
 						<tr>
-							<th><label for="estimate">見積もり発行状況</label></th>
-							<td>
-								<select id="estimate" name="estimate">
-									<option value="">発行状況</option>
-									<option value="0" <?php if($res["estimate"]==0){ echo "selected";} ?>>発行未</option>
-									<option value="1" <?php if($res["estimate"]==1){ echo "selected";} ?>>発行済</option>
-								</select>
+							<th><label for="estimate">見積もり発行状況</label><span class="font_mini">※情報更新は見積書投稿画面で行ってください</span></th>
+							<td><?php echo $estimate;?>
 							</td>
 						</tr>
 						<tr>
-							<th><label for="invoce">請求書発行状況</label></th>
-							<td>
-								<select id="invoce" name="invoce">
-									<option value="">発行状況</option>
-									<option value="0" <?php if($res["invoce"]==0){ echo "selected";} ?>>発行未</option>
-									<option value="1" <?php if($res["invoce"]==1){ echo "selected";} ?>>発行済</option>
-								</select>
+							<th><label for="invoce">請求書発行状況</label><span class="font_mini">※情報更新は請求書投稿画面で行ってください</span></th>
+							<td><?php echo $invoce;?>
 							</td>
 						</tr>
 						<tr>
-							<th><label for="payment">支払い状況</label></th>
-							<td>
-								<select id="payment"  name="payment">
-									<option value="">支払状況</option>
-									<option value="0" <?php if($res["payment"]==0){ echo "selected";} ?>>支払未</option>
-									<option value="1" <?php if($res["payment"]==1){ echo "selected";} ?>>支払済</option>
-								</select>
+							<th><label for="payment">支払い状況</label><span class="font_mini">※情報更新はマネジメント画面で行ってください</span></th>
+							<td><?php echo $payment;?>
 							</td>
 						</tr>
 						<tr>
-							<th><label for="d_product">商品納品状況</label></th>
-							<td>
-								<select id="d_product" name="d_product">
-									<option value="">納品状況</option>
-									<option value="0" <?php if($res["d_product"]==0){ echo "selected";} ?>>納品未</option>
-									<option value="1" <?php if($res["d_product"]==1){ echo "selected";} ?>>納品済</option>
-								</select>
+							<th><label for="d_product">商品納品状況</label><span class="font_mini">※情報更新はマネジメント画面で行ってください</span></th>
+							<td><?php echo $d_product;?>
 							</td>
 						</tr>
 						<tr>
@@ -104,7 +107,17 @@ print_r($res);
 							<th><label for="address">新居住所</label></th>
 							<td><input type="text" name="new_address" id="address" value="<?php echo $res["new_address"];?>"></td>
 						</tr>
-
+						<tr>
+							<th><label for="p_id">担当者名</label></th>
+							<td>
+								<select name="s_id">
+									<option>担当スタッフを選択</option>
+									<?php while($row=$rows2->fetch(PDO::FETCH_ASSOC)): ?>
+									<option value="<?php echo $row["s_id"]; ?>" <?php if($res["s_id"]==$row["s_id"]) {echo "selected";} ; ?>><?php echo h($row["s_name"]); ?></option>
+									<?php endwhile; ?>
+								</select>
+							</td>
+						</tr>
 
 					</table>
 				

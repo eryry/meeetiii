@@ -12,20 +12,103 @@ function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
 
+$reserve_day = $_SESSION["reserve_day"];
+//撮影予約日の表示（曜日も日本語で）
+$week = ["日","月","火","水","木","金","土"];
+$hi = date('w', strtotime($reserve_day));
+$youbi = $week[$hi];
+$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
+
+$c_id = $_SESSION["c_id"];
+$row  = $obj->getCustomerById($c_id);
+
+$c_group_id  = $row["c_group_id"];
+//$reserve_day = $row["reserve_day"];
+//$reserve_time= $row["reserve_time"];
+$c_name = $row["c_name"];
+//$c_pass = $row["c_pass"];
+$c_tell = $row["c_tell"];
+$c_mail = $row["c_mail"];
+$c_zip  = $row["c_zip"];
+$c_address=$row["c_address"];
+$c_gender=$row["c_gender"];
+$c_myphoto=$row["c_gender"];
 
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
 
 		<main>
-			<h1>お客様個人TOP</h1>
+			<h1>個人ページTOP</h1>
 			<section>
-				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
-				
-				<p><a href="c_group_top.php">お客様ページTOPへ</a></p>
-				<p><a href="c_update.php">お客様情報確認・変更ページへ</a></p>
-				<p><a href="c_group_info.php">お客様グループ情報確認ページTOPへ</a></p>
+			<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
+			<p>撮影予約日： <?php echo h($rd);	?> </p>
+			<p>撮影プラン： <?php echo h($_SESSION["p_name"]);	?> </p>
+				<table>
+					<tr>
+						<th>グループID</th>
+						<td><?php echo $c_group_id; ?></td>
+					</tr>
+					<tr>
+						<th>顧客ID</th>
+						<td><?php echo $c_id; ?></td>
+					</tr>
+					
+					<!--
+					<tr>
+						<th>予約日</th>
+						<td><?php echo $reserve_day; ?></td>
+					</tr>
+					<tr>
+						<th>予約日来店時間</th>
+						<td><?php echo $reserve_time; ?></td>
+					</tr>
+					-->
+					
+					<tr>
+						<th>お客様名</th>
+						<td><?php echo h($c_name); ?></td>
+					</tr>
 
+					<tr>
+						<th>パスワード</th>
+						<!-- お客様更新可能ページで、パスワード変更できるようにしたほうがよい？ -->
+						<td>※非表示</td>
+					
+					</tr>
+					<tr>
+						<th>電話番号</th>
+						<td><?php echo h($c_tell); ?></td>
+					</tr>
+					<tr>
+						<th>メールアドレス</th>
+						<td><?php echo h($c_mail); ?></td>
+					</tr>
+					<tr>
+						<th>郵便番号</th>
+						<td><?php echo h($c_zip); ?></td>
+					</tr>
+					<tr>
+						<th>住所</th>
+						<td><?php echo h($c_address); ?></td>
+					</tr>
+					<tr>
+						<th>新郎/新婦 区分</th>
+						<td>
+						<?php if($c_gender==0) {echo "新郎";}; ?>
+						<?php if($c_gender==1) {echo "新婦";}; ?>
+						</td>
+					</tr>
+					<tr>
+						<th>登録画像</th>
+						<td class="c_photo"><img src="../image/upload/c_myphoto/<?php echo $c_id.".jpg"; ?>"></td>
+					</tr>
+				</table>
+				
+				
+			</section>	
+			<section>
+				<button  class="update_btn"><a href="c_update.php">個人登録情報更新ページへ</a></button>
 			</section>
 		</main>
 		<?php include("footer_for_customerpage.php"); ?>
