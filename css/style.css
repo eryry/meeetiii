@@ -116,15 +116,18 @@ table.list th,table.list td {
 }
 table tr th.check,
 table tr td.check {
-	width:80px;
+	width:60px;
+	font-size:12px;
 }
 table tr th.todo,
 table tr td.todo {
-	width:180px;
+	width:90px;
+	font-size:12px;
 }
 table tr th.limit,
 table tr td.limit {
-	width:240px;
+	width:170px;
+	font-size:12px;
 }
 //class
 
@@ -250,4 +253,16 @@ section.second{
 .font_mini {
 	font-size:12px;
 	margin-left:4px;
+}
+.over{
+	color:#ff3a95;
+	font-weight:bold;
+}
+.over_s{
+	color:#807fe0;
+	font-weight:bold;
+}
+span.limit_over{
+	color:#ff3a95;
+	font-weight:bold;
 }

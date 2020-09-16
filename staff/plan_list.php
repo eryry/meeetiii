@@ -6,12 +6,12 @@ if(empty($_SESSION["s_id"])) {
 }
 
 require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
 
-$obj =new Meeting();
 $rows =$obj->getPlan();
 
 ?>

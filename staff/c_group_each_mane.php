@@ -12,7 +12,64 @@ function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
 
-//GETの数値からグループ情報取得
+//担当者表示用
+$resg = $obj->getCustomerGrouopByGId($_SESSION["group_id"]);
+if(!empty($resg["s_id"])){
+	$staffData=$obj->getStaffById($resg["s_id"]);
+}
+
+$c_data=$obj->getGroomBrideGrouopByGId($_SESSION["group_id"]);
+
+//期限確認用(overならover/over_s クラスつける）
+$s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
+$today = date('y-m-d');
+$today=strtotime($today);
+$s_day["before_2day"]=strtotime($s_day["before_2day"]);
+$s_day["before_2week"]=strtotime($s_day["before_2week"]);
+$s_day["before_3week"]=strtotime($s_day["before_3week"]);
+$s_day["before_1month"]=strtotime($s_day["before_1month"]);
+if($_SESSION["before2days"]==0 && $today>$s_day["before_2day"]){
+	$limit_b2day="over";
+}else{
+	$limit_b2day="";
+}
+if($_SESSION["payment"]==0 && $today>$s_day["before_2week"]){
+	$limit_payment="over";
+}else{
+	$limit_payment="";
+}
+if($_SESSION["invoce"]==0 && $today>$s_day["before_3week"]){
+	$limit_invoce="over_s";
+}else{
+	$limit_invoce="";
+}
+if($_SESSION["make_reh"]==0 && $today>$s_day["before_3week"]){
+	$limit_make_reh="over";
+}else{
+	$limit_make_reh="";
+}
+if($_SESSION["cos_fixed"]==0 && $today>$s_day["before_1month"]){
+	$limit_cos_fixed="over";
+}else{
+	$limit_cos_fixed="";
+}
+if($_SESSION["place_fixed"]==0 && $today>$s_day["before_1month"]){
+	$limit_place_fixed="over";
+}else{
+	$limit_place_fixed="";
+}
+if($_SESSION["cos_fitting"]==0){
+	$limit_cos_fitting="over";
+}else{
+	$limit_cos_fitting="";
+}
+if($_SESSION["estimate"]==0){
+	$limit_estimate="over_s";
+}else{
+	$limit_estimate="";
+}
+
+//グループ情報取得
 $g_data=$obj->getCustomerGrouopByGId($_SESSION["group_id"]);
 //未・完了表示
 if($_SESSION["estimate"]==0) {
@@ -41,9 +98,9 @@ if($_SESSION["before2days"]==0) {
 	$before2days="☑確認済み";
 }
 if($_SESSION["make_reh"]==0) {
-	$make_reh="☐未";
+	$make_reh="☐未実行";
 }else {
-	$make_reh="☑済";
+	$make_reh="☑済/無";
 }
 if($_SESSION["cos_fixed"]==0) {
 	$cos_fixed="☐未決定";
@@ -51,17 +108,15 @@ if($_SESSION["cos_fixed"]==0) {
 	$cos_fixed="☑決定済";
 }
 if($_SESSION["cos_fitting"]==0) {
-	$cos_fitting="☐未";
+	$cos_fitting="☐未試着";
 }else {
-	$cos_fitting="☑済";
+	$cos_fitting="☑試着済";
 }
 if($_SESSION["place_fixed"]==0) {
 	$place_fixed="☐未決定";
 }else {
 	$place_fixed="☑決定済";
 }
-
-
 
 //予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
 $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
@@ -91,8 +146,6 @@ $b2we =  date('Y年n月j日', strtotime($s_day["before_2week"]))."(".$b2wy.")";
 $b3we =  date('Y年n月j日', strtotime($s_day["before_3week"]))."(".$b3wy.")";
 $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 
-
-
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
@@ -104,7 +157,9 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 			<p>撮影プラン: <?php echo h($_SESSION["p_name"]); ?></p>
 			<p>撮影予約日: <?php echo h($rd); ?></p>
 			<p>当日お支度開始時間: <?php echo h($time); ?></p>
-			
+			<p>お客様名： <?php echo h($c_data["g_name"])."様・".h($c_data["b_name"])."様";	?> </p>
+			<p>担当スタッフ: <?php if(!empty($staffData["s_name"])) echo h($staffData["s_name"]); ?></p>
+			<p>進捗状況<span class="limit_over"></span></p>
 			<form action="exec_c_g_m_update.php" method="post">
 				<table class="list_noborder">
 					<tr>
@@ -112,7 +167,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<th class="todo">管理項目</th>
 						<th class="limit">期日</th>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_d_product; ?>">
 						<td class="check">
 							<select id="d_product" name="d_product">
 								<option value="0" 
@@ -126,7 +181,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<td class="todo">商品納品</td>
 						<td class="limit">データのみ：1か月後<br>アルバム：2か月後</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_before2days; ?>">
 						<td class="check">
 							<select id="before2days" name="before2days">
 								<option value="0" 
@@ -140,7 +195,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<td class="todo">撮影判断</td>
 						<td class="limit"><?php echo h($b2de); ?></td>
 					</tr>
-					<tr>
+					<tr class="has_limit  <?php echo $limit_payment; ?>">
 						<td class="check">
 							<select id="payment" name="payment">
 								<option value="0" 
@@ -154,26 +209,26 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<td class="todo">お支払い</td>
 						<td class="limit"><?php echo h($b2we); ?>までに</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_invoce; ?>">
 						<td class="check"><?php echo $invoce; ?></td>
 						<td class="todo">請求書発行</td>
 						<td class="limit"><?php echo h($b3we); ?>頃までに</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_make_reh; ?>">
 						<td class="check">
 							<select id="make_reh" name="make_reh">
 								<option value="0" 
 									<?php if($_SESSION["make_reh"]==0) {echo "selected";}; ?>>☐未実行
 								</option>
 								<option value="1"
-									<?php if($_SESSION["make_reh"]==1) {echo "selected";}; ?>>☑実行済
+									<?php if($_SESSION["make_reh"]==1) {echo "selected";}; ?>>☑済/無
 								</option>
 							</select>
 							</td>
-						<td class="todo">ヘアメイクリハーサル</td>
+						<td class="todo">リハーサル</td>
 						<td class="limit"><?php echo h($b3we); ?>頃までに</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_place_fixed; ?>">
 						<td class="check">
 							<select id="place_fixed" name="place_fixed">
 								<option value="0" 
@@ -187,7 +242,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<td class="todo">撮影場所決定</td>
 						<td class="limit"><?php echo h($b1me); ?>頃までに</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_cos_fixed; ?>">
 						<td class="check">
 							<select id="cos_fixed" name="cos_fixed">
 								<option value="0" 
@@ -201,7 +256,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<td class="todo">衣装決定</td>
 						<td class="limit"><?php echo h($b1me); ?>頃までに</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_cos_fitting; ?>">
 						<td class="check">
 							<select id="cos_fitting" name="cos_fitting">
 								<option value="0" 
@@ -215,7 +270,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<td class="todo">衣装試着予約</td>
 						<td class="limit">お早めに</td>
 					</tr>
-					<tr>
+					<tr class="has_limit <?php echo $limit_estimate; ?>">
 						<td class="check"><?php echo $estimate; ?></td>
 						<td class="todo">見積り書発行</td>
 						<td class="limit">ご契約時にお渡し</td>
@@ -224,12 +279,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 				
 				<p><input type="submit" value="情報更新"></p>
 			</form>
-
-				
 			
 			</section>
 		</main>
 <?php include("footer_for_staffpage.php"); ?>
-
-
-

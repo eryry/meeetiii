@@ -31,6 +31,7 @@ $_SESSION["make_reh"]    =$resg["make_reh"];
 $_SESSION["cos_fixed"]   =$resg["cos_fixed"];
 $_SESSION["cos_fitting"] =$resg["cos_fitting"];
 $_SESSION["place_fixed"] =$resg["place_fixed"];
+$_SESSION["limit_over"]  =$resg["limit_over"];
 
 //グループのp_id情報からプラン名、プラン衣装取ってきてセッションデータに格納
 $resp=$obj->getPlanById($_SESSION["p_id"]);

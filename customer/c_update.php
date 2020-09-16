@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
  header("Location: ../index.php");
  exit();
@@ -29,9 +28,7 @@ $c_zip  = $row["c_zip"];
 $c_address=$row["c_address"];
 $c_gender=$row["c_gender"];
 
-
 //print_r($row);
-
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
@@ -39,7 +36,7 @@ $c_gender=$row["c_gender"];
 		<main>
 			<h1>お客様情報更新ページ</h1>
 			<section>
-				<form action="exec_c_update.php" method="post"  enctype="multipart/form-data">
+				<form action="exec_c_update.php" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
 							<th>グループID</th>
@@ -75,7 +72,6 @@ $c_gender=$row["c_gender"];
 						</tr>
 						<tr>
 							<th><label for="c_pass">パスワード</label></th>
-							<!-- お客様更新可能ページで、パスワード変更できるようにしたほうがよい？ -->
 							<td><input type="password" name="c_pass" id="c_pass" value=""></td>
 						</tr>
 						<tr>

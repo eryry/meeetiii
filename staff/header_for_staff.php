@@ -21,6 +21,6 @@
 				<li><a href="staff_top.php">スタッフTOPページ</a></li>
 				<li><a href="c_group_list.php">顧客Group一覧<a></li>
 				<li><a href="plan_list.php">プラン一覧<a></li>
-				<li><a href="exec_staff_logout.php">ログアウト</a></li>
+				<li><a id="logout" href="exec_staff_logout.php">ログアウト</a></li>
 			</ul>
 		</header>

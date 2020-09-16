@@ -2,9 +2,7 @@
 			<ul>
 				<li><a href="../staff/c_group_id_add.php">顧客グループ登録<a></li>
 				<li><a href="../staff/c_add.php">顧客個人登録<a></li>
-				<li><a href="../staff/c_group_list.php">顧客一覧<a></li>
 				<li><a href="../staff/plan_add.php">プラン登録<a></li>
-				<li><a href="../staff/plan_list.php">プラン一覧<a></li>
 				<li><a href="../staff/staff_add.php">スタッフ登録<a></li>
 			</ul>
 		</footer>

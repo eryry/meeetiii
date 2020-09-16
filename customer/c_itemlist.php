@@ -12,7 +12,7 @@ function h($str) {
 }
 
 $obj= new Meeting();
-$rows=$obj->getItemListByGId($_SESSION["c_group_id"]);
+$list_data=$obj->getItemListByGId($_SESSION["c_group_id"]);
 
 
 //予約日表示用
@@ -110,11 +110,11 @@ $r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 			<section class="itemllist_sub second">
 					<p class="u_line">追加アイテムリスト</p>
 					<table class="list_noborder row2">
-					<?php foreach($rows as $row): ?>
-						<form action="exec_delete_item.php" method="post">
+					<?php foreach($list_data as $item): ?>
+						<form action="exec_delete_item.php" method="post" class="del">
 							<tr>
-								<input type="hidden" name="list_id" value="<?php echo $row["list_id"]; ?>">
-								<td>□<?php echo h($row["list_item"]); ?></td>
+								<input type="hidden" name="list_id" value="<?php echo $item["list_id"]; ?>">
+								<td><p class="each_item">□<?php echo h($item["list_item"]); ?></p></td>
 								<td><button class="del_btn" type="submit" value="削除する">リストから削除</button></td>
 							</tr>
 						</form>

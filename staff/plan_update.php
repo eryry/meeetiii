@@ -36,7 +36,7 @@ if(empty($_GET["p_id"])) {
 		<main>
 			<section>
 			<h1>プラン編集ページ</h1>
-				<form action="exec_plan_update.php" method="post">
+				<form action="exec_plan_update.php" method="post" class="update_plan">
 					<table>
 						<tr>
 							<th>プランID</th>

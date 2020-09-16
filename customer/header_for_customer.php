@@ -20,6 +20,6 @@
 				<li><a href="c_group_top.php">ふたりTOP</a></li>
 				<li><a href="c_top.php">個人TOP</a></li>
 				<li><a href="">あとなんか</a></li>
-				<li><a href="exec_logout.php">ログアウト</a></li>
+				<li><a id="logout" href="exec_logout.php">ログアウト</a></li>
 			</ul>
 		</header>

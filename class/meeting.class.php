@@ -75,7 +75,8 @@ class Meeting{
 	
 	//掲示板投稿機能(未完成　画像投稿なしでも 1が入っていてしまう。）
 	public function submitBoard($c_group_id,$submit_member_id,$body,$board_photo){
-		$sql  = "INSERT INTO board(c_group_id,submit_member_id,body,board_photo) VALUES(:c_group_id,:submit_member_id,:body,:board_photo)";
+		$sql  = "INSERT INTO board(c_group_id,submit_member_id,body,board_photo) ";
+		$sql .= "VALUES(:c_group_id,:submit_member_id,:body,:board_photo)";
 		$stmt = $this->pdo->prepare($sql);
 		$stmt ->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
 		$stmt ->bindValue(":submit_member_id",$submit_member_id,PDO::PARAM_STR);
@@ -203,7 +204,8 @@ class Meeting{
 	
 	//新郎・新婦の各情報とグループ情報をまとめて取得して予約日順表示
 	public function getGroomBrideGrouopAllDate() {
-		$sql  ="SELECT groom.c_name AS g_name,bride.c_name AS b_name,reserve_day,p_name,c_groups.c_group_id AS group_id,d_product,payment ";
+		$sql  ="SELECT groom.c_name AS g_name,bride.c_name AS b_name, ";
+		$sql .="reserve_day,p_name,c_groups.c_group_id AS group_id,d_product,payment,limit_over ";
 		$sql .="FROM customers AS groom,customers AS bride,c_groups,plans ";
 		$sql .="WHERE c_groups.c_group_id=groom.c_group_id ";
 		$sql .="AND c_groups.c_group_id=bride.c_group_id ";
@@ -262,10 +264,22 @@ class Meeting{
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 DAY) AS before_3day, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -2 WEEK) AS before_2week, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 WEEK) AS before_3week, ";
-	 $sql .="DATE_ADD(reserve_day, INTERVAL -1 MONTH) AS before_1month ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL -1 MONTH) AS before_1month, ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL 1 MONTH) AS after_1month, ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL 2 MONTH) AS after_2month ";
 	 $sql .="FROM c_groups WHERE c_group_id=:c_group_id";
 	 $stmt = $this->pdo->prepare($sql);
 	 $stmt ->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
+	 $stmt ->execute();
+	 $row =  $stmt->fetch(PDO::FETCH_ASSOC);
+	 return $row;
+	}
+	
+	//スタッフが自分の担当のお客様で期限切れがあるGを取得
+	public function getLimitOverBySId($s_id){
+		$sql ="SELECT c_group_id FROM groups WHERE s_id=:s_id AND limit_over=1";
+	 $stmt = $this->pdo->prepare($sql);
+	 $stmt ->bindValue(":s_id",$s_id,PDO::PARAM_STR);
 	 $stmt ->execute();
 	 $row =  $stmt->fetch(PDO::FETCH_ASSOC);
 	 return $row;
@@ -299,7 +313,8 @@ class Meeting{
 	
 	//マネジメント情報登録（グループIDの情報を踏まえての更新になる。）
 	public function groupManageDataUpdate($c_group_id,$d_product,$before2days,$payment,$make_reh,$cos_fixed,$cos_fitting,$place_fixed){
-		$sql  ="UPDATE c_groups SET d_product=:d_product,before2days=:before2days,payment=:payment,make_reh=:make_reh,cos_fixed=:cos_fixed,cos_fitting=:cos_fitting,place_fixed=:place_fixed ";
+		$sql  ="UPDATE c_groups SET d_product=:d_product,before2days=:before2days,payment=:payment, ";
+		$sql .="make_reh=:make_reh,cos_fixed=:cos_fixed,cos_fitting=:cos_fitting,place_fixed=:place_fixed ";
 		$sql .="WHERE c_group_id=:c_group_id";
 		$stmt= $this->pdo->prepare($sql);
 		$stmt->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
@@ -310,6 +325,15 @@ class Meeting{
 		$stmt->bindValue(":cos_fixed",$cos_fixed,PDO::PARAM_INT);
 		$stmt->bindValue(":cos_fitting",$cos_fitting,PDO::PARAM_INT);
 		$stmt->bindValue(":place_fixed",$place_fixed,PDO::PARAM_INT);
+		$stmt->execute();
+	}
+	
+	//グループの期限過ぎ（limit_over）情報をUPDATE
+	public function updateLimitOver($c_group_id,$limit_over){
+		$sql ="UPDATE c_groups SET limit_over=:limit_over WHERE c_group_id=:c_group_id";
+		$stmt= $this->pdo->prepare($sql);
+		$stmt->bindValue(":limit_over",$limit_over,PDO::PARAM_INT);
+		$stmt->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
 		$stmt->execute();
 	}
 	
@@ -326,7 +350,8 @@ class Meeting{
 	
 	//顧客情報更新(お客様ページでお客様が操作可能）
 	public function customerUpdate($c_id,$c_name,$c_pass,$c_mail,$c_tell,$c_zip,$c_address,$c_gender){ 
-		$sql  ="UPDATE customers SET c_name=:c_name,c_pass=:c_pass,c_mail=:c_mail,c_tell=:c_tell,c_zip=:c_zip,c_address=:c_address,c_gender=:c_gender ";
+		$sql  ="UPDATE customers SET c_name=:c_name,c_pass=:c_pass,c_mail=:c_mail, ";
+		$sql .="c_tell=:c_tell,c_zip=:c_zip,c_address=:c_address,c_gender=:c_gender ";
 		$sql .="WHERE c_id=:c_id"; 
 		$stmt=$this->pdo->prepare($sql);
 		$pass= password_hash($c_pass,PASSWORD_DEFAULT);
@@ -349,6 +374,15 @@ class Meeting{
 	//掲示板写真投稿 写真に保存先と保存名(b_id or created　＋.jpg)を指定する
 	public function saveBoardImage($b_id) {
 		move_uploaded_file($_FILES["board_photo"]["tmp_name"],"../image/upload/board_photo/".$b_id.".jpg");
+	}
+	//掲示板投稿最新投稿日の表示
+	public function getBoardNewCreatedDate($c_group_id){
+		$sql ="SELECT * FROM board WHERE c_group_id=:c_group_id ORDER BY created DESC LIMIT 1";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt ->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
+		$stmt ->execute();
+		$row =  $stmt->fetch(PDO::FETCH_ASSOC);
+		return $row;
 	}
 	
 	//見積もり投稿 データに保存先と保存名(c_group_id　＋.jpg)を指定する＆グループのestimateの値を1に書き換える
@@ -381,7 +415,6 @@ class Meeting{
 		$daydiff = $seconddiff / (60 * 60 * 24);
 	  return $daydiff;
 	}
-	
 	
 	//アイテムリストから投稿済みリスト削除機能
 	public function listDelete($list_id) {

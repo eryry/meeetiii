@@ -24,11 +24,11 @@ $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
-$row = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
+$c_data = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
 //ログイン中に情報更新があった場合の為に、SESSIONに再代入
-$_SESSION["estimate"]=$row["estimate"];
-$_SESSION["invoce"]=$row["invoce"];
+$_SESSION["estimate"]=$c_data["estimate"];
+$_SESSION["invoce"]=$c_data["invoce"];
 ?>
 
 <?php 
@@ -52,20 +52,20 @@ $_SESSION["invoce"]=$row["invoce"];
 				</p>
 				
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
-				<p>撮影プラン： <?php echo h($row["p_name"]);	?> </p>
+				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
 				
 				<div class="toukou">
 					<h2>見積書</h2>
 					
 					<?php if(!empty($_SESSION["s_id"])): ?>
-					<form action="exec_sub_estimate.php" method="post"  enctype="multipart/form-data">
+					<form action="exec_sub_estimate.php" method="post" enctype="multipart/form-data" class="sub_file">
 					<input type="file" name="estimate">
 					<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
 					<input type="submit" value="見積もり投稿">
 					</form>
 					<?php endif; ?>
 					
-					<?php if($row["estimate"]==1): ?>
+					<?php if($c_data["estimate"]==1): ?>
 					<p>見積書発行：あり
 					<button class="pay_btn"><a href="exec_estimate_dl.php">見積書を表示</a></button></p>
 					<?php else: ?>
@@ -76,13 +76,13 @@ $_SESSION["invoce"]=$row["invoce"];
 				<div class="toukou">
 					<h2>請求書</h2>
 					<?php if(!empty($_SESSION["s_id"])): ?>
-					<form action="exec_sub_invoce.php" method="post"  enctype="multipart/form-data">
+					<form action="exec_sub_invoce.php" method="post" enctype="multipart/form-data" class="sub_file">
 					<input type="file" name="invoce">
 					<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
 					<input type="submit" value="請求書投稿">
 					</form>
 					<?php endif; ?>
-					<?php if($row["invoce"]==1): ?>
+					<?php if($c_data["invoce"]==1): ?>
 					<p>請求書発行：あり
 					<button class="pay_btn"><a href="exec_invoce_dl.php">請求書を表示</a></button></p>
 					<?php else: ?>

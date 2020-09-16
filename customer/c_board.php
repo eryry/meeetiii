@@ -11,20 +11,9 @@ $obj= new Meeting();
 if(!empty($_SESSION["s_id"])) $_SESSION["c_group_id"]=$_GET["group_id"];
 
 //お客様は自身ログイン時にセッションに各種データ積み込まれるが、
-//スタッフログインでは積み込まれないので、ページ最初に積み込んでおく。
-//掲示板から以外はいかない前提で、ここ掲示板で積み込み作業。
+//スタッフログインでは積み込まれないので、ページ最初に予約日積み込んでおく。
 $resg = $obj->getCustomerGrouopByGId($_SESSION["c_group_id"]);
 $_SESSION["reserve_day"] =$resg["reserve_day"];
-/*
-$_SESSION["reserve_time"]=$resg["reserve_time"];
-$_SESSION["estimate"]    =$resg["estimate"];
-$_SESSION["invoce"]      =$resg["invoce"];
-$_SESSION["payment"]     =$resg["payment"];
-$_SESSION["d_product"]   =$resg["d_product"];
-$_SESSION["new_zip"]     =$resg["new_zip"];
-$_SESSION["new_address"] =$resg["new_address"];
-$_SESSION["p_id"] 			 =$resg["p_id"];
-*/
 
 $reserve_day = $_SESSION["reserve_day"];
 $week = ["日","月","火","水","木","金","土"];
@@ -69,6 +58,7 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 					}; ?></p>
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($row["p_name"]);	?> </p>
+				<p>お客様名： <?php echo h($c_data["g_name"])."様・".h($c_data["b_name"])."様";	?> </p>
 			</section>
 			<section class="second toukou">
 				<p>新規投稿</p>
@@ -95,7 +85,7 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 				<?php foreach($rows as $row): ?>
 				<article class="keijiban_sub">
 				<p>
-					<span class="u_line font_mini"">投稿:
+					<span class="u_line font_mini"">name:
 					<?php 
 					if($row["submit_member_id"]== $c_data["g_id"]){
 						echo "【".h($c_data["g_name"])."】";
