@@ -82,8 +82,8 @@ $(function(){
 		'6',
 		'7'
 	];
-	var messageNo = MessageList[3];
-	$('.msg').text(messageNo);
+	//var messageNo = MessageList[3];
+	//$('.msg').text(messageNo);
 
 	/*
 	class MassageList(hi){

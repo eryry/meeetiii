@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 * {
-	//border:1px red solid;
+	/* border:1px red solid; */
 }
 
 
@@ -56,7 +56,7 @@ section {
 section form{
 	max-width:100%;
 	margin:auto;
-	//padding:20px;
+	/* padding:20px; */
 }
 table {
 	max-width:100%;
@@ -70,7 +70,8 @@ table tr {
 table tr th {
 	text-align:left;
 }
-table tr td input,table tr td select{
+table tr td input,table tr td select,
+input,select,p select{
 	border: solid 1px gray;
 }
 input[type="submit"] {

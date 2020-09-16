@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-09-16 17:50:35
--- サーバのバージョン： 10.4.14-MariaDB
--- PHP のバージョン: 7.4.9
+-- 生成日時: 2020-09-17 08:29:07
+-- サーバのバージョン： 10.4.11-MariaDB
+-- PHP のバージョン: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -140,7 +140,7 @@ INSERT INTO `c_groups` (`c_group_id`, `p_id`, `reserve_day`, `reserve_time`, `es
 (2, 5, '2021-04-01', '11:00:00', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 'sawara', 0),
 (3, 3, '2020-12-01', '09:30:00', 1, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 'tome', 0),
 (4, 4, '2020-08-01', '06:20:00', 1, 1, 1, 1, '1', '', 1, 1, 1, 1, 1, 'sawara', 0),
-(5, 5, '2020-09-03', '14:30:00', 1, 1, 1, 0, '6038451', '京都府京都市北区衣笠鏡石町1－12', 0, 0, 0, 0, 0, 'ume', 0),
+(5, 5, '2020-09-18', '14:30:00', 1, 1, 1, 0, '6038451', '京都府京都市北区衣笠鏡石町1－12', 0, 0, 0, 1, 0, 'ume', 1),
 (6, 2, '2020-09-10', '10:22:00', 1, 1, 1, 0, '1', '', 0, 0, 0, 0, 0, 'ume', 0),
 (7, 5, '2020-10-30', '12:00:00', 1, 1, 0, 0, '', '', 0, 0, 0, 0, 0, '', 0),
 (8, 6, '2020-06-05', '07:00:00', 1, 1, 1, 1, '', '', 0, 0, 0, 0, 0, '', 0),
@@ -209,6 +209,30 @@ INSERT INTO `managements` (`m_id`, `c_group_id`, `before2days`, `make_reh`, `cos
 -- --------------------------------------------------------
 
 --
+-- テーブルの構造 `messages`
+--
+
+CREATE TABLE `messages` (
+  `m_id` int(11) NOT NULL,
+  `m_body` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `messages`
+--
+
+INSERT INTO `messages` (`m_id`, `m_body`) VALUES
+(1, 'いよいよ明日撮影本番ですね。忘れ物のないよう、お気をつけてお越しください！'),
+(2, '撮影2日前です。ロケ撮影のお客様は撮影判断お願いします！'),
+(3, '撮影3日前ですね。明日2日前はロケ撮影の決行判断日なので今日から天気予報見て準備しておきましょう！'),
+(7, '撮影1週間前ですね。撮影当日のためにそろそろ体調管理して体調万全で当日迎えられるようにしますよう！'),
+(14, '2週間前だよ'),
+(20, 'しゅうせいだよ'),
+(30, '1か月前だよ');
+
+-- --------------------------------------------------------
+
+--
 -- テーブルの構造 `plans`
 --
 
@@ -253,7 +277,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`s_id`, `s_name`, `s_pass`, `s_mail`, `role`) VALUES
-('katoeri', 'かとえり', '$2y$10$Pd6jx5o50gNPtcVpkFQqdu14NCcG7Bg9G6Ia4WtFQafntWUJ.LABm', 'katoeri@kato', 0),
+('katoeri', 'かとえり', '$2y$10$Pd6jx5o50gNPtcVpkFQqdu14NCcG7Bg9G6Ia4WtFQafntWUJ.LABm', 'katoeri@kato', 1),
 ('sawara', 'いわし', '$2y$10$RiwK.mbgsjA0frAHCPpbwObwluX2tlZOZHRgXWU/KHerqa3.XKt2q', 'iwasi@iwasi', 0),
 ('tome', 'おとめ', '$2y$10$4ML21xM81p4FkMnjquMInOPNi9audWr421yt05Guic5toxwB4TmLq', 'tometome@tome', 0),
 ('ume', 'うめ', '$2y$10$P1Rdd8dZ0qZv5pW8QdaLduVMXlEmvTiTVTzbWh6vy1byK2SNltdM.', 'ume@ume', 0);
@@ -290,6 +314,12 @@ ALTER TABLE `list`
 -- テーブルのインデックス `managements`
 --
 ALTER TABLE `managements`
+  ADD PRIMARY KEY (`m_id`);
+
+--
+-- テーブルのインデックス `messages`
+--
+ALTER TABLE `messages`
   ADD PRIMARY KEY (`m_id`);
 
 --

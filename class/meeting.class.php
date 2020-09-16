@@ -32,6 +32,15 @@ class Meeting{
 		$stmt->execute();
 	}
 	
+	//メッセージ登録
+	public function msgAdd($m_id,$m_body){
+		$sql = "INSERT INTO messages(m_id,m_body) VALUES(:m_id,:m_body)";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(":m_id",$m_id,PDO::PARAM_INT);
+		$stmt->bindValue(":m_body",$m_body,PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	
 	//カスタマーグループ登録
 	public function customerGroupAdd($c_group_id,$p_id,$reserve_day,$reserve_time,$new_zip,$new_address,$s_id) {
 		$sql  ="INSERT INTO c_groups(c_group_id,p_id,reserve_day,reserve_time,new_zip,new_address,s_id) ";
@@ -163,6 +172,22 @@ class Meeting{
 		return $rs;
 	}
 
+	//メッセージ情報取得
+	public function getMessage() {
+		$sql="SELECT * FROM messages";
+		$rs = $this->pdo->query($sql);
+		return $rs;
+	}
+	//メッセージ情報をm_idで取得
+	public function getMessageByMId($m_id) {
+		$sql="SELECT m_body FROM messages WHERE m_id=:m_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt->bindValue(":m_id",$m_id,PDO::PARAM_INT);
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $row;
+	}
+	
 	//カスタマー情報更新
 	
 	
@@ -275,14 +300,14 @@ class Meeting{
 	 return $row;
 	}
 	
-	//スタッフが自分の担当のお客様で期限切れがあるGを取得
+	//スタッフが自分の担当のお客様で期限切れがあるGIDを取得
 	public function getLimitOverBySId($s_id){
-		$sql ="SELECT c_group_id FROM groups WHERE s_id=:s_id AND limit_over=1";
+		$sql ="SELECT c_group_id FROM c_groups WHERE s_id=:s_id AND limit_over=1";
 	 $stmt = $this->pdo->prepare($sql);
 	 $stmt ->bindValue(":s_id",$s_id,PDO::PARAM_STR);
 	 $stmt ->execute();
-	 $row =  $stmt->fetch(PDO::FETCH_ASSOC);
-	 return $row;
+	 $rows =  $stmt->fetch(PDO::FETCH_ASSOC);
+	 return $rows;
 	}
 	
 	//プラン情報更新UPDATE
@@ -292,6 +317,14 @@ class Meeting{
 		$stmt->bindValue(":p_name",$p_name,PDO::PARAM_STR);
 		$stmt->bindValue(":p_wear",$p_wear,PDO::PARAM_STR);
 		$stmt->bindValue(":p_id",$p_id,PDO::PARAM_INT);
+		$stmt->execute();
+	}
+	//message情報更新UPDATE
+	public function msgUpdate($m_id,$m_body){ 
+		$sql="UPDATE messages SET m_body=:m_body WHERE m_id=:m_id"; 
+		$stmt=$this->pdo->prepare($sql);
+		$stmt->bindValue(":m_body",$m_body,PDO::PARAM_STR);
+		$stmt->bindValue(":m_id",$m_id,PDO::PARAM_INT);
 		$stmt->execute();
 	}
 	

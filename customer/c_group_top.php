@@ -34,6 +34,16 @@ if($_SESSION["limit_over"]==0){
 }else{
 	$limit_over_message="あり";
 }
+echo $day;
+
+$all_msg=$obj->getMessage();
+foreach($all_msg as $val){
+	if($day==$val){
+			$msg=$obj->getMessageByMId(intVal($day));
+			echo $msg["m_body"];
+	}
+}
+
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
@@ -58,7 +68,16 @@ if($_SESSION["limit_over"]==0){
 				</div>
 				
 				<div>
-					<p class="msg"></p>
+					<p class="msg">
+					<?php 
+					foreach($all_msg as $val){
+						if($day==$val){
+							$msg=$obj->getMessageByMId(intVal($day));
+							echo $msg["m_body"];
+						}
+					}
+					;?>
+					</p>
 					<p class="msg_random"> *random message area*</p>
 				</div>
 				<?php if(strtotime($today)<=strtotime($reserve_day)): ?>
