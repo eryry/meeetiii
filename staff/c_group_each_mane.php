@@ -132,19 +132,30 @@ $time=date('H:i',strtotime($_SESSION["group_id"]));
 
 $b2d = date('w', strtotime($s_day["before_2day"]));
 $b3d = date('w', strtotime($s_day["before_3day"]));
+$b1w = date('w', strtotime($s_day["before_1week"]));
 $b2w = date('w', strtotime($s_day["before_2week"]));
 $b3w = date('w', strtotime($s_day["before_3week"]));
 $b1m = date('w', strtotime($s_day["before_1month"]));
+$a1m = date('w', strtotime($s_day["after_1month"]));
+$a2m = date('w', strtotime($s_day["after_2month"]));
+
 $b2dy=$week[$b2d];
 $b3dy=$week[$b3d];
+$b1wy=$week[$b1w];
 $b2wy=$week[$b2w];
 $b3wy=$week[$b3w];
 $b1my=$week[$b1m];
+$a1my=$week[$a1m];
+$a2my=$week[$a2m];
+
 $b2de =  date('Y年n月j日', strtotime($s_day["before_2day"]))."(".$b2dy.")";
 $b3de =  date('Y年n月j日', strtotime($s_day["before_3day"]))."(".$b3dy.")";
+$b1we =  date('Y年n月j日', strtotime($s_day["before_1week"]))."(".$b1wy.")";
 $b2we =  date('Y年n月j日', strtotime($s_day["before_2week"]))."(".$b2wy.")";
 $b3we =  date('Y年n月j日', strtotime($s_day["before_3week"]))."(".$b3wy.")";
 $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
+$a1me =  date('Y年n月j日', strtotime($s_day["after_1month"]))."(".$a1my.")";
+$a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 
 ?>
 
@@ -179,7 +190,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 							</select>
 						</td>
 						<td class="todo">商品納品</td>
-						<td class="limit">データのみ：1か月後<br>アルバム：2か月後</td>
+						<td class="limit">データのみ：1か月後 <?php echo h($a1me); ?><br>アルバム：2か月後 <?php echo h($a2me); ?></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_before2days; ?>">
 						<td class="check">
@@ -207,7 +218,7 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 							</select>
 						</td>
 						<td class="todo">お支払い</td>
-						<td class="limit"><?php echo h($b2we); ?>までに</td>
+						<td class="limit"><?php echo h($b1we); ?>までに</td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_invoce; ?>">
 						<td class="check"><?php echo $invoce; ?></td>

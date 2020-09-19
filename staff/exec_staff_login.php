@@ -11,7 +11,8 @@ $obj = new Meeting();
 $res = $obj->staffLogin($_POST["s_id"],$_POST["s_pass"]);
 if($res) {
 	$_SESSION["s_name"]=$res["s_name"];
-	$_SESSION["s_id"]    =$res["s_id"];
+	$_SESSION["s_id"]   =$res["s_id"];
+	$_SESSION["role"] =$res["role"];
 	header("Location: staff_top.php");
 }else{
 	header("Location: staff_login.php?err2;");

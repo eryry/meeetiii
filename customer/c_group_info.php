@@ -66,6 +66,7 @@ if(empty($_SESSION["new_address"])) {
 				<p>ご新居情報は、ご自身で入力・更新可能です。
 				<button class="update_btn"><a href="c_group_newaddress_update.php">ご新居入力・更新ページへ</a></button></p>
 				<p class="font_mini">※ご新居情報以外で間違いがある場合は、お電話または掲示板からご連絡ください</p>
+				<p class="font_mini">※ご新居情報は、商品お届け先になります。新居未定時はお届け希望住所を入力ください。</p>
 					<table>
 						<tr>
 							<th>グループID</th>

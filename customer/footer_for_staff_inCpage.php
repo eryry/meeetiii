@@ -6,7 +6,6 @@
 				<li><a href="../staff/staff_add.php">スタッフ登録<a></li>
 			</ul>
 		</footer>
-	<script src="../js/jquery-3.5.1.min.js"></script>
 	<script src="../js/meetingapp.js"></script>
 	</body>
 </html>

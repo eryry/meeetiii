@@ -44,6 +44,7 @@ $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
 $today = date('y-m-d');
 $today=strtotime($today);
 $s_day["before_2day"]=strtotime($s_day["before_2day"]);
+$s_day["before_1week"]=strtotime($s_day["before_1week"]);
 $s_day["before_2week"]=strtotime($s_day["before_2week"]);
 $s_day["before_3week"]=strtotime($s_day["before_3week"]);
 $s_day["before_1month"]=strtotime($s_day["before_1month"]);
@@ -53,7 +54,7 @@ if($_SESSION["before2days"]==0 && $today>$s_day["before_2day"]){
 }else{
 	$limit_b2day="";
 }
-if($_SESSION["payment"]==0 && $today>$s_day["before_2week"]){
+if($_SESSION["payment"]==0 && $today>$s_day["before_1week"]){
 	$limit_payment="over";
 	$limit_over_count++;
 }else{
@@ -189,19 +190,30 @@ $time=date('H:i',strtotime($_SESSION["group_id"]));
 $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
 $b2d = date('w', strtotime($s_day["before_2day"]));
 $b3d = date('w', strtotime($s_day["before_3day"]));
+$b1w = date('w', strtotime($s_day["before_1week"]));
 $b2w = date('w', strtotime($s_day["before_2week"]));
 $b3w = date('w', strtotime($s_day["before_3week"]));
 $b1m = date('w', strtotime($s_day["before_1month"]));
+$a1m = date('w', strtotime($s_day["after_1month"]));
+$a2m = date('w', strtotime($s_day["after_2month"]));
+
 $b2dy=$week[$b2d];
 $b3dy=$week[$b3d];
+$b1wy=$week[$b1w];
 $b2wy=$week[$b2w];
 $b3wy=$week[$b3w];
 $b1my=$week[$b1m];
+$a1my=$week[$a1m];
+$a2my=$week[$a2m];
+
 $b2de =  date('Y年n月j日', strtotime($s_day["before_2day"]))."(".$b2dy.")";
 $b3de =  date('Y年n月j日', strtotime($s_day["before_3day"]))."(".$b3dy.")";
+$b1we =  date('Y年n月j日', strtotime($s_day["before_1week"]))."(".$b1wy.")";
 $b2we =  date('Y年n月j日', strtotime($s_day["before_2week"]))."(".$b2wy.")";
 $b3we =  date('Y年n月j日', strtotime($s_day["before_3week"]))."(".$b3wy.")";
 $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
+$a1me =  date('Y年n月j日', strtotime($s_day["after_1month"]))."(".$a1my.")";
+$a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 
 ?>
 
@@ -253,25 +265,25 @@ $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 						<th class="check">未・済</th><th class="todo">管理項目</th><th class="limit">期日</th>
 					</tr>
 					<tr class="has_limit <?php echo $limit_d_product; ?>">
-						<td class="check"><?php echo $d_product; ?></td><td class="todo">商品納品</td><td class="limit">データのみ：1か月後<br>アルバム：2か月後</td>
+						<td class="check"><?php echo $d_product; ?></td><td class="todo">商品納品</td><td class="limit">データのみ：1か月後<?php echo h($a1me); ?><br>アルバム：2か月後<?php echo h($a2me); ?></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_before2days; ?>">
-						<td class="check"><?php echo $before2days; ?></td><td class="todo">撮影判断</td><td class="limit"><?php echo h($b2de); ?></td>
+						<td class="check"><?php echo $before2days; ?></td><td class="todo">撮影判断</td><td class="limit">2日前：<?php echo h($b2de); ?></td>
 					</tr>
 					<tr class="has_limit  <?php echo $limit_payment; ?>">
-						<td class="check"><?php echo $payment; ?></td><td class="todo">お支払い</td><td class="limit"><?php echo h($b2we); ?>までに</td>
+						<td class="check"><?php echo $payment; ?></td><td class="todo">お支払い</td><td class="limit">1週間前：<?php echo h($b1we); ?>までに</td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_invoce; ?>">
-						<td class="check"><?php echo $invoce; ?></td><td class="todo">請求書発行</td><td class="limit"><?php echo h($b3we); ?>頃までに</td>
+						<td class="check"><?php echo $invoce; ?></td><td class="todo">請求書発行</td><td class="limit">3週間前：<?php echo h($b3we); ?>頃までに</td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_make_reh; ?>">
-						<td class="check"><?php echo $make_reh; ?></td><td class="todo">リハーサル</td><td class="limit"><?php echo h($b3we); ?>頃までに</td>
+						<td class="check"><?php echo $make_reh; ?></td><td class="todo">リハーサル</td><td class="limit">3週間前：<?php echo h($b3we); ?>頃までに</td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_place_fixed; ?>">
-						<td class="check"><?php echo $place_fixed; ?></td><td class="todo">撮影場所決定</td><td class="limit"><?php echo h($b1me); ?>頃までに</td>
+						<td class="check"><?php echo $place_fixed; ?></td><td class="todo">撮影場所決定</td><td class="limit">1か月前：<?php echo h($b1me); ?>頃までに</td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fixed; ?>">
-						<td class="check"><?php echo $cos_fixed; ?></td><td class="todo">衣装決定</td><td class="limit"><?php echo h($b1me); ?>頃までに</td>
+						<td class="check"><?php echo $cos_fixed; ?></td><td class="todo">衣装決定</td><td class="limit">1か月前：<?php echo h($b1me); ?>頃までに</td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fitting; ?>">
 						<td class="check"><?php echo $cos_fitting; ?></td><td class="todo">衣装試着予約</td><td class="limit">お早めに</td>

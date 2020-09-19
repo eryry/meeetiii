@@ -19,8 +19,8 @@ $rows =$obj->getPlan();
 <?php require_once("header_for_staff.php"); ?>
 
 		<main>
-			<section>
 			<h1>プラン一覧</h1>
+			<section>
 					<table class="list">
 					<tr>
 						<th class="list_id_num">p_ID</th><th class="list_p_name">プラン名</th><th class="list_p_wear">プラン衣装種類</th>

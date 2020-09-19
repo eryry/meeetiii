@@ -35,7 +35,7 @@ $msgs=$obj->getMessage();
 				<table class="list_noborder">
 					<tr>
 						<th class="list_id_num">ID</th>
-						<th class="list_r_day">予約日</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th>
+						<th class="list_r_day">予約日</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th><th>掲示板投稿状況</th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<?php if(!empty($groups) && $row["limit_over"]==1 && $row["group_id"]==$groups["c_group_id"]): ?>
@@ -52,6 +52,28 @@ $msgs=$obj->getMessage();
 						?></td>
 						<td class="list_c_name"><?php echo h($row["g_name"]); ?></td>
 						<td class="list_c_name"><?php echo h($row["b_name"]); ?></td>
+						<td>
+							<?php $b_data = $obj->getBoardNewCreatedDate($row["group_id"]); ?>
+							<?php if(!empty($b_data)): ?>
+							<a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>">date:
+							<?php echo date("Y/m/d H:i",strtotime($b_data["created"]))."&nbsp&nbsp"; ?> 
+							name:<?php 
+							$c_data = $obj->getGroomBrideGrouopByGId($row["group_id"]);
+							if($b_data["submit_member_id"]== $c_data["g_id"]){
+								echo h($c_data["g_name"]);
+							}else if($b_data["submit_member_id"]== $c_data["b_id"]){
+								echo h($c_data["b_name"]);
+							}else{
+								//最新投稿者名がスタッフだった場合用にスタッフ情報取得
+								$s_id=$b_data["submit_member_id"];
+								$staff_data=$obj->getStaffById($s_id);
+								echo "スタッフ：".h($staff_data["s_name"]);
+							}
+							;?></a>
+							<?php elseif(empty($b_data)): ?>
+							投稿はまだありません。
+							<?php endif; ?>
+						</td>
 					</tr>
 					<?php endif; ?>
 					<?php endwhile; ?>
@@ -69,25 +91,13 @@ $msgs=$obj->getMessage();
 				<p><input type="text" name="m_body"></p>
 				<button><input type="submit" value="メッセージ登録" name="add"></button>
 				</form>
-			</section>
-			<section>
-				<h3>メッセージの更新</h3>
-				<form action="exec_msg_add.php" method="post">
-				<p>メッセージID(日付連動型/数字のみ/何日前かで数値入力）</p>
-				<p>
-					<select name="m_id">
-						<option>メッセージIDを選択</option>
-						<?php while($msg=$msgs->fetch(PDO::FETCH_ASSOC)): ?>
-						<option value="<?php echo $msg["m_id"]; ?>"><?php echo intVal($msg["m_id"]); ?></option>
-						<?php endwhile; ?>
-					</select>
-				</p>
-				<p>メッセージ内容</p>
-				<p><input type="text" name="m_body" value=""></p>
-				<button><input type="submit" value="メッセージ編集" name="update"></button>
-				</form>
+				<button class="update_btn"><a href="message_list.php">メッセージ一覧・更新</a></button>
 			</section>
 			
+			<section>
+				<li><a href="staff_add.php">スタッフ登録<a></li>
+				
+			</section>
 			<?php endif; ?>
 		</main>
 		

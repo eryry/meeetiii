@@ -44,7 +44,7 @@ function h($str) {
 						</tr>
 						<tr>
 							<th><label for="reserve_time">予約日来店時間</th>
-							<td><input type="time" name="reserve_time" id="reserve_time"></td>
+							<td><input type="time" name="reserve_time" id="reserve_time" value="10:00"></td>
 						</tr>
 						<tr>
 							<th><label for="estimate">見積もり発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済見積もりを投稿してください</span></th>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-09-17 08:29:07
--- サーバのバージョン： 10.4.11-MariaDB
--- PHP のバージョン: 7.4.5
+-- 生成日時: 2020-09-18 16:44:36
+-- サーバのバージョン： 10.4.14-MariaDB
+-- PHP のバージョン: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,7 +61,19 @@ INSERT INTO `board` (`b_id`, `c_group_id`, `submit_member_id`, `body`, `board_ph
 (70, 5, 'ume', 'スタッフうめです。\r\n本日追加分請求書発行しましたので、ご確認よろしくお願い致します。', 0, '2020-09-15 04:50:49'),
 (71, 10, 'azusa', '', 1, '2020-09-15 04:53:01'),
 (72, 10, 'azusa', '期限切れがあるかないかを調べることはできるけれど、TOPページへの連動の仕方がわからない。こまた。', 0, '2020-09-16 02:13:36'),
-(73, 10, 'azusa', '11時に困ってたことは、なんとか解決できた。\r\nやった！', 1, '2020-09-16 05:54:13');
+(73, 10, 'azusa', '11時に困ってたことは、なんとか解決できた。\r\nやった！', 1, '2020-09-16 05:54:13'),
+(74, 4, 'katoeri', 'アルバム出来上がりました！', 0, '2020-09-17 05:41:52'),
+(75, 4, 'katoeri', '新居もしくはお届け先の登録をお願いします！', 0, '2020-09-17 05:43:50'),
+(76, 4, 'katoeri', '新居もしくはお届け先の登録をお願いします！', 0, '2020-09-17 05:44:03'),
+(77, 4, 'katoeri', '新居もしくはお届け先の登録をお願いします！', 0, '2020-09-17 05:44:11'),
+(78, 4, 'katoeri', 'すいません。投稿ミスして連投してしまいました。。。', 1, '2020-09-17 05:45:37'),
+(79, 4, 'katoeri', '撮影', 0, '2020-09-17 05:51:30'),
+(80, 4, 'katoeri', '作成', 0, '2020-09-17 05:53:45'),
+(81, 4, 'katoeri', '作成', 0, '2020-09-17 05:54:23'),
+(82, 4, 'katoeri', 'もうやだ', 0, '2020-09-17 05:55:17'),
+(83, 4, 'katoeri', 'もうやだ', 0, '2020-09-17 05:55:46'),
+(84, 4, 'katoeri', '再度', 0, '2020-09-17 05:55:53'),
+(85, 5, 'nobita', '確認しました！\r\n振り込んだので、ご確認よろしくお願いします！', 0, '2020-09-17 05:57:09');
 
 -- --------------------------------------------------------
 
@@ -78,32 +90,33 @@ CREATE TABLE `customers` (
   `c_tell` varchar(11) NOT NULL,
   `c_zip` char(7) NOT NULL,
   `c_address` varchar(64) NOT NULL,
-  `c_gender` tinyint(1) NOT NULL
+  `c_gender` tinyint(1) NOT NULL,
+  `c_myphoto` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- テーブルのデータのダンプ `customers`
 --
 
-INSERT INTO `customers` (`c_id`, `c_group_id`, `c_name`, `c_pass`, `c_mail`, `c_tell`, `c_zip`, `c_address`, `c_gender`) VALUES
-('aka', 3, '赤川', '$2y$10$kgfwUD5Dr7KKq/3tC4RFJ.2Ne2CAuXQ9pohS7Q./CVbxUG/4USKJq', '', '0753332212', '', '', 0),
-('ao', 3, '青山', '$2y$10$5F5i0F7yolKdbpj79XlLBOqMZFdx2D55/MJ2qmXMRDaGt48W5HhU2', '', '', '', '', 1),
-('azusa', 10, '加藤あずさ', '$2y$10$lGs37BoEh8/VOT6Di1.Q3us9oFwIGwinPPjiCZ6opkmy4kVjW.bHe', '', '', '', '', 1),
-('dora', 2, 'どらえもん', '$2y$10$nBcTwHrkRsEhLgLQyAQtZureHTY5QDtefvDxFbgz197Du2aRyrP8y', 'dora@dora', '090', '', '', 0),
-('dorami', 2, 'どらみ', '$2y$10$O3hJ8/Dgj8OG3/f5Cxebl.Ia4DE1xOJYmYyfVLtn/C.sk.vYfI2r2', 'dorami@dorami.com', '0751234567', '', '', 1),
-('eri', 9, 'えり', '$2y$10$pr4p7iMBOr2NVVDdlGWgUOK4.LMlErfWYHBK2wRoXl9fWBtY.Kq6K', 'eri@eri.net', '000', '6020802', '', 1),
-('kawachi', 12, '河内', '$2y$10$HzKgT3pmk9bXRiIAHd66me0uSL2nS.48qkWKoMHuPCzF.asmszWI.', '', '', '', '', 0),
-('kawada', 6, '川田', '$2y$10$XOjjeMNNDsa30.te/OKZxeJGflYMZFEl6Sry8mRBReeCYNcTZeygG', '', '', '', '', 1),
-('kiyo', 9, 'きよ', '$2y$10$T7OiooR6OVtDcRs44u23Su7kf.tbjGX3KImRsXcts9cxl89KjCkOS', 'kiyo@gmail.com', '09036133955', '6020802', '京都府京都市上京区鶴山町', 0),
-('moe', 4, 'もえ', '$2y$10$MVkZJoo1XwR2oCm.rsi7UePnnDXHjnMPI7rRULzgpYdhWE8Dd7KLW', '', '', '', '', 1),
-('nobita', 5, '野比のび太', '$2y$10$4pDuuMz7DAMjrQh3lPgPXu6WYdspd644cfj3MkxAW8Vw0hXH5IH2K', 'nobi@nobita.net', '0903330000', '', '', 0),
-('shizuka', 5, 'しずか', '$2y$10$59tSn92djWcIJp.QyTNHB.ARjp/MZpC2CSrERDpkz3a4dR3Q9sZi6', '', '', '', '', 1),
-('sora', 11, 'そら', '$2y$10$MQYpU2QV3./mXeqp..Vmh.X5gMwoOZaPwGDrgfDc7t3npBkrnfPkW', '', '', '', '', 0),
-('tanaka', 12, '田中千尋', '$2y$10$RfLaObIFCw44k7BRBmaSU.1rsHdXK403pha5KnqUZHaa2LCAKQf6G', '', '', '', '', 1),
-('umi', 11, 'うみ', '$2y$10$vYQVjuLqpPjSAQNz2iGXWe8mZb8eq58ojGEuNRViDeZPYfjq./Y8S', '', '', '', '', 1),
-('yama', 4, 'やましたうえ', '$2y$10$FExFb9tx2RQ6OtFEGKupseDj.sHSVwEeOfiu20AIzh4bszA.lzLH2', 'yama@yama', '075', '', '', 0),
-('yamada', 6, '山田', '$2y$10$CacSIQB7sqNkPEtPXSU/4.JCv0w..QJOXJE75YnP/oKGAOS1VEtWi', '', '', '', '', 0),
-('yusuke', 10, '加藤ユウスケ', '$2y$10$Rv95nvLPoAFat9glrf.Vde8bIisGSFvEbpC23JfY4HP0vE3tuYZEK', '', '', '', '', 0);
+INSERT INTO `customers` (`c_id`, `c_group_id`, `c_name`, `c_pass`, `c_mail`, `c_tell`, `c_zip`, `c_address`, `c_gender`, `c_myphoto`) VALUES
+('aka', 3, '赤川', '$2y$10$kgfwUD5Dr7KKq/3tC4RFJ.2Ne2CAuXQ9pohS7Q./CVbxUG/4USKJq', '', '0753332212', '', '', 0, 0),
+('ao', 3, '青山', '$2y$10$5F5i0F7yolKdbpj79XlLBOqMZFdx2D55/MJ2qmXMRDaGt48W5HhU2', '', '', '', '', 1, 0),
+('azusa', 10, '加藤あずさ', '$2y$10$lGs37BoEh8/VOT6Di1.Q3us9oFwIGwinPPjiCZ6opkmy4kVjW.bHe', '', '', '', '', 1, 0),
+('dora', 2, 'どらえもん', '$2y$10$nBcTwHrkRsEhLgLQyAQtZureHTY5QDtefvDxFbgz197Du2aRyrP8y', 'dora@dora', '090', '', '', 0, 0),
+('dorami', 2, 'どらみ', '$2y$10$O3hJ8/Dgj8OG3/f5Cxebl.Ia4DE1xOJYmYyfVLtn/C.sk.vYfI2r2', 'dorami@dorami.com', '0751234567', '', '', 1, 0),
+('eri', 9, 'えり', '$2y$10$pr4p7iMBOr2NVVDdlGWgUOK4.LMlErfWYHBK2wRoXl9fWBtY.Kq6K', 'eri@eri.net', '000', '6020802', '', 1, 0),
+('kawachi', 12, '河内', '$2y$10$LgUmwP767RwJytFCr/bC0esh5l8Kwd.PEsLxYmyWSE6AT5wsnF.Mu', '', '', '', '', 0, 0),
+('kawada', 6, '川田', '$2y$10$XOjjeMNNDsa30.te/OKZxeJGflYMZFEl6Sry8mRBReeCYNcTZeygG', '', '', '', '', 1, 0),
+('kiyo', 9, 'きよ', '$2y$10$T7OiooR6OVtDcRs44u23Su7kf.tbjGX3KImRsXcts9cxl89KjCkOS', 'kiyo@gmail.com', '09036133955', '6020802', '京都府京都市上京区鶴山町', 0, 0),
+('moe', 4, 'もえ', '$2y$10$MVkZJoo1XwR2oCm.rsi7UePnnDXHjnMPI7rRULzgpYdhWE8Dd7KLW', '', '', '', '', 1, 0),
+('nobita', 5, '野比のび太', '$2y$10$4pDuuMz7DAMjrQh3lPgPXu6WYdspd644cfj3MkxAW8Vw0hXH5IH2K', 'nobi@nobita.net', '0903330000', '', '', 0, 0),
+('shizuka', 5, 'しずか', '$2y$10$59tSn92djWcIJp.QyTNHB.ARjp/MZpC2CSrERDpkz3a4dR3Q9sZi6', '', '', '', '', 1, 0),
+('sora', 11, 'そら', '$2y$10$MQYpU2QV3./mXeqp..Vmh.X5gMwoOZaPwGDrgfDc7t3npBkrnfPkW', '', '', '', '', 0, 0),
+('tanaka', 12, '田中千尋', '$2y$10$PWHSMqqTeIb8SSWOC88VRerEDHxdZls7vCH1ArJdx4ZZkx7Q/KRfa', '', '', '', '', 1, 1),
+('umi', 11, 'うみ', '$2y$10$vYQVjuLqpPjSAQNz2iGXWe8mZb8eq58ojGEuNRViDeZPYfjq./Y8S', '', '', '', '', 1, 0),
+('yama', 4, 'やましたうえ', '$2y$10$FExFb9tx2RQ6OtFEGKupseDj.sHSVwEeOfiu20AIzh4bszA.lzLH2', 'yama@yama', '075', '', '', 0, 0),
+('yamada', 6, '山田', '$2y$10$CacSIQB7sqNkPEtPXSU/4.JCv0w..QJOXJE75YnP/oKGAOS1VEtWi', '', '', '', '', 0, 0),
+('yusuke', 10, '加藤ユウスケ', '$2y$10$Rv95nvLPoAFat9glrf.Vde8bIisGSFvEbpC23JfY4HP0vE3tuYZEK', '', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -140,14 +153,14 @@ INSERT INTO `c_groups` (`c_group_id`, `p_id`, `reserve_day`, `reserve_time`, `es
 (2, 5, '2021-04-01', '11:00:00', 1, 1, 1, 0, '', '', 0, 0, 0, 0, 0, 'sawara', 0),
 (3, 3, '2020-12-01', '09:30:00', 1, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 'tome', 0),
 (4, 4, '2020-08-01', '06:20:00', 1, 1, 1, 1, '1', '', 1, 1, 1, 1, 1, 'sawara', 0),
-(5, 5, '2020-09-18', '14:30:00', 1, 1, 1, 0, '6038451', '京都府京都市北区衣笠鏡石町1－12', 0, 0, 0, 1, 0, 'ume', 1),
+(5, 5, '2020-09-20', '14:30:00', 1, 1, 1, 0, '6038451', '京都府京都市北区衣笠鏡石町1－12', 0, 0, 0, 1, 0, 'ume', 1),
 (6, 2, '2020-09-10', '10:22:00', 1, 1, 1, 0, '1', '', 0, 0, 0, 0, 0, 'ume', 0),
 (7, 5, '2020-10-30', '12:00:00', 1, 1, 0, 0, '', '', 0, 0, 0, 0, 0, '', 0),
 (8, 6, '2020-06-05', '07:00:00', 1, 1, 1, 1, '', '', 0, 0, 0, 0, 0, '', 0),
 (9, 2, '2020-12-19', '05:00:00', 1, 0, 0, 0, '2223333', '夢の国', 1, 1, 1, 1, 1, '', 0),
 (10, 6, '2020-09-30', '10:00:00', 1, 0, 0, 0, '', '', 0, 0, 1, 1, 0, 'sawara', 1),
 (11, 4, '2020-11-11', '06:00:00', 1, 1, 0, 0, '1234567', 'Firenze Via della cernaia102', 0, 1, 1, 1, 1, 'katoeri', 0),
-(12, 9, '2020-09-16', '11:30:00', 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 'katoeri', 0);
+(12, 9, '2020-09-16', '11:30:00', 1, 0, 1, 0, '5860000', '大阪府河内長野市', 1, 1, 1, 1, 1, 'katoeri', 1);
 
 -- --------------------------------------------------------
 
@@ -181,7 +194,10 @@ INSERT INTO `list` (`list_id`, `c_group_id`, `list_item`) VALUES
 (20, 5, 'どらやき大'),
 (21, 5, 'おにぎり'),
 (48, 10, '三色団子'),
-(49, 10, 'どらやき大');
+(49, 10, 'どらやき大'),
+(50, 12, '一眼レフ'),
+(51, 12, 'ミラーレスカメラ'),
+(70, 12, '写ルンです');
 
 -- --------------------------------------------------------
 
@@ -227,8 +243,9 @@ INSERT INTO `messages` (`m_id`, `m_body`) VALUES
 (3, '撮影3日前ですね。明日2日前はロケ撮影の決行判断日なので今日から天気予報見て準備しておきましょう！'),
 (7, '撮影1週間前ですね。撮影当日のためにそろそろ体調管理して体調万全で当日迎えられるようにしますよう！'),
 (14, '2週間前だよ'),
-(20, 'しゅうせいだよ'),
-(30, '1か月前だよ');
+(20, 'もう一回'),
+(30, '1か月前だよ'),
+(90, ' 3か月も前からのご予約、誠にありがとうございます！早めに準備ばっちりして、ふたりらしいWeddingPhotoを残しましょう♪');
 
 -- --------------------------------------------------------
 
@@ -342,13 +359,13 @@ ALTER TABLE `staff`
 -- テーブルのAUTO_INCREMENT `board`
 --
 ALTER TABLE `board`
-  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- テーブルのAUTO_INCREMENT `list`
 --
 ALTER TABLE `list`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- テーブルのAUTO_INCREMENT `managements`

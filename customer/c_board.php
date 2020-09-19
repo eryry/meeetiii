@@ -4,6 +4,10 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
 	header("Location: ../index.php?err=no_login");
 	exit();
 }
+
+function h($str) {
+	return htmlspecialchars($str,ENT_QUOTES);
+}
 require_once("../class/meeting.class.php");
 $obj= new Meeting();
 
@@ -21,20 +25,14 @@ $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
-
 $row = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
-
-//サニタイズ関数
-function h($str) {
-	return htmlspecialchars($str,ENT_QUOTES);
-}
 
 //投稿があったら表示する
 $rows = $obj->getBoardDataByGId($_SESSION["c_group_id"]);
 
 //スタッフとしてログインしてきた場合の、GIDで顧客情報取得
 $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
-//echo $c_data["g_id"];
+
 ?>
 
 
@@ -83,9 +81,9 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 				<p>投稿一覧</p>
 				
 				<?php foreach($rows as $row): ?>
-				<article class="keijiban_sub">
+				<article class="keijiban_sub" id="keijibanban">
 				<p>
-					<span class="u_line font_mini"">name:
+					<span class="u_line font_mini">name:
 					<?php 
 					if($row["submit_member_id"]== $c_data["g_id"]){
 						echo "【".h($c_data["g_name"])."】";
@@ -102,7 +100,8 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 					<?php echo nl2br(h($row["body"])); ?><br>
 				</p>
 				<?php if(intVal($row["board_photo"])==1): ?>
-				<img src="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" alt="投稿画像">
+				<a href="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" rel="lightbox"><img class="" src="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" alt="投稿画像"></a>
+				<div id=""></div>
 				<?php endif; ?>
 				</article>
 				<?php endforeach; ?>

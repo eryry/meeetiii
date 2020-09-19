@@ -176,7 +176,8 @@ class Meeting{
 	public function getMessage() {
 		$sql="SELECT * FROM messages";
 		$rs = $this->pdo->query($sql);
-		return $rs;
+		$row = $rs->fetchAll(PDO::FETCH_ASSOC);
+		return $row;
 	}
 	//メッセージ情報をm_idで取得
 	public function getMessageByMId($m_id) {
@@ -213,6 +214,7 @@ class Meeting{
 	//顧客ごとのグループIDから、新郎・新婦の各情報とグループ情報をまとめて取得
 	public function getGroomBrideGrouopByGId($c_group_id) {
 		$sql  ="SELECT groom.c_name AS g_name,bride.c_name AS b_name,groom.c_id AS g_id,bride.c_id AS b_id, ";
+		$sql .="groom.c_myphoto AS g_myphoto,bride.c_myphoto AS b_myphoto, ";
 		$sql .="reserve_day,reserve_time,estimate,invoce,payment,d_product,new_zip,new_address,p_name,plans.p_id ";
 		$sql .="FROM customers AS groom,customers AS bride,c_groups,plans ";
 		$sql .="WHERE c_groups.c_group_id=groom.c_group_id ";
@@ -287,6 +289,7 @@ class Meeting{
 	public function getScheduleDateByGId($c_group_id) {
 	 $sql  ="SELECT reserve_day,DATE_ADD(reserve_day, INTERVAL -2 DAY) AS before_2day, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 DAY) AS before_3day, ";
+	 $sql .="DATE_ADD(reserve_day, INTERVAL -1 WEEK) AS before_1week, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -2 WEEK) AS before_2week, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 WEEK) AS before_3week, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -1 MONTH) AS before_1month, ";
@@ -302,12 +305,23 @@ class Meeting{
 	
 	//スタッフが自分の担当のお客様で期限切れがあるGIDを取得
 	public function getLimitOverBySId($s_id){
-		$sql ="SELECT c_group_id FROM c_groups WHERE s_id=:s_id AND limit_over=1";
+	 $sql  ="SELECT c_group_id FROM c_groups WHERE s_id=:s_id AND limit_over=1";
 	 $stmt = $this->pdo->prepare($sql);
 	 $stmt ->bindValue(":s_id",$s_id,PDO::PARAM_STR);
 	 $stmt ->execute();
 	 $rows =  $stmt->fetch(PDO::FETCH_ASSOC);
 	 return $rows;
+	}
+	
+	//お客様情報を、名前検索で取得
+	public function getCustomerDataByKey($key){
+		$sql  ="SELECT c_name,customers.c_group_id FROM c_groups,customers ";
+		$sql .="WHERE c_groups.c_group_id=customers.c_group_id AND c_name LIKE :key ORDER BY reserve_day DESC";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt -> bindValue(":key","%{$key}%",PDO::PARAM_STR);
+		$stmt ->execute();
+		$rows =$stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $rows;
 	}
 	
 	//プラン情報更新UPDATE
@@ -400,7 +414,12 @@ class Meeting{
 	}
 
 	//顧客写真投稿 写真に保存先と保存名(g_id or b_id　＋.jpg)を指定する
-	public function saveImage($c_id) {
+	public function saveImage($c_id,$c_myphoto) {
+		$sql  = "UPDATE customers SET c_myphoto=:c_myphoto WHERE c_id=:c_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt ->bindValue(":c_myphoto",$c_myphoto,PDO::PARAM_INT);
+		$stmt ->bindValue(":c_id",$c_id,PDO::PARAM_STR);
+		$stmt ->execute();
 		move_uploaded_file($_FILES["c_myphoto"]["tmp_name"],"../image/upload/c_myphoto/".$c_id.".jpg");
 	}
 	
@@ -442,8 +461,8 @@ class Meeting{
 		// 日付をUNIXタイムスタンプに変換
 		$timestamp1 = strtotime($date1);
 		$timestamp2 = strtotime($date2);
-		// 何秒離れているかを計算 absでどちらが先の日程でもマイナス表記にならないように。
-		$seconddiff = abs($timestamp2 - $timestamp1);
+		// 何秒離れているかを計算 absでどちらが先の日程でもマイナス表記にならないように。ー＞外した
+		$seconddiff = $timestamp2 - $timestamp1;
 		// 日数に変換
 		$daydiff = $seconddiff / (60 * 60 * 24);
 	  return $daydiff;

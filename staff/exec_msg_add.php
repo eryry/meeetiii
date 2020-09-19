@@ -6,7 +6,7 @@ if(empty($_SESSION["s_id"])) {
 }
 
 if(empty($_POST["m_id"])||empty($_POST["m_body"])) {
-	header("Location: staff_top.php?err=1");
+	header("Location: message_list.php?err=1");
 	exit();
 }
 require_once("../class/meeting.class.php");
@@ -18,7 +18,7 @@ if(empty($_POST["update"])){
 }else{
 	$obj->msgUpdate($_POST["m_id"],$_POST["m_body"]);
 }
-header("Location:staff_top.php");
+header("Location:message_list.php");
 //print_r($_POST);
 
 

@@ -28,20 +28,21 @@ $today= date("Y-m-d");
 				<button class="sort_day_btn feature_day"><a href="c_group_list_f.php">撮影未</a></button>
 				<button class="sort_day_btn past_day activ_page_btn"><a href="">撮影済</a></button>
 				<button class="sort_day_btn no_d"><a href="c_group_list_nd.php">納品未</a></button>
+				<button class="sort_day_btn no_d"><a href="c_group_list_serch.php">検索</a></button>
 				</p>
 				<div id="mainView">
 					<table class="list">
 					
 					<tr>
-						<th class="list_id_num">ID</th><th class="list_id_num">board</th><th class="list_id_num">書類</th>
+						<th class="list_id_num">ID</th><th class="list_id_num">board</th><th class="list_id_num"><p class="font_mini">見積・請求書</p></th>
 						<th class="list_r_day">予約日</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th><th class="list_p_name">プラン</th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<?php if($row["reserve_day"]<$today): ?>
 					<tr>
 						<td class="list_id_num"><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></td>
-						<td class="list_id_num"><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>">掲示板</a></td>
-						<td class="list_id_num"><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>">投稿</a></td>
+						<td class="list_id_num"><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_board.svg"></a></td>
+						<td class="list_id_num"><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_file.svg"></a></td>
 						<td class="list_r_day"><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];

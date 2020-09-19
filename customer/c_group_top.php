@@ -34,15 +34,15 @@ if($_SESSION["limit_over"]==0){
 }else{
 	$limit_over_message="あり";
 }
-echo $day;
+//echo $day;
 
+//日にち指定のメッセージ表示用
 $all_msg=$obj->getMessage();
 foreach($all_msg as $val){
-	if($day==$val){
-			$msg=$obj->getMessageByMId(intVal($day));
-			echo $msg["m_body"];
-	}
-}
+							if($day==$val["m_id"]){
+							 $msg=$obj->getMessageByMId($val["m_id"]);
+							 echo $msg["m_body"];
+							}};
 
 ?>
 
@@ -55,42 +55,63 @@ foreach($all_msg as $val){
 				
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
-				
+			</section>
+			<section>
 				<div class="c_photo_and_name_area">
 					<div class="c_photo">
+						<?php if($c_data["g_myphoto"]==1): ?>
 						<img src="../image/upload/c_myphoto/<?php echo $c_data["g_id"];?>.jpg" alt="新郎画像">
+						<?php elseif($c_data["g_myphoto"]==0): ?>
+						<?php echo "*画像未登録";?>
+						<?php endif; ?>
 						<p><?php echo h($c_data["g_name"]); ?></p>
 					</div>
 					<div class="c_photo">
+						<?php if($c_data["b_myphoto"]==1): ?>
 						<img src="../image/upload/c_myphoto/<?php echo $c_data["b_id"];?>.jpg" alt="新婦画像">
+						<?php elseif($c_data["b_myphoto"]==0): ?>
+						<?php echo "*画像未登録";?>
+						<?php endif; ?>
 						<p><?php echo h($c_data["b_name"]); ?></p>
 					</div>
 				</div>
-				
 				<div>
+					<?php if(strtotime($today)<strtotime($reserve_day)): ?>
 					<p class="msg">
-					<?php 
-					foreach($all_msg as $val){
-						if($day==$val){
-							$msg=$obj->getMessageByMId(intVal($day));
-							echo $msg["m_body"];
-						}
-					}
-					;?>
+						<?php
+						 foreach($all_msg as $val) {
+							if($day==$val["m_id"]){
+							 $msg=$obj->getMessageByMId($val["m_id"]);
+							 echo $msg["m_body"];
+							}
+						 };
+						?>
 					</p>
-					<p class="msg_random"> *random message area*</p>
+					<p class="msg_random"></p>
+					<?php elseif(strtotime($today)>strtotime($reserve_day) && $_SESSION["d_product"]==0): ?>
+					<p>撮影データまたはアルバムの商品出来上がりまで少しお待ちください！</p>
+					<?php elseif(strtotime($today)==strtotime($reserve_day)): ?>
+					<p>今日は撮影本番！ですね！！楽しみましょう♪</p>
+					<?php endif; ?>
 				</div>
+				
 				<?php if(strtotime($today)<=strtotime($reserve_day)): ?>
 				<p>撮影当日まであと 【<?php echo $day; ?>】日</p>
 				<p>撮影当日の京都の天気予報 【  】</p>
 				<?php endif; ?>
+				
 			</section>
+			
 			<section class="second">
 				<h3>お知らせ</h3>
 				
 				<table class="list_noborder row3">
 					<tr>
-						<th>掲示板</th><th>最新投稿</th><td><a href="c_board.php">日時:<?php echo date("Y/m/d H:i",strtotime($b_data["created"])); ?> 
+						<th>掲示板</th><th>最新投稿</th>
+						<td>
+						<?php if(!empty($b_data)): ?>
+						<a href="c_board.php">日時:
+						<?php echo date("Y/m/d H:i",strtotime($b_data["created"])); ?> 
 						投稿者:<?php 
 						if($b_data["submit_member_id"]== $c_data["g_id"]){
 							echo h($c_data["g_name"]);
@@ -102,7 +123,10 @@ foreach($all_msg as $val){
 							$staff_data=$obj->getStaffById($s_id);
 							echo "スタッフ：".h($staff_data["s_name"]);
 						}
-						;?></a></td>
+						;?></a>
+						<?php elseif(empty($b_data)): ?>
+						投稿はまだありません。
+						<?php endif; ?></td>
 					</tr>
 					<tr>
 						<th>スケジュール</th><th>期限超過項目</th><td><a href="c_schedule.php"><?php echo $limit_over_message; ?></a></td>

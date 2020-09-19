@@ -5,28 +5,31 @@ setcookie ("session_name","",time()-1800);
 session_destroy();
 
 
+$c_pass = password_hash('kawachi',PASSWORD_DEFAULT);
+//echo $c_pass;
 ?>
-
-
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
 		<mate charset="utf-8">
 		<title>meeting app | customer LOGIN</title>
-		<link rel="stylesheet" href="css/style.css">
 		<meta name="viewport" content="width=device-width">
-		<!-- fontAwsome -->
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css" />
 		<!-- reset css  -->
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<!-- fontAwsome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css" />
+		<!-- material icon google-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!-- google web font -->
 		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=M+PLUS+1p:wght@300&family=Noto+Serif+JP:wght@300&display=swap" rel="stylesheet">
 		<!-- favicon -->
-		<link rel="shortcut icon" href="" />
+		<link rel="icon" href="/favicon.ico" />
+		<script src="js/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
 		<header>
-			<h1>ログイン</h1>
+			<h1>ログイン<span class="required_color">必須</span></h1>
 		</header>
 		<main>
 			<section>
@@ -38,7 +41,9 @@ session_destroy();
 						</tr>
 						<tr>
 							<th><label for="c_pass">パスワード</th>
-							<td><input type="password" name="c_pass" id="c_pass"></td>
+							<td><input type="password" autocomplete="current-password" name="c_pass" id="c_pass">
+							
+							</td>
 						</tr>
 
 					</table>
@@ -53,7 +58,6 @@ session_destroy();
 		<footer>
 		
 		</footer>
-	<script src="../jquery-3.5.1.min.js"></script>
 	<script src=""></script>
 	</body>
 </html>

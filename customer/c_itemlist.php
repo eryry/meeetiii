@@ -111,7 +111,7 @@ $r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 					<p class="u_line">追加アイテムリスト</p>
 					<table class="list_noborder row2">
 					<?php foreach($list_data as $item): ?>
-						<form action="exec_delete_item.php" method="post" class="del">
+						<form action="exec_delete_item.php" method="post" class="del" id="<?php echo 'form'.$item['list_id']; ?>">
 							<tr>
 								<input type="hidden" name="list_id" value="<?php echo $item["list_id"]; ?>">
 								<td><p class="each_item">□<?php echo h($item["list_item"]); ?></p></td>
@@ -121,7 +121,21 @@ $r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 					<?php endforeach; ?>
 					</table>
 				<div>
-				
+						<script>
+							$('.del').submit(function(){
+								var form_id= '#'+$(this).attr('id');
+								console.log(form_id);
+								var item = $(this).attr('id').p.text();
+								console.log(item);
+								var res =confirm(item + 'を本当に削除しますか？');
+								if(res==true){
+									return true;
+								}else{
+									return false;
+								}
+							});	
+						</script>
+
 			</section>
 		</main>
 		<?php include("footer_for_customerpage.php"); ?>

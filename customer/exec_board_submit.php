@@ -24,9 +24,9 @@ $obj->submitBoard($_POST["c_group_id"],$_POST["submit_member_id"],$_POST["body"]
 $sql ="SELECT LAST_INSERT_ID() AS bid";
 $b_id=$obj->pdo->query($sql);
 $row=$b_id->fetch(PDO::FETCH_ASSOC);
-print_r($row);
-print_r($board_photo);
-print_r($_FILES["board_photo"]);
+//print_r($row);
+//print_r($board_photo);
+//print_r($_FILES["board_photo"]);
 
 //画像送られてきていたら、上で取得した最新投稿のb_id名前つけて保存する
 if(!empty($_FILES["board_photo"])) {
@@ -34,7 +34,7 @@ if(!empty($_FILES["board_photo"])) {
 }
 
 
-//header("Location: c_board.php");
+header("Location:c_board.php?group_id={$_POST['c_group_id']}");
 //print_r($_SESSION);
 //print_r($_POST);
 
