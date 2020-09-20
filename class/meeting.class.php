@@ -342,6 +342,18 @@ class Meeting{
 		$stmt->execute();
 	}
 	
+	//staff情報更新UPDATE
+	public function staffUpdate($s_id,$s_name,$s_pass,$s_mail,$role){ 
+		$sql="UPDATE staff SET s_name=:s_name,s_pass=:s_pass,s_mail=:s_mail,role=:role WHERE s_id=:s_id"; 
+		$stmt=$this->pdo->prepare($sql);
+		$stmt->bindValue(":s_name",$s_name,PDO::PARAM_STR);
+		$stmt->bindValue(":s_pass",$s_pass,PDO::PARAM_STR);
+		$stmt->bindValue(":s_mail",$s_mail,PDO::PARAM_STR);
+		$stmt->bindValue(":role",$role,PDO::PARAM_INT);
+		$stmt->bindValue(":s_id",$s_id,PDO::PARAM_STR);
+		$stmt->execute();
+	}
+	
 	//カスタマーグループ情報更新
 	public function customerGroupUpdate($c_group_id,$p_id,$reserve_day,$reserve_time,$new_zip,$new_address,$s_id) {
 		$sql  ="UPDATE c_groups SET p_id=:p_id,reserve_day=:reserve_day,reserve_time=:reserve_time, ";
@@ -401,9 +413,8 @@ class Meeting{
 		$sql .="c_tell=:c_tell,c_zip=:c_zip,c_address=:c_address,c_gender=:c_gender ";
 		$sql .="WHERE c_id=:c_id"; 
 		$stmt=$this->pdo->prepare($sql);
-		$pass= password_hash($c_pass,PASSWORD_DEFAULT);
 		$stmt->bindValue(":c_name",$c_name,PDO::PARAM_STR);
-		$stmt->bindValue(":c_pass",$pass,PDO::PARAM_STR);
+		$stmt->bindValue(":c_pass",$c_pass,PDO::PARAM_STR);
 		$stmt->bindValue(":c_mail",$c_mail,PDO::PARAM_STR);
 		$stmt->bindValue(":c_tell",$c_tell,PDO::PARAM_STR);
 		$stmt->bindValue(":c_zip",$c_zip,PDO::PARAM_STR);

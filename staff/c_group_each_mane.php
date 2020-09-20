@@ -174,117 +174,117 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 			<form action="exec_c_g_m_update.php" method="post">
 				<table class="list_noborder">
 					<tr>
-						<th class="check">未・済</th>
-						<th class="todo">管理項目</th>
-						<th class="limit">期日</th>
+						<th class="check"><p>未・済</p></th>
+						<th class="todo"><p>管理項目</p></th>
+						<th class="limit"><p>期日</p></th>
 					</tr>
 					<tr class="has_limit <?php echo $limit_d_product; ?>">
 						<td class="check">
-							<select id="d_product" name="d_product">
+							<p><select id="d_product" name="d_product">
 								<option value="0" 
 									<?php if($_SESSION["d_product"]==0) {echo "selected";}; ?>>☐納品未
 								</option>
 								<option value="1"
 									<?php if($_SESSION["d_product"]==1) {echo "selected";}; ?>>☑納品済
 								</option>
-							</select>
+							</select></p>
 						</td>
-						<td class="todo">商品納品</td>
-						<td class="limit">データのみ：1か月後 <?php echo h($a1me); ?><br>アルバム：2か月後 <?php echo h($a2me); ?></td>
+						<td class="todo"><p>商品納品</p></td>
+						<td class="limit"><p>データのみ：1か月後 <?php echo h($a1me); ?><br>アルバム：2か月後 <?php echo h($a2me); ?></p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_before2days; ?>">
 						<td class="check">
-							<select id="before2days" name="before2days">
+							<p><select id="before2days" name="before2days">
 								<option value="0" 
 									<?php if($_SESSION["before2days"]==0) {echo "selected";}; ?>>☐確認未
 								</option>
 								<option value="1"
 									<?php if($_SESSION["before2days"]==1) {echo "selected";}; ?>>☑確認済
 								</option>
-							</select>
+							</select></p>
 						</td>
-						<td class="todo">撮影判断</td>
-						<td class="limit"><?php echo h($b2de); ?></td>
+						<td class="todo"><p>撮影判断</p></td>
+						<td class="limit"><p><?php echo h($b2de); ?></p></td>
 					</tr>
 					<tr class="has_limit  <?php echo $limit_payment; ?>">
 						<td class="check">
-							<select id="payment" name="payment">
+							<p><select id="payment" name="payment">
 								<option value="0" 
 									<?php if($_SESSION["payment"]==0) {echo "selected";}; ?>>☐支払未
 								</option>
 								<option value="1"
 									<?php if($_SESSION["payment"]==1) {echo "selected";}; ?>>☑支払済
 								</option>
-							</select>
+							</select></p>
 						</td>
-						<td class="todo">お支払い</td>
-						<td class="limit"><?php echo h($b1we); ?>までに</td>
+						<td class="todo"><p>お支払い</p></td>
+						<td class="limit"><p><?php echo h($b1we); ?>までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_invoce; ?>">
-						<td class="check"><?php echo $invoce; ?></td>
-						<td class="todo">請求書発行</td>
-						<td class="limit"><?php echo h($b3we); ?>頃までに</td>
+						<td class="check"><p><?php echo $invoce; ?></p></td>
+						<td class="todo"><p>請求書発行</p></td>
+						<td class="limit"><p><?php echo h($b3we); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_make_reh; ?>">
 						<td class="check">
-							<select id="make_reh" name="make_reh">
+							<p><select id="make_reh" name="make_reh">
 								<option value="0" 
 									<?php if($_SESSION["make_reh"]==0) {echo "selected";}; ?>>☐未実行
 								</option>
 								<option value="1"
 									<?php if($_SESSION["make_reh"]==1) {echo "selected";}; ?>>☑済/無
 								</option>
-							</select>
+							</select></p>
 							</td>
-						<td class="todo">リハーサル</td>
-						<td class="limit"><?php echo h($b3we); ?>頃までに</td>
+						<td class="todo"><p>リハーサル</p></td>
+						<td class="limit"><p><?php echo h($b3we); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_place_fixed; ?>">
 						<td class="check">
-							<select id="place_fixed" name="place_fixed">
+							<p><select id="place_fixed" name="place_fixed">
 								<option value="0" 
 									<?php if($_SESSION["place_fixed"]==0) {echo "selected";}; ?>>☐未決定
 								</option>
 								<option value="1"
 									<?php if($_SESSION["place_fixed"]==1) {echo "selected";}; ?>>☑決定済
 								</option>
-							</select>
+							</select></p>
 						</td>
-						<td class="todo">撮影場所決定</td>
-						<td class="limit"><?php echo h($b1me); ?>頃までに</td>
+						<td class="todo"><p>撮影場所決定</p></td>
+						<td class="limit"><p><?php echo h($b1me); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fixed; ?>">
 						<td class="check">
-							<select id="cos_fixed" name="cos_fixed">
+							<p><select id="cos_fixed" name="cos_fixed">
 								<option value="0" 
 									<?php if($_SESSION["cos_fixed"]==0) {echo "selected";}; ?>>☐未決定
 								</option>
 								<option value="1"
 									<?php if($_SESSION["cos_fixed"]==1) {echo "selected";}; ?>>☑決定済
 								</option>
-							</select>
+							</select></p>
 						</td>
-						<td class="todo">衣装決定</td>
-						<td class="limit"><?php echo h($b1me); ?>頃までに</td>
+						<td class="todo"><p>衣装決定</p></td>
+						<td class="limit"><p><?php echo h($b1me); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fitting; ?>">
 						<td class="check">
-							<select id="cos_fitting" name="cos_fitting">
+							<p><select id="cos_fitting" name="cos_fitting">
 								<option value="0" 
 									<?php if($_SESSION["cos_fitting"]==0) {echo "selected";}; ?>>☐試着未
 								</option>
 								<option value="1"
 									<?php if($_SESSION["cos_fitting"]==1) {echo "selected";}; ?>>☑試着済
 								</option>
-							</select>
+							</select></p>
 						</td>
-						<td class="todo">衣装試着予約</td>
-						<td class="limit">お早めに</td>
+						<td class="todo"><p>衣装試着予約</p></td>
+						<td class="limit"><p>お早めに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_estimate; ?>">
-						<td class="check"><?php echo $estimate; ?></td>
-						<td class="todo">見積り書発行</td>
-						<td class="limit">ご契約時にお渡し</td>
+						<td class="check"><p><?php echo $estimate; ?></p></td>
+						<td class="todo"><p>見積り書発行</p></td>
+						<td class="limit"><p>ご契約時にお渡し</p></td>
 					</tr>
 				</table>
 				

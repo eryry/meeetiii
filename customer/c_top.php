@@ -42,19 +42,21 @@ if(empty($c_zip)) $c_zip="未入力";
 <?php require_once("header_for_customer.php"); ?>
 
 <main>
-	<h1>個人ページTOP</h1>
+	<div id="title_wrapper">
+		<h1>マイページ<br><span class="font_mini_no_padding">my page</span></h1>
+	</div>
 	<section>
 	<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 	<p>撮影予約日： <?php echo h($rd);	?> </p>
 	<p>撮影プラン： <?php echo h($_SESSION["p_name"]);	?> </p>
 		<table class="c_top">
 			<tr>
-				<th>グループID</th>
-				<td><?php echo $c_group_id; ?></td>
+				<th><p>Group ID</p></th>
+				<td><p><?php echo $c_group_id; ?></p></td>
 			</tr>
 			<tr>
-				<th>顧客ID</th>
-				<td><?php echo $c_id; ?></td>
+				<th><p>顧客ID</p></th>
+				<td><p><?php echo $c_id; ?></p></td>
 			</tr>
 			<!--
 			<tr>
@@ -68,41 +70,41 @@ if(empty($c_zip)) $c_zip="未入力";
 			-->
 			
 			<tr>
-				<th>お客様名</th>
-				<td><?php echo h($c_name); ?></td>
+				<th><p>お客様名</p></th>
+				<td><p><?php echo h($c_name); ?></p></td>
 			</tr>
 			<tr>
-				<th>パスワード</th>
+				<th><p>パスワード</p></th>
 				<!-- お客様更新可能ページで、パスワード変更できるようにしたほうがよい？ -->
-				<td>※非表示</td>
+				<td><p>※非表示</p></td>
 			</tr>
 			<tr>
-				<th>電話番号</th>
-				<td><?php echo h($c_tell); ?></td>
+				<th><p>電話番号</p></th>
+				<td><p><?php echo h($c_tell); ?></p></td>
 			</tr>
 			<tr>
-				<th>メールアドレス</th>
-				<td><?php echo h($c_mail); ?></td>
+				<th><p>E-Mail</p></th>
+				<td><p><?php echo h($c_mail); ?></p></td>
 			</tr>
 			<tr>
-				<th>郵便番号</th>
-				<td><?php echo h($c_zip); ?></td>
+				<th><p>郵便番号</p></th>
+				<td><p><?php echo h($c_zip); ?></p></td>
 			</tr>
 			<tr>
-				<th>住所</th>
-				<td><?php echo h($c_address); ?></td>
+				<th><p>住所</p></th>
+				<td><p><?php echo h($c_address); ?></p></td>
 			</tr>
 			<tr>
-				<th>新郎/新婦 区分</th>
-				<td>
+				<th><p>新郎/新婦</p></th>
+				<td><p>
 				<?php if($c_gender==0) {echo "新郎";}; ?>
-				<?php if($c_gender==1) {echo "新婦";}; ?>
+				<?php if($c_gender==1) {echo "新婦";}; ?></p>
 				</td>
 			</tr>
 			<tr>
-				<th>登録画像</th>
-				<td class="c_photo">
-				<?php if($c_myphoto==0) {echo "未投稿";}; ?>
+				<th><p>登録画像</p></th>
+				<td class="c_photo"><p>
+				<?php if($c_myphoto==0) {echo "未投稿";}; ?></p>
 				<?php if($c_myphoto==1): ?>
 				<img src="../image/upload/c_myphoto/<?php echo $c_id.".jpg"; ?>">
 				<?php endif; ?>

@@ -5,8 +5,8 @@ setcookie ("session_name","",time()-1800);
 session_destroy();
 
 
-$c_pass = password_hash('kawachi',PASSWORD_DEFAULT);
-//echo $c_pass;
+$c_pass = password_hash('ao',PASSWORD_DEFAULT);
+echo $c_pass;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -36,13 +36,12 @@ $c_pass = password_hash('kawachi',PASSWORD_DEFAULT);
 				<form action="customer/exec_customer_login.php" method="post">
 					<table>
 						<tr>
-							<th><label for="c_id">顧客ID</th>
+							<th><p><label for="c_id">顧客ID</label><p></th>
 							<td><input type="text" name="c_id" id="c_id"></td>
 						</tr>
 						<tr>
-							<th><label for="c_pass">パスワード</th>
+							<th><p><label for="c_pass">パスワード</label></p></th>
 							<td><input type="password" autocomplete="current-password" name="c_pass" id="c_pass">
-							
 							</td>
 						</tr>
 

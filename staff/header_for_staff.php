@@ -26,9 +26,10 @@
 	<body>
 		<header class="staff">
 			<ul>
-				<li><a href="staff_top.php">スタッフTOPページ</a></li>
-				<li><a href="c_group_list.php">顧客Group一覧<a></li>
-				<li><a href="plan_list.php">プラン一覧<a></li>
-				<li><a id="logout" href="exec_staff_logout.php">ログアウト</a></li>
+				<li><a href="staff_top.php">TOP</a></li>
+				<li><a href="c_group_list.php">c_list<a></li>
+				<li class="sp_logo"><img src="../image/header_logo.png" alt="ロゴ"></li>
+				<li><a href="plan_list.php">Plan<a></li>
+				<li><a id="logout" href="exec_staff_logout.php">logout</a></li>
 			</ul>
 		</header>

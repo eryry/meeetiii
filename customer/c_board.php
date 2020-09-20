@@ -4,7 +4,6 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
 	header("Location: ../index.php?err=no_login");
 	exit();
 }
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
@@ -27,6 +26,7 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
 $row = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
+
 //投稿があったら表示する
 $rows = $obj->getBoardDataByGId($_SESSION["c_group_id"]);
 
@@ -45,7 +45,9 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 ?>
 	
 		<main>
-			<h1>掲示板</h1>
+			<div id="title_wrapper">
+				<h1>連絡ノート<br><span class="font_mini_no_padding">note</span></h1>
+			</div>
 			<section>
 				<p>ログイン中のお名前：
 				<?php 
@@ -58,47 +60,66 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 				<p>撮影プラン： <?php echo h($row["p_name"]);	?> </p>
 				<p>お客様名： <?php echo h($c_data["g_name"])."様・".h($c_data["b_name"])."様";	?> </p>
 			</section>
-			<section class="second toukou">
-				<p>新規投稿</p>
+			
+			<section >
+				<h2>新規かきこみ</h2>
 				
+				<div class="toukou">
 				<form action="exec_board_submit.php" method="post" enctype="multipart/form-data">
 					<p><input type="hidden" name="c_group_id" id="" value="<?php echo $_SESSION["c_group_id"]; ?>"></p>
 					<p><input type="hidden" name="submit_member_id" id="" value="<?php 
-					if(!empty($_SESSION["c_id"])) {
-						echo $_SESSION["c_id"];
-					}else{
-						echo $_SESSION["s_id"];
-					}; ?>"></p>
+						if(!empty($_SESSION["c_id"])) {
+							echo $_SESSION["c_id"];
+						}else{
+							echo $_SESSION["s_id"];
+						}; ?>"></p>
 					<p><textarea name="body" id=""></textarea></p>
-				
 					<p>画像<input class="b_photo" type="file" name="board_photo"></p>
 					
-					<p><input type="submit" value="投稿する"></p>
+					<p><input type="submit" value="書き込む"></p>
 				</form>
-				
+				</div>
 			</section>
-			<section class="second keijiban">
-				<p>投稿一覧</p>
+			<section>
+				<h2>連絡ノート</h2>
 				
 				<?php foreach($rows as $row): ?>
 				<article class="keijiban_sub" id="keijibanban">
-				<p>
-					<span class="u_line font_mini">name:
-					<?php 
-					if($row["submit_member_id"]== $c_data["g_id"]){
-						echo "【".h($c_data["g_name"])."】";
-					}else if($row["submit_member_id"]== $c_data["b_id"]){
-						echo "【新婦：".h($c_data["b_name"])."】";
-					}else{
-						//スタッフ情報取得
-						$s_id=$row["submit_member_id"];
-						$staff_data=$obj->getStaffById($s_id);
-						echo "【スタッフ：".h($staff_data["s_name"])."】";
-					};
-					?></span>
-					<span class="font_mini">post：<?php echo date("Y/m/d H:i",strtotime($row["created"])); ?></span><br>
-					<?php echo nl2br(h($row["body"])); ?><br>
-				</p>
+					<div class="b_sub_data_area">
+					
+						<?php if($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==1): ?>
+						<img src="../image/upload/c_myphoto/<?php echo $c_data["g_id"];?>.jpg" alt="新郎画像">
+						<?php elseif($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==0): ?>
+						<img src="../image/noimage.png">
+						<?php elseif($row["submit_member_id"]== $c_data["b_id"] && $c_data["b_myphoto"]==1): ?>
+						<img src="../image/upload/c_myphoto/<?php echo $c_data["b_id"];?>.jpg" alt="新婦画像">
+						<?php elseif($row["submit_member_id"]== $c_data["b_id"] && $c_data["b_myphoto"]==0): ?>
+						<img src="../image/noimage.png">
+
+						
+						<?php else:?>
+						<img src="../image/staff_image.png">
+						<?php endif; ?>
+						
+						
+						<div>
+						<p><span class="font_mini3">name:
+						<?php 
+							if($row["submit_member_id"]== $c_data["g_id"]){
+								echo h($c_data["g_name"]);
+							}else if($row["submit_member_id"]== $c_data["b_id"]){
+								echo h($c_data["b_name"]);
+							}else{
+								//スタッフ情報取得
+								$s_id=$row["submit_member_id"];
+								$staff_data=$obj->getStaffById($s_id);
+								echo "スタッフ-".h($staff_data["s_name"]);
+							};
+						?> / post：<?php echo date("Y/m/d H:i",strtotime($row["created"])); ?></span></p>
+						</div>
+					</div>
+					<p class="font_mini_no_padding"><?php echo nl2br(h($row["body"])); ?></p>
+
 				<?php if(intVal($row["board_photo"])==1): ?>
 				<a href="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" rel="lightbox"><img class="" src="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" alt="投稿画像"></a>
 				<div id=""></div>

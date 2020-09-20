@@ -24,60 +24,61 @@ function h($str) {
 				<form action="exec_c_group_id_add.php" method="post">
 					<table>
 						<tr>
-							<th><label for="c_group_id">グループID</label></th>
+							<th><p><label for="c_group_id">グループID</label></p></th>
 							<td><input type="number" name="c_group_id" id="c_group_id"></td>
 						</tr>
 						<tr>
-							<th><label for="p_id">プラン名</label></th>
-							<td>
+							<th><p><label for="p_id">プラン名</label></p></th>
+							<td><p>
 								<select  name="p_id">
 									<option>プランを選択</option>
 									<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 									<option value="<?php echo $row["p_id"]; ?>"><?php echo h($row["p_name"]); ?></option>
 									<?php endwhile; ?>
-								</select>
+								</select></p>
 							</td>
 						</tr>
 						<tr>
-							<th><label for="reserve_day">予約日</label></th>
+							<th><p><label for="reserve_day">予約日</label></p></th>
 							<td><input type="date" name="reserve_day" id="reserve_day"></td>
 						</tr>
 						<tr>
-							<th><label for="reserve_time">予約日来店時間</th>
+							<th><p><label for="reserve_time">予約日来店時間</label></p></th>
 							<td><input type="time" name="reserve_time" id="reserve_time" value="10:00"></td>
 						</tr>
 						<tr>
-							<th><label for="estimate">見積もり発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済見積もりを投稿してください</span></th>
-							<td>発行未</td>
+							<th><p><label for="estimate">見積もり発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済見積もりを投稿してください</span></p></th>
+							<td><p>発行未</p></td>
 						</tr>
 						<tr>
-							<th><label for="invoce">請求書発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済請求書を投稿してください</span></th>
-							<td>発行未</td>
+							<th><p><label for="invoce">請求書発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済請求書を投稿してください</span></p></th>
+							<td><p>発行未</p></td>
 						</tr>
 						<tr>
-							<th><label for="payment">支払い状況</label><span class="font_mini">※支払い済みの場合はマネジメント画面で更新してください</span></th>
-							<td>支払未</td>
+							<th><p><label for="payment">支払い状況</label><span class="font_mini">※支払い済みの場合はマネジメント画面で更新してください</span></p></th>
+							<td><p>支払未<p></td>
 						</tr>
 						<tr>
-							<th><label for="d_product">商品納品状況</label><span class="font_mini">※納品済みの場合はマネジメント画面で更新してください</span></th>
-							<td>納品未</td>
+							<th><p><label for="d_product">商品納品状況</label><span class="font_mini">※納品済みの場合はマネジメント画面で更新してください</span></p></th>
+							<td><p>納品未</p></td>
 						</tr>
 						<tr>
-							<th><label for="zip">新居郵便番号</label></th>
+							<th><p><label for="zip">新居郵便番号</label></p></th>
 							<td><input type="number" name="new_zip" id="zip"></td>
 						</tr>
 						<tr>
-							<th><label for="address">新居住所</label></th>
+							<th><p><label for="address">新居住所</label></p></th>
 							<td><input type="text" name="new_address" id="address"></td>
 						</tr>
-							<th><label for="s_id">担当者名</label></th>
-							<td>
+						<tr>
+							<th><p><label for="s_id">担当者名</label></p></th>
+							<td><p>
 								<select name="s_id">
 									<option>担当スタッフを選択</option>
 									<?php while($row2=$rows2->fetch(PDO::FETCH_ASSOC)): ?>
 									<option value="<?php echo $row2["s_id"]; ?>"><?php echo h($row2["s_name"]); ?></option>
 									<?php endwhile; ?>
-								</select>
+								</select></p>
 							</td>
 						</tr>
 						</table>
@@ -87,5 +88,4 @@ function h($str) {
 			
 			</section>
 		</main>
-		
-<?php include("footer_for_staffpage.php"); ?>
+<?php require_once("footer_for_staffpage.php"); ?>

@@ -34,14 +34,14 @@ $msgs=$obj->getMessage();
 			<div id="mainView">
 				<table class="list_noborder">
 					<tr>
-						<th class="list_id_num">ID</th>
-						<th class="list_r_day">予約日</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th><th>掲示板投稿状況</th>
+						<th class="list_id_num"><p>ID</p></th>
+						<th class="list_r_day">予約日</th><th class="list_c_name"><p>新郎名</p></th><th class="list_c_name"><p>新婦名</p></th><th><p>掲示板投稿状況</p></th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<?php if(!empty($groups) && $row["limit_over"]==1 && $row["group_id"]==$groups["c_group_id"]): ?>
 					<tr>
-						<td class="list_id_num"><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></td>
-						<td class="list_r_day"><?php 
+						<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
+						<td class="list_r_day"><p><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];
 							$week = ["日","月","火","水","木","金","土"];
@@ -49,13 +49,13 @@ $msgs=$obj->getMessage();
 							$youbi = $week[$hi];
 							$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 							echo h($rd); 
-						?></td>
-						<td class="list_c_name"><?php echo h($row["g_name"]); ?></td>
-						<td class="list_c_name"><?php echo h($row["b_name"]); ?></td>
+						?></p></td>
+						<td class="list_c_name"><p><?php echo h($row["g_name"]); ?></p></td>
+						<td class="list_c_name"><p><?php echo h($row["b_name"]); ?></p></td>
 						<td>
 							<?php $b_data = $obj->getBoardNewCreatedDate($row["group_id"]); ?>
 							<?php if(!empty($b_data)): ?>
-							<a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>">date:
+							<p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>">date:
 							<?php echo date("Y/m/d H:i",strtotime($b_data["created"]))."&nbsp&nbsp"; ?> 
 							name:<?php 
 							$c_data = $obj->getGroomBrideGrouopByGId($row["group_id"]);
@@ -69,9 +69,9 @@ $msgs=$obj->getMessage();
 								$staff_data=$obj->getStaffById($s_id);
 								echo "スタッフ：".h($staff_data["s_name"]);
 							}
-							;?></a>
+							;?></a><p>
 							<?php elseif(empty($b_data)): ?>
-							投稿はまだありません。
+							<p>投稿はまだありません</p>。
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -83,23 +83,11 @@ $msgs=$obj->getMessage();
 			</section>
 			<?php if($staff["role"]==1): ?>
 			<section>
-				<h3>何日前かで表示変えるメッセージの登録</h3>
-				<form action="exec_msg_add.php" method="post">
-				<p>メッセージID(日付連動型/数字のみ/何日前かで数値入力）</p>
-				<p><input type="number" name="m_id" placeholder="半角数字のみ"></p>
-				<p>メッセージ内容</p>
-				<p><input type="text" name="m_body"></p>
-				<button><input type="submit" value="メッセージ登録" name="add"></button>
-				</form>
-				<button class="update_btn"><a href="message_list.php">メッセージ一覧・更新</a></button>
-			</section>
-			
-			<section>
-				<li><a href="staff_add.php">スタッフ登録<a></li>
-				
+				<button class="update_btn"><a href="message_list.php">メッセージ　登録・更新・一覧</a></button>
+				<button class="update_btn"><a href="staff_add.php">スタッフ　登録・更新・一覧<a></button>
 			</section>
 			<?php endif; ?>
 		</main>
 		
-<?php include("footer_for_staffpage.php"); ?>
+<?php require_once("footer_for_staffpage.php"); ?>
 

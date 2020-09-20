@@ -39,7 +39,9 @@ $_SESSION["invoce"]=$c_data["invoce"];
 	}
 ?>
 		<main>
-			<h1>見積書・請求書</h1>
+			<div id="title_wrapper">
+				<h1>見積書・請求書<br><span class="font_mini_no_padding">estimate・invoce</span></h1>
+			</div>
 			<section>
 				<p>ログイン中のお名前：
 				<?php 

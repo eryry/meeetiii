@@ -4,13 +4,12 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
  header("Location: ../index.php");
  exit();
 }
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 $obj->getCustomerById($_SESSION["c_id"]);
 
@@ -35,21 +34,23 @@ $c_myphoto=$row["c_myphoto"];
 <?php require_once("header_for_customer.php"); ?>
 
 <main>
-	<h1>お客様情報更新ページ<i class="fas fa-eye"></i></h1>
-	<section>
+	<div id="title_wrapper">
+		<h1>更新・確認<br><span class="font_mini_no_padding">my data</span></h1>
+	</div>
+	<section class="c_update">
 		<form action="exec_c_update.php" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
-					<th>グループID</th>
+					<th><p>グループID</p></th>
 					<td>
-					<input type="hidden" name="c_group_id" value="<?php echo intVal($c_group_id);?>">
-					<?php echo $c_group_id; ?></td>
+					<p><input type="hidden" name="c_group_id" value="<?php echo intVal($c_group_id);?>">
+					<?php echo $c_group_id; ?></p></td>
 				</tr>
 				<tr>
-					<th>顧客ID</th>
+					<th><p>顧客ID</p></th>
 					<td>
-					<input type="hidden" name="c_id" value="<?php echo h($c_id);?>">
-					<?php echo $c_id; ?></td>
+					<p><input type="hidden" name="c_id" value="<?php echo h($c_id);?>">
+					<?php echo $c_id; ?></p></td>
 				</tr>
 				
 				<!--
@@ -68,31 +69,36 @@ $c_myphoto=$row["c_myphoto"];
 				-->
 				
 				<tr>
-					<th><label for="c_name">お客様名</label></th>
+					<th><p><label for="c_name">お客様名</label></p></th>
 					<td><input type="text" name="c_name" id="c_name" value="<?php echo h($c_name); ?>"></td>
 				</tr>
 				<tr>
-					<th><label for="c_pass">パスワード</label></th>
-					<td><input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value=""></td>
+					<th><p><label for="c_pass">パスワード</label></p></th>
+					<td>
+					<p class="pass_area">
+						<input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value="">
+						<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
+					</p>
+					</td>
 				</tr>
 				<tr>
-					<th><label for="c_tell">電話番号</label></th>
+					<th><p><label for="c_tell">電話番号</label></p></th>
 					<td><input type="number" name="c_tell" id="c_tell" value="<?php echo h($c_tell); ?>"></td>
 				</tr>
 				<tr>
-					<th><label for="c_mail">メールアドレス</label></th>
+					<th><p><label for="c_mail">メールアドレス</label></p></th>
 					<td><input type="text" name="c_mail" id="c_mail" value="<?php echo h($c_mail); ?>"></td>
 				</tr>
 				<tr>
-					<th><label for="zip">郵便番号</label></th>
+					<th><p><label for="zip">郵便番号</label></p></th>
 					<td><input type="number" name="c_zip" id="zip" value="<?php echo h($c_zip); ?>"></td>
 				</tr>
 				<tr>
-					<th><label for="address">住所</label></th>
-					<td><input type="text" name="c_address" id="address" value="<?php echo h($c_address); ?>"></td>
+					<th><p><label for="address">住所</label></p></th>
+					<td><textarea name="c_address" id="address" value="<?php echo h($c_address); ?>"></textarea></td>
 				</tr>
 				<tr>
-					<th><label for="c_gender">新郎/新婦</label></th>
+					<th><p><label for="c_gender">新郎/新婦</label></p></th>
 					<td>
 						<select name="c_gender">
 							<option value="">お選びください</option>
@@ -106,7 +112,7 @@ $c_myphoto=$row["c_myphoto"];
 					</td>
 				</tr>
 				<tr>
-					<th><label for="c_myphoto">登録画像</label><span class="font_mini">※円形にトリミングされます</span></th>
+					<th><p><label for="c_myphoto">登録画像</label><span class="font_mini">※円形にトリミングされます</span></p></th>
 					<td><p class="font_mini class="c_photo">登録済み画像：<?php if($c_myphoto==1) echo "<img src=\"../image/upload/c_myphoto/{$c_id}.jpg\">";?></p>
 						<p><input type="file" name="c_myphoto" id="c_myphoto"></p>
 					</td>

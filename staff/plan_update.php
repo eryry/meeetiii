@@ -39,19 +39,19 @@ if(empty($_GET["p_id"])) {
 				<form action="exec_plan_update.php" method="post" class="update_plan">
 					<table>
 						<tr>
-							<th>プランID</th>
+							<th><p>プランID</p></th>
 							<td>
 							<input type="hidden" name="p_id" value="<?php echo $p_id;?>">
-							<?php echo intVal($p_id); ?></td>
+							<p><?php echo intVal($p_id); ?></p></td>
 						</tr>
 						<tr>
-							<th><label for="p_name">プラン名</label></th>
+							<th><p><label for="p_name">プラン名</label></p></th>
 							<td><input type="text" name="p_name" id="p_name" value="<?php echo h($p_name); ?>"></td>
 						</tr>
 						<tr>
-							<th><label for="p_wear">衣装の種類</label></th>
+							<th><p><label for="p_wear">衣装の種類</label></p></th>
 							<td>
-								<select name="p_wear" id="p_wear">
+								<p><select name="p_wear" id="p_wear">
 									<option value="">下記から選択</option>
 									<option value="kimono" 
 										<?php if($p_wear=="kimono") {echo "selected";}; ?>>和装のみ
@@ -62,7 +62,7 @@ if(empty($_GET["p_id"])) {
 									<option value="both" 
 										<?php if($p_wear=="both")   {echo "selected";}; ?>>和装と洋装
 									</option>
-								</select>
+								</select></p>
 							</td>
 						</tr>
 					</table>

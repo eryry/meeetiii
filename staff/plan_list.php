@@ -23,13 +23,13 @@ $rows =$obj->getPlan();
 			<section>
 					<table class="list">
 					<tr>
-						<th class="list_id_num">p_ID</th><th class="list_p_name">プラン名</th><th class="list_p_wear">プラン衣装種類</th>
+						<th class="list_id_num"><p>p_ID</p></th><th class="list_p_name"><p>プラン名</p></th><th class="list_p_wear"><p>プラン衣装種類</p></th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<tr>
-						<td class="list_id_num"><?php echo h($row["p_id"]);?></td>
-						<td class="list_p_name"><a href="plan_update.php?p_id=<?php echo $row["p_id"];?>"><?php echo h($row["p_name"]); ?></a></td>
-						<td class="list_p_wear"><?php 
+						<td class="list_id_num"><p><?php echo h($row["p_id"]);?></p></td>
+						<td class="list_p_name"><p><a href="plan_update.php?p_id=<?php echo $row["p_id"];?>"><?php echo h($row["p_name"]); ?></a></p></td>
+						<td class="list_p_wear"><p><?php 
 							if($row["p_wear"]=='kimono') {
 								echo "和装のみ";
 							}else if($row["p_wear"]=='dress') {
@@ -37,7 +37,7 @@ $rows =$obj->getPlan();
 							}else {
 								echo "和装と洋装";
 							}
-							; ?></td>
+							; ?></p></td>
 						
 					</tr>
 					<?php endwhile; ?>

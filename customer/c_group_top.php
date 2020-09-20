@@ -49,7 +49,9 @@ foreach($all_msg as $val){
 <?php require_once("header_for_customer.php"); ?>
 		
 		<main>
-			<h1>ふたりのページTOP</h1>
+			<div id="title_wrapper">
+				<h1>ふたりのページ<br><span class="font_mini_no_padding">bride & groom page</span></h1>
+			</div>
 			<section>
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 				
@@ -62,7 +64,7 @@ foreach($all_msg as $val){
 						<?php if($c_data["g_myphoto"]==1): ?>
 						<img src="../image/upload/c_myphoto/<?php echo $c_data["g_id"];?>.jpg" alt="新郎画像">
 						<?php elseif($c_data["g_myphoto"]==0): ?>
-						<?php echo "*画像未登録";?>
+						<img src="../image/noimage.png">
 						<?php endif; ?>
 						<p><?php echo h($c_data["g_name"]); ?></p>
 					</div>
@@ -70,12 +72,13 @@ foreach($all_msg as $val){
 						<?php if($c_data["b_myphoto"]==1): ?>
 						<img src="../image/upload/c_myphoto/<?php echo $c_data["b_id"];?>.jpg" alt="新婦画像">
 						<?php elseif($c_data["b_myphoto"]==0): ?>
-						<?php echo "*画像未登録";?>
+						<img src="../image/noimage.png">
 						<?php endif; ?>
 						<p><?php echo h($c_data["b_name"]); ?></p>
 					</div>
 				</div>
-				<div>
+				
+				<div class="messages">
 					<?php if(strtotime($today)<strtotime($reserve_day)): ?>
 					<p class="msg">
 						<?php
@@ -102,16 +105,17 @@ foreach($all_msg as $val){
 				
 			</section>
 			
-			<section class="second">
-				<h3>お知らせ</h3>
-				
-				<table class="list_noborder row3">
+			<section>
+				<h2>お知らせ</h2>
+				<div class="notice_wrapper">
+				<table class="list_noborder c_g_top_notice">
 					<tr>
-						<th>掲示板</th><th>最新投稿</th>
-						<td>
+						<th class="c_g_top_notice1"><p class="font_mini_no_padding">連絡note</p></th>
+						<th class="c_g_top_notice2"><p class="font_mini_no_padding">最新書き込み</p></th>
+						<td class="c_g_top_notice3"><p>
 						<?php if(!empty($b_data)): ?>
-						<a href="c_board.php">日時:
-						<?php echo date("Y/m/d H:i",strtotime($b_data["created"])); ?> 
+						<a href="c_board.php">日   時:
+						<?php echo date("Y/m/d H:i",strtotime($b_data["created"])); ?> <br>
 						投稿者:<?php 
 						if($b_data["submit_member_id"]== $c_data["g_id"]){
 							echo h($c_data["g_name"]);
@@ -123,24 +127,29 @@ foreach($all_msg as $val){
 							$staff_data=$obj->getStaffById($s_id);
 							echo "スタッフ：".h($staff_data["s_name"]);
 						}
-						;?></a>
+						;?></a></p>
 						<?php elseif(empty($b_data)): ?>
-						投稿はまだありません。
+						<p>投稿はまだありません。</p>
 						<?php endif; ?></td>
 					</tr>
 					<tr>
-						<th>スケジュール</th><th>期限超過項目</th><td><a href="c_schedule.php"><?php echo $limit_over_message; ?></a></td>
+						<th class="c_g_top_notice1"><p class="font_mini_no_padding">スケジュール</p></th>
+						<th class="c_g_top_notice2"><p class="font_mini_no_padding">期限超過項目</p></th>
+						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><a href="c_schedule.php"><?php echo $limit_over_message; ?></a></p></td>
 					</tr>
 					<tr>
-						<th>見積書</th><th>投稿</th>
-						<td><?php if($_SESSION["estimate"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $est_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></td>
+						<th class="c_g_top_notice1"><p class="font_mini_no_padding">見積書</p></th>
+						<th class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></th>
+						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><?php if($_SESSION["estimate"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $est_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></p></td>
 					</tr>
 					<tr>
-						<th>請求書</th><th>投稿</th>
-						<td><?php if($_SESSION["invoce"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $inv_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></td>
+						<th class="c_g_top_notice1"><p class="font_mini_no_padding">請求書</p></th>
+						<th class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></th>
+						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><?php if($_SESSION["invoce"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $inv_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></p></td>
 					</tr>
 				</table>
-				
+				</div>
+				<br>
 				<button class="update_btn"><a href="c_group_info.php">予約内容確認ページへ</a></button>
 
 			</section>

@@ -146,7 +146,10 @@ if($_SESSION["place_fixed"]==0) {
 <?php require_once("header_for_customer.php"); ?>
 
 		<main>
-			<h1 class="u_line">schedule</h1>
+			<div id="title_wrapper">
+				<h1>スケジュール<br><span class="font_mini_no_padding">schedule</span></h1>
+			<h1 class="u_line"></h1>
+			</div>
 			<section>
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 				
@@ -156,7 +159,7 @@ if($_SESSION["place_fixed"]==0) {
 				<p>進捗状況<span class="limit_over"></span></p>
 			</section>
 			<section>
-				<table class="list_noborder">
+				<table class="list_noborder schedule">
 					<tr>
 						<th class="check">未・済</th><th class="todo">管理項目</th><th class="limit">期日</th>
 					</tr>

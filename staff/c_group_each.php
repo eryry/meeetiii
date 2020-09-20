@@ -4,13 +4,13 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
+function h($str) {
+	return htmlspecialchars($str,ENT_QUOTES);
+}
 
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
-function h($str) {
-	return htmlspecialchars($str,ENT_QUOTES);
-}
 
 //GETのグループIDをセッションに格納
 if(!empty($_GET["group_id"])) $_SESSION["group_id"]=$_GET["group_id"];
@@ -229,70 +229,73 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 				<p>お客様名： <?php echo h($c_data["g_name"])."様・".h($c_data["b_name"])."様";	?> </p>
 				<p>担当スタッフ: <?php if(!empty($staffData["s_name"])) echo h($staffData["s_name"]); ?></p>
 			
-				<br>
+			</section>
+			<section>
 				<p>グループ登録情報<span class="update_btn"><a href="c_group_update.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">顧客グループ情報更新ページへ</a></span></p>
 				
 				<table class="list_noborder">		
 					<tr>
-						<th>新居</th>
-						<td>〒<?php echo h($new_zip); ?><br>
-							<?php echo h($new_address); ?>
+						<th><p>新居</p></th>
+						<td><p>〒<?php echo h($new_zip); ?><br>
+							<?php echo h($new_address); ?></p>
 						</td>
 					</tr>
 					<tr>
-						<th>新郎</th>
+						<th><p>新郎</p></th>
 						<td>
-						名前：<?php echo h($c_data["g_name"]); ?><br>
-						電話：<?php echo h($g_data["c_tell"]); ?><br>
-						Mail：<?php echo h($g_data["c_mail"]); ?><br>
-						住所：〒<?php echo h($g_data["c_zip"]); ?>　<?php echo h($g_data["c_address"]); ?><br>
+							<p>名前：<?php echo h($c_data["g_name"]); ?></p>
+							<p>電話：<?php echo h($g_data["c_tell"]); ?></p>
+							<p>Mail：<?php echo h($g_data["c_mail"]); ?></>
+							<p>住所：〒<?php echo h($g_data["c_zip"]); ?>　<?php echo h($g_data["c_address"]); ?></p>
 						</td>
 					</tr>
 					<tr>
-						<th>新婦</th>
+						<th><p>新婦</p></th>
 						<td>
-						名前：<?php echo h($c_data["b_name"]); ?><br>
-						電話：<?php echo h($b_data["c_tell"]); ?><br>
-						Mail：<?php echo h($b_data["c_mail"]); ?><br>
-						住所：〒<?php echo h($b_data["c_zip"]); ?>　<?php echo h($b_data["c_address"]); ?><br>
+							<p>名前：<?php echo h($c_data["b_name"]); ?></p>
+							<p>電話：<?php echo h($b_data["c_tell"]); ?></p>
+							<p>Mail：<?php echo h($b_data["c_mail"]); ?></p>
+							<p>住所：〒<?php echo h($b_data["c_zip"]); ?>　<?php echo h($b_data["c_address"]); ?></p>
 						</td>
 					</tr>
 				</table>
-				
+			</section>
+			<section>
 				<p>進捗状況<span class="limit_over"></span><span class="update_btn"><a href="c_group_each_mane.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">マネジメント（スケジュール）ページへ</a></span></p>
 				<table class="list_noborder">
 					<tr>
-						<th class="check">未・済</th><th class="todo">管理項目</th><th class="limit">期日</th>
+						<th class="check"><p>未・済</p></th><th class="todo"><p>管理項目</p></th><th class="limit"><p>期日</p></th>
 					</tr>
 					<tr class="has_limit <?php echo $limit_d_product; ?>">
-						<td class="check"><?php echo $d_product; ?></td><td class="todo">商品納品</td><td class="limit">データのみ：1か月後<?php echo h($a1me); ?><br>アルバム：2か月後<?php echo h($a2me); ?></td>
+						<td class="check"><p><?php echo $d_product; ?></p></td><td class="todo"><p>商品納品</p></td>
+						<td class="limit"><p>データのみ：1か月後<?php echo h($a1me); ?><br>アルバム：2か月後<?php echo h($a2me); ?></p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_before2days; ?>">
-						<td class="check"><?php echo $before2days; ?></td><td class="todo">撮影判断</td><td class="limit">2日前：<?php echo h($b2de); ?></td>
+						<td class="check"><p><?php echo $before2days; ?></p></td><td class="todo"><p>撮影判断</p></td><td class="limit"><p>2日前：<?php echo h($b2de); ?></p></td>
 					</tr>
-					<tr class="has_limit  <?php echo $limit_payment; ?>">
-						<td class="check"><?php echo $payment; ?></td><td class="todo">お支払い</td><td class="limit">1週間前：<?php echo h($b1we); ?>までに</td>
+					<tr class="has_limit <?php echo $limit_payment; ?>">
+						<td class="check"><p><?php echo $payment; ?></p></td><td class="todo"><p>お支払い</p></td><td class="limit"><p>1週間前：<?php echo h($b1we); ?>までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_invoce; ?>">
-						<td class="check"><?php echo $invoce; ?></td><td class="todo">請求書発行</td><td class="limit">3週間前：<?php echo h($b3we); ?>頃までに</td>
+						<td class="check"><p><?php echo $invoce; ?></p></td><td class="todo"><p>請求書発行</p></td><td class="limit"><p>3週間前：<?php echo h($b3we); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_make_reh; ?>">
-						<td class="check"><?php echo $make_reh; ?></td><td class="todo">リハーサル</td><td class="limit">3週間前：<?php echo h($b3we); ?>頃までに</td>
+						<td class="check"><p><?php echo $make_reh; ?></p></td><td class="todo"><p>リハーサル</p></td><td class="limit"><p>3週間前：<?php echo h($b3we); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_place_fixed; ?>">
-						<td class="check"><?php echo $place_fixed; ?></td><td class="todo">撮影場所決定</td><td class="limit">1か月前：<?php echo h($b1me); ?>頃までに</td>
+						<td class="check"><?php echo $place_fixed; ?></td><td class="todo">撮影場所決定</td><td class="limit"><p>1か月前：<?php echo h($b1me); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fixed; ?>">
-						<td class="check"><?php echo $cos_fixed; ?></td><td class="todo">衣装決定</td><td class="limit">1か月前：<?php echo h($b1me); ?>頃までに</td>
+						<td class="check"><p><?php echo $cos_fixed; ?></p></td><td class="todo"><p>衣装決定</p></td><td class="limit"><p>1か月前：<?php echo h($b1me); ?>頃までに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fitting; ?>">
-						<td class="check"><?php echo $cos_fitting; ?></td><td class="todo">衣装試着予約</td><td class="limit">お早めに</td>
+						<td class="check"><p><?php echo $cos_fitting; ?></p></td><td class="todo"><p>衣装試着予約</p></td><td class="limit"><p>お早めに</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_estimate; ?>">
-						<td class="check"><?php echo $estimate; ?></td><td class="todo">見積り書発行</td><td class="limit">ご契約時にお渡し</td>
+						<td class="check"><p><?php echo $estimate; ?></p></td><td class="todo"><p>見積り書発行</p></td><td class="limit"><p>ご契約時にお渡し</p></td>
 					</tr>
 				</table>
 				
 			</section>
 		</main>
-<?php include("footer_for_staffpage.php"); ?>
+<?php require_once("footer_for_staffpage.php"); ?>

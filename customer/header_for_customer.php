@@ -27,8 +27,10 @@
 	<body>
 		<header>
 			<ul>
-				<li><a href="c_group_top.php">ふたりTOP</a></li>
-				<li><a href="c_top.php">個人TOP</a></li>
-				<li><a id="logout" href="exec_logout.php">ログアウト</a></li>
+				<li><a href="c_group_top.php">our</a></li>
+				<li><a href="c_board.php">board</a></li>
+				<li class="sp_logo"><img src="../image/header_logo.png" alt="ロゴ"></li>
+				<li><a href="c_top.php">my page</a></li>
+				<li><a id="logout" href="exec_logout.php">logout</a></li>
 			</ul>
 		</header>

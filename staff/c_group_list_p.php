@@ -33,17 +33,17 @@ $today= date("Y-m-d");
 				<div id="mainView">
 					<table class="list">
 					
-					<tr>
-						<th class="list_id_num">ID</th><th class="list_id_num">board</th><th class="list_id_num"><p class="font_mini">見積・請求書</p></th>
-						<th class="list_r_day">予約日</th><th class="list_c_name">新郎名</th><th class="list_c_name">新婦名</th><th class="list_p_name">プラン</th>
+					<tr class="c_group_list">
+						<th class="list_id_num"><p>ID</p></th><th class="list_id_num"><p>board</p></th><th class="list_id_num"><p class="font_mini">見積・請求書</p></th>
+						<th class="list_r_day"><p>予約日</p></th><th class="list_c_name"><p>新郎名</p></th><th class="list_c_name"><p>新婦名</p></th><th class="list_p_name"><p>プラン</p></th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<?php if($row["reserve_day"]<$today): ?>
 					<tr>
-						<td class="list_id_num"><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></td>
-						<td class="list_id_num"><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_board.svg"></a></td>
-						<td class="list_id_num"><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_file.svg"></a></td>
-						<td class="list_r_day"><?php 
+						<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
+						<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_board.svg"></a></p></td>
+						<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_file.svg"></a></p></td>
+						<td class="list_r_day"><p><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];
 							$week = ["日","月","火","水","木","金","土"];
@@ -51,10 +51,10 @@ $today= date("Y-m-d");
 							$youbi = $week[$hi];
 							$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 							echo h($rd); 
-						?></td>
-						<td class="list_c_name"><?php echo h($row["g_name"]); ?></td>
-						<td class="list_c_name"><?php echo h($row["b_name"]); ?></td>
-						<td class="list_p_name"><?php echo h($row["p_name"]); ?></td>
+						?></p></td>
+						<td class="list_c_name"><p><?php echo h($row["g_name"]); ?></p></td>
+						<td class="list_c_name"><p><?php echo h($row["b_name"]); ?></p></td>
+						<td class="list_p_name"><p><?php echo h($row["p_name"]); ?></p></td>
 					</tr>
 					<?php endif; ?>
 					<?php endwhile; ?>
@@ -63,5 +63,5 @@ $today= date("Y-m-d");
 				</div>
 			</section>
 		</main>
-<?php include("footer_for_staffpage.php"); ?>
+<?php require_once("footer_for_staffpage.php"); ?>
 

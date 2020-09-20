@@ -37,7 +37,10 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 <?php require_once("header_for_customer.php"); ?>
 
 		<main>
-			<h1>ご新居登録・更新ページ</h1>
+			<div id="title_wrapper">
+				<h1>ご新居登録・更新<br><span class="font_mini_no_padding">new address</span></h1>
+			<h1></h1>
+			</div>
 			<section>
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
@@ -46,14 +49,16 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 				<p class="font_mini">出来上がった商品は、こちらの住所あてに発送いたします。</p>
 				<p class="font_mini">新居未定の場合は、商品お届け先をご入力ください。</p>
 				<p class="font_mini">※入力がない場合は、商品お届け先確認後の発送となります。</p>
+			</section>
+			<section>
 				<form action="exec_g_newaddress_update.php" method="post">
 					<table>
 						<tr>
-							<th><label for="zip">新居：郵便番号</label></th>
+							<th><p><label for="zip">新居：郵便番号</label></p></th>
 							<td><input type="number" name="new_zip" id="zip" value="<?php echo h($new_zip); ?>"></td>
 						</tr>
 						<tr>
-							<th><label for="address">新居：住所</label></th>
+							<th><p><label for="address">新居：住所</label></p></th>
 							<td><input type="text" name="new_address" id="address" value="<?php echo h($new_address); ?>"></td>
 						</tr>
 					</table>

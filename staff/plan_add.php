@@ -14,18 +14,18 @@ if(empty($_SESSION["s_id"])) {
 				<form action="exec_plan_add.php" method="post">
 					<table>
 						<tr>
-							<th><label for="p_name">プラン名</label></th>
+							<th><p><label for="p_name">プラン名</label></p></th>
 							<td><input type="text" name="p_name" id="p_name"></td>
 						</tr>
 						<tr>
-							<th><label for="p_wear">衣装の種類</label></th>
+							<th><p><label for="p_wear">衣装の種類</label></p></th>
 							<td>
-								<select name="p_wear" id="p_wear">
+								<p><select name="p_wear" id="p_wear">
 									<option value="">下記から選択</option>
 									<option value="kimono">和装のみ</option>
 									<option value="dress">洋装のみ</option>
 									<option value="both">和装と洋装</option>
-								</select>
+								</select></p>
 							</td>
 						</tr>
 					</table>

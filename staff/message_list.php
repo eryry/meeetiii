@@ -20,21 +20,20 @@ $msgs =$obj->getMessage();
 <?php require_once("header_for_staff.php"); ?>
 
 		<main>
-			<h1>メッセージ一覧＆更新</h1>
+			<h1>メッセージ 登録・一覧・更新</h1>
+			
 			<section>
-				<h2>メッセージ一覧</h2>
-				<table class="list">
-					<tr>
-						<th class="list_id_num">mID</th><th class="list_mbody">メッセージ内容</th>
-					</tr>
-					<?php foreach($msgs as $msg): ?>
-					<tr>
-						<td class="list_id_num"><?php echo intVal($msg["m_id"]);?></td>
-						<td class="list_mbody"><?php echo h($msg["m_body"]); ?></td>
-					</tr>
-					<?php endforeach; ?>
-				</table>
+				<h2>メッセージ登録</h2>
+				<p>何日前かで表示変えるメッセージの登録</p>
+				<form action="exec_msg_add.php" method="post">
+				<p>メッセージID(日付連動型/数字のみ/何日前かで数値入力）</p>
+				<p><input type="number" name="m_id" placeholder="半角数字のみ"></p>
+				<p>メッセージ内容</p>
+				<p><input type="text" name="m_body"></p>
+				<button><input type="submit" value="メッセージ登録" name="add"></button>
+				</form>
 			</section>
+			
 			<section>
 				<h2>メッセージ更新</h2>
 				<form action="exec_msg_add.php" method="post">
@@ -52,6 +51,20 @@ $msgs =$obj->getMessage();
 					<button><input type="submit" value="メッセージ編集" name="update" id="m_update"></button>
 				</form>	
 			</section>
+			<section>
+				<h2>メッセージ一覧</h2>
+				<table class="list">
+					<tr>
+						<th class="list_id_num"><p>mID</p></th><th class="list_mbody"><p>メッセージ内容</p></th>
+					</tr>
+					<?php foreach($msgs as $msg): ?>
+					<tr>
+						<td class="list_id_num"><p><?php echo intVal($msg["m_id"]);?></p></td>
+						<td class="list_mbody"><p><?php echo h($msg["m_body"]); ?></p></td>
+					</tr>
+					<?php endforeach; ?>
+				</table>
+			</section>
 		</main>
-<?php include("footer_for_staffpage.php"); ?>
+<?php require_once("footer_for_staffpage.php"); ?>
 
