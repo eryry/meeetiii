@@ -8,14 +8,13 @@ if(empty($_GET["p_id"])) {
  header("Location:plan_list.php");
  exit();
 }
-
+function h($str) {
+	return htmlspecialchars($str,ENT_QUOTES);
+}
 
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
-function h($str) {
-	return htmlspecialchars($str,ENT_QUOTES);
-}
 
 if(empty($_GET["p_id"])) {
 	$p_id="";
@@ -26,7 +25,6 @@ if(empty($_GET["p_id"])) {
 	$row= $obj->getPlanById($p_id);
 	$p_name= $row["p_name"];
 	$p_wear= $row["p_wear"];
-	
 }
 
 ?>
@@ -36,8 +34,11 @@ if(empty($_GET["p_id"])) {
 		<main>
 			<section>
 			<h1>プラン編集ページ</h1>
+			<br>
+			<p>※ここでの編集内容は、すでに登録済みのお客様データも連動して変更されます。</p>
+			<br>
 				<form action="exec_plan_update.php" method="post" class="update_plan">
-					<table>
+					<table class="p_update_table">
 						<tr>
 							<th><p>プランID</p></th>
 							<td>
@@ -66,14 +67,8 @@ if(empty($_GET["p_id"])) {
 							</td>
 						</tr>
 					</table>
-				
-				<p><input class="sub_btn" type="submit" value="プラン情報更新"></p>
+				<p><input type="submit" value="プラン情報更新"></p>
 				</form>
-
-				
-				<p><a href="plan_add.php">新規プラン登録ページへ</a></p>
-				<p><a href="plan_list.php">プラン一覧ページへ</a></p>
-			
 			</section>
 		</main>
 		

@@ -43,7 +43,6 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 		require_once("header_for_staff_inCpage.php");
 	}
 ?>
-	
 		<main>
 			<div id="title_wrapper">
 				<h1>連絡ノート<br><span class="font_mini_no_padding">note</span></h1>
@@ -61,8 +60,8 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 				<p>お客様名： <?php echo h($c_data["g_name"])."様・".h($c_data["b_name"])."様";	?> </p>
 			</section>
 			
-			<section >
-				<h2>新規かきこみ</h2>
+			<section>
+				<h2>新規書き込み</h2>
 				
 				<div class="toukou">
 				<form action="exec_board_submit.php" method="post" enctype="multipart/form-data">
@@ -80,11 +79,12 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 				</form>
 				</div>
 			</section>
+			
 			<section>
 				<h2>連絡ノート</h2>
 				
 				<?php foreach($rows as $row): ?>
-				<article class="keijiban_sub" id="keijibanban">
+				<div class="keijiban_sub" id="keijibanban">
 					<div class="b_sub_data_area">
 					
 						<?php if($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==1): ?>
@@ -103,7 +103,7 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 						
 						
 						<div>
-						<p><span class="font_mini3">name:
+						<p><span class="font_mini3">post:
 						<?php 
 							if($row["submit_member_id"]== $c_data["g_id"]){
 								echo h($c_data["g_name"]);
@@ -113,9 +113,9 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 								//スタッフ情報取得
 								$s_id=$row["submit_member_id"];
 								$staff_data=$obj->getStaffById($s_id);
-								echo "スタッフ-".h($staff_data["s_name"]);
+								echo "staff-".h($staff_data["s_name"]);
 							};
-						?> / post：<?php echo date("Y/m/d H:i",strtotime($row["created"])); ?></span></p>
+						?> / <?php echo date("Y/m/d H:i",strtotime($row["created"])); ?></span></p>
 						</div>
 					</div>
 					<p class="font_mini_no_padding"><?php echo nl2br(h($row["body"])); ?></p>
@@ -124,7 +124,7 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 				<a href="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" rel="lightbox"><img class="" src="../image/upload/board_photo/<?php echo h($row["b_id"]);?>.jpg" alt="投稿画像"></a>
 				<div id=""></div>
 				<?php endif; ?>
-				</article>
+				</div>
 				<?php endforeach; ?>
 				
 			</section>

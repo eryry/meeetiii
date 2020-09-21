@@ -21,7 +21,7 @@ $rows =$obj->getCustomerGroup();
 			<h1>新規顧客登録ページ<i class="fas fa-eye"></i></h1>
 			<section>
 				<form action="exec_c_add.php" method="post" autocomplete="off">
-					<table>
+					<table class="c_add_table">
 						<tr>
 							<th><p><label for="c_group_id">グループID </label><span class="required_color">必須</span></p></th>
 							<td><p>
@@ -78,7 +78,7 @@ $rows =$obj->getCustomerGroup();
 						</tr>
 					</table>
 				
-				<p><input class="sub_btn" type="submit" value="新規顧客登録"></p>
+				<p><input type="submit" value="新規顧客登録"></p>
 				</form>
 
 				

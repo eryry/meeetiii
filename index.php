@@ -5,7 +5,7 @@ setcookie ("session_name","",time()-1800);
 session_destroy();
 
 
-$c_pass = password_hash('ao',PASSWORD_DEFAULT);
+$c_pass = password_hash('eri',PASSWORD_DEFAULT);
 echo $c_pass;
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ echo $c_pass;
 		<main>
 			<section>
 				<form action="customer/exec_customer_login.php" method="post">
-					<table>
+					<table class="login_table">
 						<tr>
 							<th><p><label for="c_id">顧客ID</label><p></th>
 							<td><input type="text" name="c_id" id="c_id"></td>

@@ -231,9 +231,10 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 			
 			</section>
 			<section>
-				<p>グループ登録情報<span class="update_btn"><a href="c_group_update.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">顧客グループ情報更新ページへ</a></span></p>
+				<h2>グループ登録情報</h2><br>
+				<button class="update_link"><a href="c_group_update.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">顧客グループ情報更新ページへ</a></button>
 				
-				<table class="list_noborder">		
+				<table class="list c_group_each_table">
 					<tr>
 						<th><p>新居</p></th>
 						<td><p>〒<?php echo h($new_zip); ?><br>
@@ -260,9 +261,11 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 					</tr>
 				</table>
 			</section>
+			
 			<section>
-				<p>進捗状況<span class="limit_over"></span><span class="update_btn"><a href="c_group_each_mane.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">マネジメント（スケジュール）ページへ</a></span></p>
-				<table class="list_noborder">
+				<h2>進捗状況</h2><p><span class="limit_over"></p></span><br>
+				<button class="update_link"><a href="c_group_each_mane.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">マネジメント（スケジュール）ページへ</a></button>
+				<table class="list c_group_each_mg_table">
 					<tr>
 						<th class="check"><p>未・済</p></th><th class="todo"><p>管理項目</p></th><th class="limit"><p>期日</p></th>
 					</tr>

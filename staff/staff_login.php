@@ -31,7 +31,7 @@ session_destroy();
 		<main>
 			<section>
 				<form action="exec_staff_login.php" method="post">
-					<table>
+					<table class="login_table">
 						<tr>
 							<th><label for="s_id">スタッフID</th>
 							<td><input type="text" name="s_id" id="s_id"></td>

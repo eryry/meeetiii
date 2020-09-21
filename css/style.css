@@ -17,27 +17,39 @@ inputエリアの枠線　#dfdfdf
 
 
 body {
-	color: #45403f;
-	margin:auto;
-	font-family: 'Noto Serif JP', serif;
 	width:100%;
-}
-header{
-	height: 60px;
-	line-height:20px;
-	text-align:center;
 	margin:auto;
-	background-color: #b0d7dc;
-	text-align:center;
-	padding:20px;
+	color: #45403f;
+	font-family: 'Noto Serif JP', serif;
+}
+header {
 	width:100%;
 	position:fixed;
 	z-index:999;
 	display:inline-block;
+	height: 60px;
+	line-height:20px;
+	text-align:center;
+	margin:auto;
+	text-align:center;
+	padding:20px;
+	background-color: #b0d7dc;
 }
-header ul {
+footer{
+	background-color: #b0d7dc;
+	padding:20px;
+	width:100%;
+}
+header.staff,
+footer.staff{
+	background-color: #A2D03C;
+}
+header ul,
+footer ul{
+	display:flex;
 	justify-content:space-between;
 }
+
 header ul li{
 	width:15%;
 }
@@ -46,22 +58,6 @@ header ul li.sp_logo{
 }
 header ul li.sp_logo img	{
 	width: 100px;
-}
-header.staff{
-	background-color: #A2D03C;
-}
-header ul,
-footer ul{
-	display:flex;
-	justify-content:space-between;
-}
-footer{
-	background-color: #b0d7dc;
-	padding:20px;
-	width:100%;
-}
-footer.staff{
-	background-color: #A2D03C;
 }
 main {
 	width:100%;
@@ -72,8 +68,36 @@ main {
 	background: url(../image/demo.jpg) center top;
 	background-size: contain;
 }
+section {
+	max-width:100%;
+	margin:20px auto;
+}
+section form{
+	max-width:100%;
+	margin:auto;
+}
 
-/* --- font --- */
+
+/* --- font size and decoration--- */
+h2{
+	font-size:clamp(14px,3.6vw,16px);
+	display:inline-block;
+	background: linear-gradient(transparent 50%, #fff100 0%);
+	padding-left:10px;
+	padding-right:10px;
+	margin-bottom:10px;
+	margin-top:20px;
+}
+.c_update > h2{
+	margin-top:20px;
+}
+h3{
+	font-size:clamp(14px,3.6vw,16px);
+}
+p,
+input{
+	font-size:14px;
+}
 ul {
 	list-style:none;
 }
@@ -87,6 +111,11 @@ header a,
 footer a{
 	color:white;
 }
+i{
+	margin-left:6px;
+	margin-right:2px;
+}
+
 
 /* ---- title area ---- */
 #title_wrapper {
@@ -133,44 +162,26 @@ span.font_mini_no_padding,
   bottom: 0;
 }
 
-h2{
-	font-size:14px;
-	display:inline-block;
-	background: linear-gradient(transparent 50%, #fff100 0%);
-	padding-left:10px;
-	padding-right:10px;
-}
-h3{
-	font-size:14px;
-}
-p,
-input{
-	font-size:14px;
-}
+
 .messages p{
 	display:inline-block;
 	font-weight:bold;
-	background: linear-gradient(transparent 50%, #ffb5ae 0%);
+	background: #ffcfca;
 	margin-bottom:10px;
+	text-align:left;
+	padding:0 6px;
 }
 
 
-
-section {
-	max-width:100%;
-	margin:20px auto;
-}
-section form{
-	max-width:100%;
-	margin:auto;
-}
-
-/* --- input --- */
+/* --- about form  input/select/textarea --- */
 input,
 select,
-textarea{
+textarea,
+.login_table input{
 	padding: 0 8px;
-	width:260px;
+	margin:auto;
+	width: clamp(220px,80vw,600px);
+	//width:260px;
 	box-sizing:border-box;
 	background-color:#f8f8f8;
 	border:#dfdfdf;
@@ -193,6 +204,7 @@ input[type="submit"] {
 	padding-left:0;
 }
 input[type="text"],
+input[type="password"],
 textarea[name="body"],
 textarea {
 	border: solid 1px gray;
@@ -208,6 +220,11 @@ input.b_photo{
 input#list_item{
 	width:150px;
 }
+input[type="file"]{
+	width:clamp(220px,40vw,240px);
+	font-size:clamp(10px,10px + .7vw,12px);
+	margin:auto;
+}
 table tr td input,
 table tr td select,
 input,select,
@@ -222,8 +239,8 @@ textarea{
 	height:50px;
 	padding-top:6px;
 	padding-bottom:6px;
-	
 }
+
 
 /* --table-- */
 table {
@@ -254,10 +271,18 @@ table.list_noborder tr{
 	display:flex;
 	flex-direction:row;
 }
+table.list_noborder th{
+	text-align:center;
+}
 
-table.list tr{
+table.list tr,
+table.p_list tr{
 	display:flex;
 	flex-direction:row;
+}
+table.p_list tr{
+	padding-top:6px;
+	padding-bottom:6px;
 }
 table.list th {
 	border:solid 1px white;
@@ -272,29 +297,58 @@ table.list td {
 table.list td a{
 	height:30px;
 }
+
+/* --- schedule for customer--- */
+table.schedule{
+	text-align:center;
+	background-color:white;
+	border-left:1px solid #c5d4eb;
+	border-right:1px solid #c5d4eb;
+	border-top:1px solid #c5d4eb;
+	margin:auto;
+	width: clamp(220px,80vw,600px);
+	
+}
+.schedule tr.need_line{
+	border-bottom:1px solid #c5d4eb;
+}
+.schedule tr.need_line .todo_detail{
+	border-top:1px dotted #c5d4eb;
+}
+
+.schedule tr th{
+	font-size:clamp(14px,10px + .8vw,16px);
+	border-bottom:1px solid #c5d4eb;
+}
+
 table tr th.check,
 table tr td.check {
 	width:20%;
-	font-size:12px;
+	border-right:1px solid #c5d4eb;
 }
 table tr th.todo,
 table tr td.todo {
 	width:30%;
-	font-size:12px;
 }
 table tr th.limit,
 table tr td.limit {
 	width:50%;
-	font-size:12px;
 }
 table tr td.todo_detail{
 	width:80%;
+	text-align:left;
+	padding-left:6px;
+}
+table tr td.check,
+table tr td.todo,
+table tr td.limit {
+	font-size:clamp(12px,10px + .7vw,14px);
 }
 
-table.c_top{
+table.c_top,
 	margin:auto;
-	width:100%;
-	
+	width: clamp(220px,80vw,600px);
+	margin-top:20px;
 }
 table.c_top tr{
 	display:flex;
@@ -306,11 +360,15 @@ table.c_top tr{
 table.c_top tr th{
 	width:30%;
 	padding:8px;
+	border:white solid 1px;
 }
 table.c_top tr td{
 	width:70%;
 	padding:8px;
+	border:white solid 1px;
 }
+
+
 .c_update,
 .c_g_check {
 	margin:auto;
@@ -333,7 +391,9 @@ table.c_top tr td{
 .c_g_check tr th p{
 	padding-bottom: 0;
 }
-.c_g_check td{
+.c_g_check td,
+.c_group_add_table td,
+.p_update_table td{
 	background-color:#f8f8f8;
 	margin-top:0;
 	padding-left:6px;
@@ -347,17 +407,23 @@ table.c_top tr td{
 }
 .c_g_top_notice1,
 .c_g_top_notice2{
-	width:27%;
+	width:25%;
 }
 .c_g_top_notice3{
-	width:44%;
+	width:50%;
 	text-align:left;
 	padding-left:4px;
 }
 .c_g_top_notice3 a{
 	text-decoration:underline;
+	font-size:clamp(10px,3vw,14px);
 }
-//===続きを読むの設定===
+.list_id_num a{
+	text-decoration:underline;
+	font-size:17px;
+}
+
+/* --- 続きを読むの設定--- */
 .td_detail_wrap {
   position: relative;
 }
@@ -410,22 +476,39 @@ span.td_detail_trigger{
 
 
 /* --- class --- */
+.remark{
+	margin-top:10px;
+	margin-bottom:8px;
+	margin:auto;
+	width: clamp(220px,80vw,600px);
+}
+
+.p_list{
+	max-width:100%;
+}
 .list_id_num {
-	width:50px;
+	width:clamp(30px,10vw,50px);
 }
 .list_p_name{
-	width:300px;
+	width:clamp(200px,40vw,350px);
 }
-.list_p_wear,
+.list_p_wear{
+	width:clamp(100px,30vw,150px);
+}
+.list_p_link{
+	width:clamp(60px,15vw,100px);
+	margin:auto;;
+}
+.list_p_btn,
 .list_r_day,
 .list_c_name{
 	width:150px;
 }
 .list_mbody{
-	width:500px;
+	width:clamp(200px,70vw,500px);
 }
 
-
+/* --- button or class's name 'btn' --- */
 button {
 	margin-top:10px;
 	margin-bottom:10px;
@@ -437,6 +520,9 @@ button {
 	color:white;
 	border-radius: 25px;
 	border:none;
+}
+.sub_btn:hover {
+	opacity:.6;
 }
 .add_list_btn {
 	border:1px solid gray;
@@ -464,20 +550,38 @@ button {
 	border:solid 1px #ffb5ae;
 	background-color:#ffb5ae;
 }
+
 .pay_btn,
-.update_btn {
+.update_btn,
+.update_link,
+.update_link_mini,
+.add_link {
 	background-color:#ffb5ae;
-	//border:solid 2px #ffb5ae;
 	padding:4px 10px;
 }
 .pay_btn a,
-.update_btn a{
+.update_btn a,
+.update_link a,
+.add_link a{
 	text-decoration:none;
 	padding:0 6px;
 	color:white;
+	font-size:clamp(12px,10px + .7vw,14px);
 }
+.update_link_mini a{
+	text-decoration:none;
+	padding:0;
+	margin:0 auto;
+	text-align:center;
+	color:white;
+	font-size:clamp(10px,8px + .7vw,12px);
+}
+
 .pay_btn:hover,
-.update_btn:hover{
+.update_btn:hover,
+.update_link:hover,
+.update_link_mini :hover,
+.add_link:hover{
 	opacity:.6;
 }
 
@@ -489,12 +593,12 @@ button {
 	//display:none;
 }
 
+.c_top img,
 .c_photo img {
 	width:100px;
 	height:100px;
 	border-radius:50px;
 	border:solid 4px #fff100;
-	//border:solid 4px #afc;
 	object-fit: cover;
 	overflow:hidden;
 }
@@ -513,36 +617,97 @@ button {
 	opacity:.7;
 }
 .c_group_list_head th,
-td.c_group_list_head{
+td.c_group_list_head,
+.p_list th{
 	text-align:center;
 }
 
-.schedule{
-	text-align:left;
-}
+
+
 .toukou,
-.notice_wrapper {
+.notice_wrapper,
+.msg_wrapper {
 	background-color: white;
 	margin:10px auto;
 	padding:10px;
 	border-radius: 5px;
 	border: solid 3px #a6d5fa;
+	width: clamp(220px,80vw,600px);
 }
-.notice_wrapper{
-	padding:4px;
+.msg_wrapper input[type="text"],
+.msg_wrapper input[type="number"],
+.msg_wrapper select{
+	width: clamp(220px,70vw,500px);
 }
-.itemlist_cos{
+table.msg_list {
+	width: clamp(220px,70vw,600px);
+	margin:10px auto;
+}
+.msg_list th p {
+	text-align:center;
+}
+.msg_list td p {
+	text-align:left;
+}
+.itemlist_cos,
+.itemlist_sub{
 	background-color: white;
 	margin:10px auto;
 	padding:10px;
 	border:3px solid #ffb5ae;
 	border-radius: 5px;
+	width: clamp(220px,80vw,600px);
+}
+
+.itemlist_cos li,
+.itemllist_sub li,
+.itemlist_title {
+	font-size:clamp(12px,10px + .7vw,14px);
+	padding:0;
+	margin:6px 0;
 	text-align:left;
 }
+.itemlist_title{
+	font-weight:bold;
+}
+
+/* table */
+.c_update_table,
+.c_g_check,
+.c_top,
+.login_table,
+.p_list,
+.list,
+.staff_add_table,
+.staff_update_table,
+.c_add_table,
+.c_group_add_table,
+.plan_add_table,
+.p_update_table,
+.c_group_each_table,
+.c_group_each_mg_table,
+.c_group_update_table {
+	margin:auto;
+	width: clamp(220px,80vw,600px);
+	margin-bottom:20px;
+}
+
+.c_group_each_table th{
+	width: clamp(30px,15vw,200px);
+}
+.c_group_each_table td{
+	width: clamp(200px,85vw,400px);
+	text-align:left;
+}
+
+
+/* --- keijiban--- */
 .keijiban {
 	background-color: white;
 }
-
+.toukou textarea{
+	width:clamp(230px,90%,600px);
+}
 
 .keijiban_sub,
 .itemllist_sub {
@@ -551,16 +716,23 @@ td.c_group_list_head{
 	margin:10px auto;
 	padding:10px;
 	border-radius: 5px;
+	width: clamp(220px,80vw,600px);
+}
+.keijiban_sub p,
+.keijiban_sub a{
 	text-align:left;
 }
 .keijiban_sub_c{
 	background-color: #EBC5E3;
 }
-.keijiban_sub img {
-	max-width:250px;
+.keijiban_sub a img {
+	max-width:clamp(200px,70vw,300px);
+	//max-width:100%;
 	border:solid 3px #ccc;
 	border-radius: 5px;
+	margin-top:8px;
 }
+
 .b_sub_data_area{
 	display:flex;
 	margin-bottom:6px;
@@ -568,30 +740,43 @@ td.c_group_list_head{
 .b_sub_data_area >div{
 	height:30px;
 }
-
 .b_sub_data_area img{
 	width:30px;
 	height:30px;
 	border-radius:30px;
 	border:solid 2px #ffb5ae;
 }
+
+
+/* --- mini and big size font --- */
 .font_mini {
 	font-size:12px;
 	margin-left:4px;
+	text-align:left;
 }
 .font_mini2{
-	font-size:11px;
+	font-size:clamp(11px,9px + .5vw,14px);
 }
 span.font_mini3{
-	font-size:11px;
+	font-size:clamp(8px,8px + .8vw,12px);
 	padding:0 6px;
 	margin:0;
 	line-height:30px;
 }
+.font_mini_no_padding{
+	font-size:clamp(12px,10px + .7vw,14px);
+	padding:0;
+}
+.font_big{
+	font-size:clamp(18px,18px + .3vw,20px);
+}
+
 span.for_space{
 	width:16px;
 	visibility：hidden;
 }
+
+/* --- limit over display --- */
 .over{
 	color:#ff3a95;
 	font-weight:bold;
@@ -605,14 +790,15 @@ span.limit_over{
 	font-weight:bold;
 }
 
-//必須表示
+/* --- 必須表示 ---*/
 .required_color {
   background-color: pink;
   color: white;
-  margin-left: 10px;
-  padding: 5px 5px 2px 5px;
+  margin: 0 0 0 10px;
+  padding: 2px;
+  font-size:12px;
 }
-//パスワードアイコン
+/* ---パスワードアイコン---*/
 .pass_area{
   position: relative;
 }

@@ -67,8 +67,10 @@ if(empty($_SESSION["new_address"])) {
 			<section>
 				<p>ご新居情報は、ご自身で入力・更新可能です。</p>
 				<button class="update_btn"><a href="c_group_newaddress_update.php">ご新居入力・更新ページへ</a></button>
+				<div class="remark">
 				<p class="font_mini">※ご新居情報以外で間違いがある場合は、お電話または掲示板からご連絡ください</p>
 				<p class="font_mini">※ご新居情報は、商品お届け先になります。新居未定時はお届け希望住所を入力ください。</p>
+				</div>
 			</section>
 			<section class="c_g_check">
 				<table>

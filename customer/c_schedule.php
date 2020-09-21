@@ -97,49 +97,49 @@ if($_SESSION["estimate"]==0){
 
 //未・完了表示
 if($_SESSION["estimate"]==0) {
-	$estimate="☐未発行";
+	$estimate="☐ 未発行";
 }else {
-	$estimate="☑発行済";
+	$estimate="☑ 発行済";
 }
 if($_SESSION["invoce"]==0) {
-	$invoce="☐未発行";
+	$invoce="☐ 未発行";
 }else {
-	$invoce="☑発行済";
+	$invoce="☑ 発行済";
 }
 if($_SESSION["payment"]==0) {
-	$payment="☐支払未";
+	$payment="☐ 支払未";
 }else {
-	$payment="☑支払済";
+	$payment="☑ 支払済";
 }
 if($_SESSION["d_product"]==0) {
-	$d_product="☐納品未";
+	$d_product="☐ 納品未";
 }else {
-	$d_product="☑納品済";
+	$d_product="☑ 納品済";
 }
 if($_SESSION["before2days"]==0) {
 	$before2days="☐確認未";
 }else {
-	$before2days="☑確認済";
+	$before2days="☑ 確認済";
 }
 if($_SESSION["make_reh"]==0) {
-	$make_reh="☐未実行";
+	$make_reh="☐ 未実行";
 }else {
-	$make_reh="☑済/無";
+	$make_reh="☑ 済/無";
 }
 if($_SESSION["cos_fixed"]==0) {
-	$cos_fixed="☐未決定";
+	$cos_fixed="☐ 未決定";
 }else {
-	$cos_fixed="☑決定済";
+	$cos_fixed="☑ 決定済";
 }
 if($_SESSION["cos_fitting"]==0) {
-	$cos_fitting="☐未試着";
+	$cos_fitting="☐ 未試着";
 }else {
-	$cos_fitting="☑試着済";
+	$cos_fitting="☑ 試着済";
 }
 if($_SESSION["place_fixed"]==0) {
-	$place_fixed="☐未決定";
+	$place_fixed="☐ 未決定";
 }else {
-	$place_fixed="☑決定済";
+	$place_fixed="☑ 決定済";
 }
 ?>
 
@@ -156,9 +156,16 @@ if($_SESSION["place_fixed"]==0) {
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
 				
-				<p>進捗状況<span class="limit_over"></span></p>
 			</section>
+			
 			<section>
+				<h2>進捗状況</h2>
+				<p><span class="limit_over"></span></p>
+				
+				<div class="remark">
+				<p class="font_mini">※下記は一般的なスケジュールです。ご予約いただくタイミングやお住い（遠方等）など、おふたりのご事情にあわせてアレンジいたします。</p>
+				</div>
+				<br>
 				<table class="list_noborder schedule">
 					<tr>
 						<th class="check">未・済</th><th class="todo">管理項目</th><th class="limit">期日</th>
@@ -166,7 +173,7 @@ if($_SESSION["place_fixed"]==0) {
 					<tr class="has_limit <?php echo $limit_d_product; ?>">
 						<td class="check" rowspan="2"><?php echo $d_product; ?></td><td class="todo">商品納品</td><td class="limit">データのみ：1か月後<br>アルバム：2か月後</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2">
 							<div class="td_detail_wrap">
 								<span class="td_detail_trigger"></span>
@@ -182,20 +189,20 @@ if($_SESSION["place_fixed"]==0) {
 					<tr class="has_limit <?php echo $limit_before2days; ?>">
 						<td class="check" rowspan="2"><?php echo $before2days; ?></td><td class="todo">撮影判断</td><td class="limit"><?php echo h($b2de); ?></td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2">
 						<p class="font_mini2">屋外ロケ撮影プランの場合は、天候不順による日延べを無料で対応しております。ご希望の場合は必ず撮影2日前18時までにご連絡ださい。</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_payment; ?>">
 						<td class="check"><?php echo $payment; ?></td><td class="todo">お支払い</td><td class="limit"><?php echo h($b2we); ?>までに</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2"><p class="font_mini2">撮影予約日1週間前までに、残金をお振込み頂きます。</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_invoce; ?>">
 						<td class="check"><?php echo $invoce; ?></td><td class="todo">請求書発行</td><td class="limit"><?php echo h($b3we); ?>頃までに</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2">
 							<div class="td_detail_wrap">
 								<span class="td_detail_trigger"></span>
@@ -209,7 +216,7 @@ if($_SESSION["place_fixed"]==0) {
 					<tr class="has_limit <?php echo $limit_make_reh; ?>">
 						<td class="check"><?php echo $make_reh; ?></td><td class="todo">リハーサル</td><td class="limit"><?php echo h($b3we); ?>頃までに</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2">
 						<div class="td_detail_wrap">
 							<span class="td_detail_trigger"></span>
@@ -223,19 +230,19 @@ if($_SESSION["place_fixed"]==0) {
 					<tr class="has_limit <?php echo $limit_place_fixed; ?>">
 						<td class="check"><?php echo $place_fixed; ?></td><td class="todo">撮影場所決定</td><td class="limit"><?php echo h($b1me); ?>頃までに</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2"><p class="font_mini2">プランによりロケ地をおふたりで決めることができます。場所によっては事前に許可・申請が必要になります。早めにご希望をお知らせください。</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fixed; ?>">
 						<td class="check"><?php echo $cos_fixed; ?></td><td class="todo">衣装決定</td><td class="limit"><?php echo h($b1me); ?>頃までに</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2"><p class="font_mini2">ここにもじもじ</p></td>
 					</tr>
 					<tr class="has_limit <?php echo $limit_cos_fitting; ?>">
 						<td class="check"><?php echo $cos_fitting; ?></td><td class="todo">衣装試着予約</td><td class="limit">お早めに</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo_detail" colspan="2">
 						<div class="td_detail_wrap">
 							<span class="td_detail_trigger"></span>
@@ -251,7 +258,7 @@ if($_SESSION["place_fixed"]==0) {
 					<tr class="has_limit <?php echo $limit_estimate; ?>">
 						<td class="check"><?php echo $estimate; ?></td><td class="todo">見積り書発行</td><td class="limit">ご契約時にお渡し</td>
 					</tr>
-					<tr class="has_limit">
+					<tr class="has_limit need_line">
 						<td class="check"></td><td class="todo" colspan="2"><p class="font_mini2">ここにもじもじ</p></td>
 					</tr>
 				</table>

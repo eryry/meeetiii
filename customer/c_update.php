@@ -38,8 +38,9 @@ $c_myphoto=$row["c_myphoto"];
 		<h1>更新・確認<br><span class="font_mini_no_padding">my data</span></h1>
 	</div>
 	<section class="c_update">
+	<h2 class="padding_top20">登録内容</h2>
 		<form action="exec_c_update.php" method="post" enctype="multipart/form-data">
-			<table>
+			<table class="c_update_table">
 				<tr>
 					<th><p>グループID</p></th>
 					<td>
@@ -113,7 +114,7 @@ $c_myphoto=$row["c_myphoto"];
 				</tr>
 				<tr>
 					<th><p><label for="c_myphoto">登録画像</label><span class="font_mini">※円形にトリミングされます</span></p></th>
-					<td><p class="font_mini class="c_photo">登録済み画像：<?php if($c_myphoto==1) echo "<img src=\"../image/upload/c_myphoto/{$c_id}.jpg\">";?></p>
+					<td><p class="font_mini c_photo">登録済み画像：<?php if($c_myphoto==1) echo "<img src=\"../image/upload/c_myphoto/{$c_id}.jpg\">";?></p>
 						<p><input type="file" name="c_myphoto" id="c_myphoto"></p>
 					</td>
 				</tr>

@@ -99,7 +99,7 @@ foreach($all_msg as $val){
 				</div>
 				
 				<?php if(strtotime($today)<=strtotime($reserve_day)): ?>
-				<p>撮影当日まであと 【<?php echo $day; ?>】日</p>
+				<p>撮影当日まであと <span class="font_big"><?php echo $day; ?></span>日</p>
 				<p>撮影当日の京都の天気予報 【  】</p>
 				<?php endif; ?>
 				
@@ -111,7 +111,7 @@ foreach($all_msg as $val){
 				<table class="list_noborder c_g_top_notice">
 					<tr>
 						<th class="c_g_top_notice1"><p class="font_mini_no_padding">連絡note</p></th>
-						<th class="c_g_top_notice2"><p class="font_mini_no_padding">最新書き込み</p></th>
+						<td class="c_g_top_notice2"><p class="font_mini_no_padding">最新投稿</p></td>
 						<td class="c_g_top_notice3"><p>
 						<?php if(!empty($b_data)): ?>
 						<a href="c_board.php">日   時:
@@ -133,18 +133,18 @@ foreach($all_msg as $val){
 						<?php endif; ?></td>
 					</tr>
 					<tr>
-						<th class="c_g_top_notice1"><p class="font_mini_no_padding">スケジュール</p></th>
-						<th class="c_g_top_notice2"><p class="font_mini_no_padding">期限超過項目</p></th>
+						<th class="c_g_top_notice1"><p class="font_mini_no_padding">schedule</p></th>
+						<td class="c_g_top_notice2"><p class="font_mini_no_padding">期限超過</p></td>
 						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><a href="c_schedule.php"><?php echo $limit_over_message; ?></a></p></td>
 					</tr>
 					<tr>
 						<th class="c_g_top_notice1"><p class="font_mini_no_padding">見積書</p></th>
-						<th class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></th>
+						<td class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></td>
 						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><?php if($_SESSION["estimate"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $est_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></p></td>
 					</tr>
 					<tr>
 						<th class="c_g_top_notice1"><p class="font_mini_no_padding">請求書</p></th>
-						<th class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></th>
+						<td class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></td>
 						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><?php if($_SESSION["invoce"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $inv_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></p></td>
 					</tr>
 				</table>

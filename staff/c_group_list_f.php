@@ -42,8 +42,8 @@ $today= date("Y-m-d");
 					<?php if($row["reserve_day"]>$today): ?>
 					<tr>
 						<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
-						<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_board.svg"></a></p></td>
-						<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><img class="icon" src="../image/icon/icon_file.svg"></a></p></td>
+						<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
+						<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-file-alt"></i></a></p></td>
 						<td class="list_r_day"><p><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];

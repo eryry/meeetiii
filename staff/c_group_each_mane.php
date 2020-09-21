@@ -170,9 +170,11 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 			<p>当日お支度開始時間: <?php echo h($time); ?></p>
 			<p>お客様名： <?php echo h($c_data["g_name"])."様・".h($c_data["b_name"])."様";	?> </p>
 			<p>担当スタッフ: <?php if(!empty($staffData["s_name"])) echo h($staffData["s_name"]); ?></p>
+			
+			<div>
 			<p>進捗状況<span class="limit_over"></span></p>
 			<form action="exec_c_g_m_update.php" method="post">
-				<table class="list_noborder">
+				<table class="list">
 					<tr>
 						<th class="check"><p>未・済</p></th>
 						<th class="todo"><p>管理項目</p></th>
@@ -287,10 +289,9 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 						<td class="limit"><p>ご契約時にお渡し</p></td>
 					</tr>
 				</table>
-				
 				<p><input type="submit" value="情報更新"></p>
 			</form>
-			
+			</div>
 			</section>
 		</main>
 <?php include("footer_for_staffpage.php"); ?>

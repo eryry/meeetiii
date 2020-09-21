@@ -35,7 +35,7 @@ $c_myphoto=$row["c_myphoto"];
 
 if(empty($c_tell)) $c_tell="未入力";
 if(empty($c_zip)) $c_zip="未入力";
-if(empty($c_zip)) $c_zip="未入力";
+if(empty($c_address)) $c_address="未入力";
 
 ?>
 
@@ -103,7 +103,7 @@ if(empty($c_zip)) $c_zip="未入力";
 			</tr>
 			<tr>
 				<th><p>登録画像</p></th>
-				<td class="c_photo"><p>
+				<td><p>
 				<?php if($c_myphoto==0) {echo "未投稿";}; ?></p>
 				<?php if($c_myphoto==1): ?>
 				<img src="../image/upload/c_myphoto/<?php echo $c_id.".jpg"; ?>">

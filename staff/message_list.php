@@ -21,23 +21,26 @@ $msgs =$obj->getMessage();
 
 		<main>
 			<h1>メッセージ 登録・一覧・更新</h1>
+			<p>何日前かで表示変えるメッセージの登録</p>
 			
 			<section>
+				<div class="msg_wrapper">
 				<h2>メッセージ登録</h2>
-				<p>何日前かで表示変えるメッセージの登録</p>
 				<form action="exec_msg_add.php" method="post">
-				<p>メッセージID(日付連動型/数字のみ/何日前かで数値入力）</p>
+				<p class="msg_th"><b>メッセージID(日付連動型/数字のみ/何日前かで数値入力）</b></p>
 				<p><input type="number" name="m_id" placeholder="半角数字のみ"></p>
-				<p>メッセージ内容</p>
+				<p class="msg_th"><b>メッセージ内容</b></p>
 				<p><input type="text" name="m_body"></p>
-				<button><input type="submit" value="メッセージ登録" name="add"></button>
+				<button><input class="spg_add_btn" type="submit" value="メッセージ登録" name="add"></button>
 				</form>
+				<div>
 			</section>
 			
 			<section>
+				<div class="msg_wrapper">
 				<h2>メッセージ更新</h2>
 				<form action="exec_msg_add.php" method="post">
-					<p>メッセージID</p>
+					<p class="msg_th"><b>メッセージID</b></p>
 					<p>
 						<select name="m_id">
 							<option>メッセージIDを選択</option>
@@ -46,14 +49,16 @@ $msgs =$obj->getMessage();
 							<?php endforeach; ?>
 						</select>
 					</p>
-					<p>メッセージ内容</p>
+					<p class="msg_th"><b>メッセージ内容</b></p>
 					<p><input type="text" name="m_body" value=""></p>
-					<button><input type="submit" value="メッセージ編集" name="update" id="m_update"></button>
+					<button><input class="spg_add_btn" type="submit" value="メッセージ編集" name="update" id="m_update"></button>
 				</form>	
+				</div>
 			</section>
 			<section>
+				<div class="">
 				<h2>メッセージ一覧</h2>
-				<table class="list">
+				<table class="list msg_list">
 					<tr>
 						<th class="list_id_num"><p>mID</p></th><th class="list_mbody"><p>メッセージ内容</p></th>
 					</tr>
@@ -64,6 +69,7 @@ $msgs =$obj->getMessage();
 					</tr>
 					<?php endforeach; ?>
 				</table>
+				</div>
 			</section>
 		</main>
 <?php require_once("footer_for_staffpage.php"); ?>

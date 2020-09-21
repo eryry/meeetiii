@@ -22,7 +22,7 @@ $staffs=$obj->getStaff();
 			<section>
 				<h2>スタッフ新規登録</h2>
 				<form action="exec_staff_add.php" method="post" autocomplete="off">
-					<table>
+					<table class="staff_add_table">
 						<tr>
 							<th><p><label for="s_id">スタッフID</label><span class="required_color">必須</span></p></th>
 							<td><input type="text" name="s_id" id="s_id" placeholder="*半角数字/半角アルファベッ"></td>
@@ -55,7 +55,7 @@ $staffs=$obj->getStaff();
 							</td>
 						</tr>
 					</table>
-				<p><input class="sub_btn" type="submit" value="新規スタッフ登録" name="add"></p>
+				<p><input type="submit" value="新規スタッフ登録" name="add"></p>
 				</form>
 			</section>
 			
@@ -63,8 +63,9 @@ $staffs=$obj->getStaff();
 				<h2>スタッフ情報更新</h2>
 				
 				<form action="exec_staff_add.php" method="post" autocomplete="off">
-					<table>
+					<table class="staff_update_table">
 						<tr>
+							<th><p>スタッフID<span class="required_color">必須</span></p></th>
 							<td>
 								<p><select name="s_id">
 									<option>スタッフIDを選択</option>
@@ -102,7 +103,7 @@ $staffs=$obj->getStaff();
 							</td>
 						</tr>
 					</table>
-					<p><input class="sub_btn" type="submit" value="スタッフ情報更新" name="update"></p>
+					<p><input type="submit" value="スタッフ情報更新" name="update"></p>
 				</form>	
 			</section>
 			

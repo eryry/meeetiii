@@ -30,7 +30,7 @@ $msgs=$obj->getMessage();
 			<p>ログイン中のスタッフ名: <?php echo h($_SESSION["s_name"]);?></p>
 			<?php if(empty($groups)) echo "担当顧客で期限超過ありのお客様はありません。";?>
 			<?php if(!empty($groups)): ?>
-			<p>担当中で期限超過があるお客様一覧</p>
+			<p>期限超過がある担当のお客様の一覧</p>
 			<div id="mainView">
 				<table class="list_noborder">
 					<tr>

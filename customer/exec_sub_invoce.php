@@ -17,8 +17,8 @@ if(!empty($_FILES["invoce"])) {
 }
 $obj->submitInvoce($_POST["c_group_id"],$estimate);
 
-header("Location:../staff/c_group_list.php");
-print_r($_POST);
+header("Location:c_paymentdata.php?group_id={$_POST['c_group_id']}");
+//print_r($_POST);
 
 
 

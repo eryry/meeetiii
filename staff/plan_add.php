@@ -12,7 +12,7 @@ if(empty($_SESSION["s_id"])) {
 			<h1>新規プラン登録</h1>
 			<section>
 				<form action="exec_plan_add.php" method="post">
-					<table>
+					<table class="plan_add_table">
 						<tr>
 							<th><p><label for="p_name">プラン名</label></p></th>
 							<td><input type="text" name="p_name" id="p_name"></td>
@@ -30,7 +30,7 @@ if(empty($_SESSION["s_id"])) {
 						</tr>
 					</table>
 				
-				<p><input class="sub_btn" type="submit" value="新規プラン登録"></p>
+				<p><input type="submit" value="新規プラン登録"></p>
 				</form>
 				
 				<p><a href="plan_list.php">プラン一覧ページへ</a></p>

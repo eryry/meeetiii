@@ -10,7 +10,8 @@ $obj = new Meeting();
 
 
 if(empty($_POST["update"])){
-	if(empty($_POST["s_id"])||empty($_POST["s_name"])||empty($_POST["s_pass"])||empty($_POST["s_mail"])||empty($_POST["role"])) {
+	if(empty($_POST["s_id"]) || empty($_POST["s_name"]) || empty($_POST["s_pass"]) || empty($_POST["role"]) ) {
+		print_r($_POST);
 		header("Location: staff_add.php?err=1");
 		exit();
 	}
@@ -48,7 +49,7 @@ if(empty($_POST["update"])){
 	$obj->staffUpdate($_POST["s_id"],$s_name,$s_pass,$s_mail,$role);
 }
 
-print_r($_POST);
+//print_r($_POST);
 //header("Location:staff_add_fin.php");
 
 

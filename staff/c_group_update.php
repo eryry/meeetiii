@@ -51,8 +51,10 @@ if($res["d_product"]==0) {
 			<section>
 			<h1>顧客グループ情報編集ページ</h1>
 			
+			<div>
+			<h2>グループ情報編集</h2>
 				<form action="exec_group_update.php" method="post">
-					<table>
+					<table class="c_group_update_table">
 						<tr>
 							<th><p>顧客グループID<p></th>
 							<td>
@@ -116,11 +118,9 @@ if($res["d_product"]==0) {
 
 					</table>
 				
-				<p><input class="sub_btn" type="submit" value="顧客グループ情報更新"></p>
+				<p><input type="submit" value="グループ情報更新"></p>
 				</form>
-
-
-			
+			</div>
 			</section>
 		</main>
 		

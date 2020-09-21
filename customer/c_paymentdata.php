@@ -57,11 +57,11 @@ $_SESSION["invoce"]=$c_data["invoce"];
 				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
 				
 				<div class="toukou">
-					<h2>見積書</h2>
+					<h2>見 積 書</h2>
 					
 					<?php if(!empty($_SESSION["s_id"])): ?>
 					<form action="exec_sub_estimate.php" method="post" enctype="multipart/form-data" class="sub_file">
-					<input type="file" name="estimate">
+					<input type="file" name="estimate"><br>
 					<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
 					<input type="submit" value="見積もり投稿">
 					</form>
@@ -76,10 +76,10 @@ $_SESSION["invoce"]=$c_data["invoce"];
 				</div>
 				
 				<div class="toukou">
-					<h2>請求書</h2>
+					<h2>請 求 書</h2>
 					<?php if(!empty($_SESSION["s_id"])): ?>
 					<form action="exec_sub_invoce.php" method="post" enctype="multipart/form-data" class="sub_file">
-					<input type="file" name="invoce">
+					<input type="file" name="invoce"><br>
 					<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
 					<input type="submit" value="請求書投稿">
 					</form>

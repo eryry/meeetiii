@@ -21,14 +21,14 @@ $rows =$obj->getPlan();
 		<main>
 			<h1>プラン一覧</h1>
 			<section>
-					<table class="list">
+					<table class="p_list">
 					<tr>
-						<th class="list_id_num"><p>p_ID</p></th><th class="list_p_name"><p>プラン名</p></th><th class="list_p_wear"><p>プラン衣装種類</p></th>
+						<th class="list_id_num"><p>P_ID</p></th><th class="list_p_name"><p>プラン名</p></th><th class="list_p_wear"><p>プラン衣装種類</p></th><th class="list_p_btn"><p>変更・修正</p></th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<tr>
 						<td class="list_id_num"><p><?php echo h($row["p_id"]);?></p></td>
-						<td class="list_p_name"><p><a href="plan_update.php?p_id=<?php echo $row["p_id"];?>"><?php echo h($row["p_name"]); ?></a></p></td>
+						<td class="list_p_name"><p><?php echo h($row["p_name"]); ?></p></td>
 						<td class="list_p_wear"><p><?php 
 							if($row["p_wear"]=='kimono') {
 								echo "和装のみ";
@@ -38,12 +38,12 @@ $rows =$obj->getPlan();
 								echo "和装と洋装";
 							}
 							; ?></p></td>
-						
+						<td class="list_p_link update_link_mini"><a href="plan_update.php?p_id=<?php echo $row["p_id"];?>">変更・更新</a></td>
 					</tr>
 					<?php endwhile; ?>
 					</table>
 				
-				<p><a href="plan_add.php">新規プラン登録ページへ</a></p>
+				<button class="add_link"><a href="plan_add.php">新規プラン登録ページへ</a></button>
 
 			
 			</section>

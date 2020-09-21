@@ -22,7 +22,7 @@ function h($str) {
 			<h1>新規顧客グループ登録</h1>
 			<section>
 				<form action="exec_c_group_id_add.php" method="post">
-					<table>
+					<table class="c_group_add_table">
 						<tr>
 							<th><p><label for="c_group_id">グループID</label></p></th>
 							<td><input type="number" name="c_group_id" id="c_group_id"></td>
@@ -83,7 +83,7 @@ function h($str) {
 						</tr>
 						</table>
 				
-				<p><input class="sub_btn" type="submit" value="新規顧客グループ登録"></p>
+				<p><input type="submit" value="新規グループ登録"></p>
 				</form>
 			
 			</section>
