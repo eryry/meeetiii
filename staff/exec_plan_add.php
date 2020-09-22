@@ -21,6 +21,9 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
+
+
+}
 $p_name=h($_POST["p_name"]);
 $p_wear=h($_POST["p_wear"]);
 
