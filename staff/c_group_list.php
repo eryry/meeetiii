@@ -4,13 +4,11 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 $rows =$obj->getGroomBrideGrouopAllDate();
 

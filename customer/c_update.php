@@ -77,14 +77,14 @@ $c_myphoto=$row["c_myphoto"];
 					<th><p><label for="c_pass">パスワード</label></p></th>
 					<td>
 					<p class="pass_area">
-						<input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value="">
+						<input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value="" placeholder="半角数字/アルファベットで入力ください">
 						<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
 					</p>
 					</td>
 				</tr>
 				<tr>
 					<th><p><label for="c_tell">電話番号</label></p></th>
-					<td><input type="number" name="c_tell" id="c_tell" value="<?php echo h($c_tell); ?>"></td>
+					<td><input type="number" name="c_tell" id="c_tell" value="<?php echo h($c_tell); ?>" placeholder="半角数字で入力ください"></td>
 				</tr>
 				<tr>
 					<th><p><label for="c_mail">メールアドレス</label></p></th>
@@ -92,7 +92,7 @@ $c_myphoto=$row["c_myphoto"];
 				</tr>
 				<tr>
 					<th><p><label for="zip">郵便番号</label></p></th>
-					<td><input type="number" name="c_zip" id="zip" value="<?php echo h($c_zip); ?>"></td>
+					<td><input type="number" name="c_zip" id="zip" value="<?php echo h($c_zip); ?>" placeholder="半角数字で入力ください"></td>
 				</tr>
 				<tr>
 					<th><p><label for="address">住所</label></p></th>
@@ -115,7 +115,8 @@ $c_myphoto=$row["c_myphoto"];
 				<tr>
 					<th><p><label for="c_myphoto">登録画像</label><span class="font_mini">※円形にトリミングされます</span></p></th>
 					<td><p class="font_mini c_photo">登録済み画像：<?php if($c_myphoto==1) echo "<img src=\"../image/upload/c_myphoto/{$c_id}.jpg\">";?></p>
-						<p><input type="file" name="c_myphoto" id="c_myphoto"></p>
+						<p><input type="file" name="c_myphoto" id="c_myphoto" accept="image/jpeg, image/png" /></p>
+						<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 					</td>
 				</tr>
 			</table>

@@ -73,8 +73,8 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 							echo $_SESSION["s_id"];
 						}; ?>"></p>
 					<p><textarea name="body" id=""></textarea></p>
-					<p>画像<input class="b_photo" type="file" name="board_photo"></p>
-					
+					<p>画像<input class="b_photo" type="file" name="board_photo" accept="image/jpeg, image/png" /></p>
+					<input type="hidden" name="MAX_FILE_SIZE" value="1048576">
 					<p><input type="submit" value="書き込む"></p>
 				</form>
 				</div>

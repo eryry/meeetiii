@@ -8,11 +8,41 @@ function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
 
-
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
 $rows =$obj->getCustomerGroup();
+
+if(!empty($_SESSION["err_msg_cgid"])){
+		$err_msg_cgid=$_SESSION["err_msg_cgid"];
+}else{
+		$err_msg_cgid="";
+}
+if(!empty($_SESSION["err_msg_cid"])){
+	$err_msg_cid=$_SESSION["err_msg_cid"];
+}else{
+	$err_msg_cid="";
+}
+if(!empty($_SESSION["err_msg_cname"])){
+	$err_msg_cname=$_SESSION["err_msg_cname"];
+}else{
+	$err_msg_cname="";
+}
+if(!empty($_SESSION["err_msg_cpass"])){
+	$err_msg_cpass=$_SESSION["err_msg_cpass"];
+}else{
+	$err_msg_cpass="";
+}
+if(!empty($_SESSION["err_msg_check_cid"])){
+	$err_msg_check_cid=$_SESSION["err_msg_check_cid"];
+}else{
+ $err_msg_check_cid="";
+}
+unset($_SESSION["err_msg_cgid"]);
+unset($_SESSION["err_msg_cid"]);
+unset($_SESSION["err_msg_cname"]);
+unset($_SESSION["err_msg_cpass"]);
+unset($_SESSION["err_msg_check_cid"]);
 
 ?>
 
@@ -31,15 +61,20 @@ $rows =$obj->getCustomerGroup();
 									<option value="<?php echo $row["c_group_id"]; ?>"><?php echo h($row["c_group_id"]); ?></option>
 									<?php endwhile; ?>
 								</select></p>
+								<span class="red"><?php echo $err_msg_cgid;?></span>
 							</td>
 						</tr>
 						<tr>
 							<th><p><label for="c_id">顧客ID</label><span class="required_color">必須</span></p></th>
-							<td><input type="text" name="c_id" id="c_id" placeholder="*半角数字/半角アルファベット"></td>
+							<td><input type="text" name="c_id" id="c_id" placeholder="*半角数字/半角アルファベット">
+							<span class="red"><?php echo $err_msg_cid;?><?php echo $err_msg_check_cid;?></span>
+							</td>
 						</tr>
 						<tr>
 							<th><p><label for="c_name">名前</label><span class="required_color">必須</span></p></th>
-							<td><input type="text" name="c_name" id="c_name"></td>
+							<td><input type="text" name="c_name" id="c_name">
+							<span class="red"><?php echo $err_msg_cname;?></span>
+							</td>
 						</tr>
 						<tr>
 							<th><p><label for="c_pass">パスワード</label><span class="required_color">必須</span></p></th>
@@ -48,6 +83,7 @@ $rows =$obj->getCustomerGroup();
 									<input type="password" autocomplete="new-password" name="c_pass" id="c_pass" placeholder="*半角数字/半角アルファベット">
 									<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
 								</p>
+							<span class="red"><?php echo $err_msg_cpass;?></span>
 							</td>
 						</tr>
 						<tr>

@@ -4,15 +4,42 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
+function h($str) {
+	return htmlspecialchars($str,ENT_QUOTES);
+}
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 $rows =$obj->getPlan();
 $rows2=$obj->getStaff();
 
-function h($str) {
-	return htmlspecialchars($str,ENT_QUOTES);
+$err_msg_id="";
+/*
+if(){
+	$err_msg_id="すでに登録済みのNoです。別のNoを入力ください。";
 }
+*/
+if(!empty($_SESSION["err_msg_cgid"])){
+	$err_msg_cgid=$_SESSION["err_msg_cgid"];
+	//print_r($_SESSION["err_msg_cgid"]);
+}else{
+	$err_msg_cgid="";
+}
+if(!empty($_SESSION["err_msg_pid"])){
+	$err_msg_pid=$_SESSION["err_msg_pid"];
+}else {
+	$err_msg_pid="";
+}
+if(!empty($_SESSION["err_msg_rd"])){
+	$err_msg_rd=$_SESSION["err_msg_rd"];
+	//print_r($_SESSION["err_msg_rd"]);
+}else{
+	$err_msg_rd="";
+}
+
+unset($_SESSION["err_msg_cgid"]);
+unset($_SESSION["err_msg_pid"]);
+unset($_SESSION["err_msg_rd"]);
+
 
 ?>
 
@@ -21,26 +48,31 @@ function h($str) {
 		<main>
 			<h1>新規顧客グループ登録</h1>
 			<section>
+				<p>すでに登録済みのGroupID(数字）は使用不可。</p>
 				<form action="exec_c_group_id_add.php" method="post">
 					<table class="c_group_add_table">
 						<tr>
-							<th><p><label for="c_group_id">グループID</label></p></th>
-							<td><input type="number" name="c_group_id" id="c_group_id"></td>
+							<th><p><label for="c_group_id">グループID</label><span class="required_color">必須</span></p></th>
+							<td><input type="number" name="c_group_id" id="c_group_id" placeholder="半角数字/すでに登録済みのNoは登録不可">
+							<span class="red"><?php echo $err_msg_cgid; ?></span>
+							</td>
 						</tr>
 						<tr>
-							<th><p><label for="p_id">プラン名</label></p></th>
+							<th><p><label for="p_id">プラン名</label><span class="required_color">必須</span></p></th>
 							<td><p>
 								<select  name="p_id">
-									<option>プランを選択</option>
+									<option value="">プランを選択</option>
 									<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 									<option value="<?php echo $row["p_id"]; ?>"><?php echo h($row["p_name"]); ?></option>
 									<?php endwhile; ?>
 								</select></p>
+							<span class="red"><?php echo $err_msg_pid; ?></span>
 							</td>
 						</tr>
 						<tr>
-							<th><p><label for="reserve_day">予約日</label></p></th>
-							<td><input type="date" name="reserve_day" id="reserve_day"></td>
+							<th><p><label for="reserve_day">予約日</label><span class="required_color">必須</span></p></th>
+							<td><input type="date" name="reserve_day" id="reserve_day"><span class="red"><?php echo $err_msg_rd; ?></td>
+							</span>
 						</tr>
 						<tr>
 							<th><p><label for="reserve_time">予約日来店時間</label></p></th>

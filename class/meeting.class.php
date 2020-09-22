@@ -167,7 +167,7 @@ class Meeting{
 	}
 	//スタッフ情報取得
 	public function getStaff() {
-		$sql="SELECT s_id,s_name FROM staff";
+		$sql="SELECT * FROM staff";
 		$rs = $this->pdo->query($sql);
 		return $rs;
 	}

@@ -49,7 +49,7 @@ if(empty($c_address)) $c_address="未入力";
 	<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 	<p>撮影予約日： <?php echo h($rd);	?> </p>
 	<p>撮影プラン： <?php echo h($_SESSION["p_name"]);	?> </p>
-		<table class="c_top">
+		<table class="list c_top">
 			<tr>
 				<th><p>Group ID</p></th>
 				<td><p><?php echo $c_group_id; ?></p></td>
