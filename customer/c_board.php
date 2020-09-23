@@ -61,6 +61,7 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 			</section>
 			
 			<section>
+				<img src="../image/photoplan-icon01.png" class="fuwafuwa4"><br>
 				<h2>新規書き込み</h2>
 				
 				<div class="toukou">
@@ -88,11 +89,11 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 					<div class="b_sub_data_area">
 					
 						<?php if($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==1): ?>
-						<img src="../image/upload/c_myphoto/<?php echo $c_data["g_id"];?>.jpg" alt="新郎画像">
+						<img src="../image/upload/c_myphoto/<?php echo $c_data["g_id"];?>.jpg" alt="新郎画像" id="c_photo_border">
 						<?php elseif($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==0): ?>
 						<img src="../image/noimage.png">
 						<?php elseif($row["submit_member_id"]== $c_data["b_id"] && $c_data["b_myphoto"]==1): ?>
-						<img src="../image/upload/c_myphoto/<?php echo $c_data["b_id"];?>.jpg" alt="新婦画像">
+						<img src="../image/upload/c_myphoto/<?php echo $c_data["b_id"];?>.jpg" alt="新婦画像" id="c_photo_border">
 						<?php elseif($row["submit_member_id"]== $c_data["b_id"] && $c_data["b_myphoto"]==0): ?>
 						<img src="../image/noimage.png">
 

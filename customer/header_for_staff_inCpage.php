@@ -27,10 +27,13 @@
 	</head>
 	<body>
 		<header class="staff">
-			<ul>
-				<li><a href="../staff/staff_top.php">スタッフTOPページ</a></li>
-				<li><a href="../staff/c_group_list.php">顧客Group一覧<a></li>
-				<li><a href="../staff/plan_list.php">プラン一覧<a></li>
-				<li><a id="logout" href="../staff/exec_staff_logout.php">ログアウト</a></li>
-			</ul>
+			<nav>
+				<ul>
+					<li><a href="../staff/staff_top.php">TOP</a></li>
+					<li><a href="../staff/c_group_list.php">G-LIST</a></li>
+					<li class="pc_only">meeetiii<span class="font_mini">for staff</span></li>
+					<li><a href="../staff/plan_list.php">PLAN</a></li>
+					<li><a id="logout" href="../staff/exec_staff_logout.php">LogOut</a></li>
+				</ul>
+			</nav>
 		</header>

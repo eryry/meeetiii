@@ -159,7 +159,7 @@ if($_SESSION["place_fixed"]==0) {
 			</section>
 			
 			<section>
-				<h2>進捗状況</h2>
+				<img src="../image/icon-bird02.png" class="fuwafuwa"><img src="../image/icon-bird02.png" class="fuwafuwa_mini"><h2>進捗状況</h2><img src="../image/photoplan-title-icon02.png" class="fuwafuwa2">
 				<p><span class="limit_over"></span></p>
 				
 				<div class="remark">

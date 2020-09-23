@@ -46,9 +46,12 @@ if(empty($c_address)) $c_address="未入力";
 		<h1>マイページ<br><span class="font_mini_no_padding">my page</span></h1>
 	</div>
 	<section>
-	<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
+	<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?> <button class="logout_link"><a id="logout" href="exec_logout.php">logout</a></button> </p>
 	<p>撮影予約日： <?php echo h($rd);	?> </p>
 	<p>撮影プラン： <?php echo h($_SESSION["p_name"]);	?> </p>
+	</section>
+	<section>
+		<h2>登録情報</h2>
 		<table class="list c_top">
 			<tr>
 				<th><p>Group ID</p></th>

@@ -4,16 +4,39 @@ if(empty($_SESSION["s_id"]) || $_SESSION["role"]==0) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
-
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
 $msgs =$obj->getMessage();
 
+//エラー表示
+if(!empty($_SESSION["err_msg_mid"])){
+	$err_msg_mid=$_SESSION["err_msg_mid"];
+}else{
+	$err_msg_mid="";
+}
+if(!empty($_SESSION["err_msg_mbody"])){
+	$err_msg_mbody=$_SESSION["err_msg_mbody"];
+}else{
+	$err_msg_mbody="";
+}
+unset($_SESSION["err_msg_mid"]);
+unset($_SESSION["err_msg_mbody"]);
+
+if(!empty($_SESSION["err_msg_mid_update"])){
+	$err_msg_mid_update=$_SESSION["err_msg_mid_update"];
+}else{
+	$err_msg_mid_update="";
+}
+if(!empty($_SESSION["err_msg_mbody_update"])){
+	$err_msg_mbody_update=$_SESSION["err_msg_mbody_update"];
+}else{
+	$err_msg_mbody_update="";
+}
+unset($_SESSION["err_msg_mid_update"]);
+unset($_SESSION["err_msg_mbody_update"]);
 
 ?>
 
@@ -25,32 +48,36 @@ $msgs =$obj->getMessage();
 			
 			<section>
 				<div class="msg_wrapper">
-				<h2>メッセージ登録</h2>
-				<form action="exec_msg_add.php" method="post">
-				<p class="msg_th"><b>メッセージID(日付連動型/数字のみ/何日前かで数値入力）</b></p>
-				<p><input type="number" name="m_id" placeholder="半角数字のみ"></p>
-				<p class="msg_th"><b>メッセージ内容</b></p>
-				<p><input type="text" name="m_body"></p>
-				<button><input class="spg_add_btn" type="submit" value="メッセージ登録" name="add"></button>
-				</form>
+					<h2>メッセージ登録</h2>
+					<form action="exec_msg_add.php" method="post">
+					<p class="msg_th"><b>メッセージID</b><span class="required_color">必須</span></p>
+					<p><input type="number" name="m_id" placeholder="半角数字のみ(日付連動型/何日前かの数値）"></p>
+					<span class="red"><?php echo $err_msg_mid; ?></span>
+					<p class="msg_th"><b>メッセージ内容</b><span class="required_color">必須</span></p>
+					<p><textarea name="m_body"></textarea></p>
+					<p><span class="red"><?php echo $err_msg_mbody; ?></span></p>
+					<button><input class="spg_add_btn" type="submit" value="メッセージ登録" name="add"></button>
+					</form>
 				<div>
 			</section>
 			
-			<section>
+			<section id="msg_update">
 				<div class="msg_wrapper">
 				<h2>メッセージ更新</h2>
 				<form action="exec_msg_add.php" method="post">
-					<p class="msg_th"><b>メッセージID</b></p>
+					<p class="msg_th"><b>メッセージID</b><span class="required_color">必須</span></p>
 					<p>
 						<select name="m_id">
-							<option>メッセージIDを選択</option>
+							<option value="">メッセージIDを選択</option>
 							<?php foreach($msgs as $msg): ?>
 							<option value="<?php echo $msg["m_id"]; ?>"><?php echo intVal($msg["m_id"]); ?></option>
 							<?php endforeach; ?>
 						</select>
 					</p>
-					<p class="msg_th"><b>メッセージ内容</b></p>
-					<p><input type="text" name="m_body" value=""></p>
+					<p><span class="red"><?php echo $err_msg_mid_update; ?></span></p>
+					<p class="msg_th"><b>メッセージ内容</b><span class="required_color">必須</span></p>
+					<p><textarea name="m_body" value=""></textarea></p>
+					<p><span class="red"><?php echo $err_msg_mbody_update; ?></span></p>
 					<button><input class="spg_add_btn" type="submit" value="メッセージ編集" name="update" id="m_update"></button>
 				</form>	
 				</div>

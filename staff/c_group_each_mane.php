@@ -73,49 +73,49 @@ if($_SESSION["estimate"]==0){
 $g_data=$obj->getCustomerGrouopByGId($_SESSION["group_id"]);
 //未・完了表示
 if($_SESSION["estimate"]==0) {
-	$estimate="☐未発行";
+	$estimate="☐ 未発行";
 }else {
-	$estimate="☑発行済";
+	$estimate="☑ 発行済";
 }
 if($_SESSION["invoce"]==0) {
-	$invoce="☐未発行";
+	$invoce="☐ 未発行";
 }else {
-	$invoce="☑発行済";
+	$invoce="☑ 発行済";
 }
 if($_SESSION["payment"]==0) {
-	$payment="☐支払未";
+	$payment="☐ 支払未";
 }else {
-	$payment="☑支払済";
+	$payment="☑ 支払済";
 }
 if($_SESSION["d_product"]==0) {
-	$d_product="☐納品未";
+	$d_product="☐ 納品未";
 }else {
-	$d_product="☑納品済";
+	$d_product="☑ 納品済";
 }
 if($_SESSION["before2days"]==0) {
-	$before2days="☐確認未";
+	$before2days="☐ 確認未";
 }else {
-	$before2days="☑確認済み";
+	$before2days="☑ 確認済";
 }
 if($_SESSION["make_reh"]==0) {
-	$make_reh="☐未実行";
+	$make_reh="☐ 未実行";
 }else {
-	$make_reh="☑済/無";
+	$make_reh="☑ 済/無";
 }
 if($_SESSION["cos_fixed"]==0) {
-	$cos_fixed="☐未決定";
+	$cos_fixed="☐ 未決定";
 }else {
-	$cos_fixed="☑決定済";
+	$cos_fixed="☑ 決定済";
 }
 if($_SESSION["cos_fitting"]==0) {
-	$cos_fitting="☐未試着";
+	$cos_fitting="☐ 未試着";
 }else {
-	$cos_fitting="☑試着済";
+	$cos_fitting="☑ 試着済";
 }
 if($_SESSION["place_fixed"]==0) {
-	$place_fixed="☐未決定";
+	$place_fixed="☐ 未決定";
 }else {
-	$place_fixed="☑決定済";
+	$place_fixed="☑ 決定済";
 }
 
 //予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
@@ -172,9 +172,11 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 			<p>担当スタッフ: <?php if(!empty($staffData["s_name"])) echo h($staffData["s_name"]); ?></p>
 			
 			<div>
+			<br>
 			<p>進捗状況<span class="limit_over"></span></p>
+			<br>
 			<form action="exec_c_g_m_update.php" method="post">
-				<table class="list">
+				<table class="list schedule schedule_s">
 					<tr>
 						<th class="check"><p>未・済</p></th>
 						<th class="todo"><p>管理項目</p></th>

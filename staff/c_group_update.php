@@ -4,14 +4,12 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
+
 
 //選択用プラン一覧取得
 $rows= $obj->getPlan();
@@ -46,7 +44,6 @@ if($res["d_product"]==0) {
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main>
 			<section>
 			<h1>顧客グループ情報編集ページ</h1>
@@ -57,7 +54,7 @@ if($res["d_product"]==0) {
 					<table class="c_group_update_table">
 						<tr>
 							<th><p>顧客グループID<p></th>
-							<td>
+							<td class="bgc_gray">
 							<input type="hidden" name="c_group_id" value="<?php echo $_GET["group_id"]; ?>">
 							<p><?php echo intVal($_GET["group_id"]); ?></p></td>
 						</tr>
@@ -82,19 +79,23 @@ if($res["d_product"]==0) {
 						</tr>
 						<tr>
 							<th><p><label for="estimate">見積もり発行状況</label><span class="font_mini">※情報更新は見積書投稿画面で行ってください</span></p></th>
-							<td><p><?php echo $estimate;?></p></td>
+							<td class="bgc_gray">
+							<p><?php echo $estimate;?></p></td>
 						</tr>
 						<tr>
 							<th><p><label for="invoce">請求書発行状況</label><span class="font_mini">※情報更新は請求書投稿画面で行ってください</span></p></th>
-							<td><p><?php echo $invoce;?></p></td>
+							<td class="bgc_gray">
+							<p><?php echo $invoce;?></p></td>
 						</tr>
 						<tr>
 							<th><p><label for="payment">支払い状況</label><span class="font_mini">※情報更新はマネジメント画面で行ってください</span></p></th>
-							<td><p><?php echo $payment;?></p></td>
+							<td class="bgc_gray">
+							<p><?php echo $payment;?></p></td>
 						</tr>
 						<tr>
 							<th><p><label for="d_product">商品納品状況</label><span class="font_mini">※情報更新はマネジメント画面で行ってください</span></p></th>
-							<td><p><?php echo $d_product;?></p></td>
+							<td class="bgc_gray">
+							<p><?php echo $d_product;?></p></td>
 						</tr>
 						<tr>
 							<th><p><label for="zip">新居郵便番号</label></p></th>

@@ -79,9 +79,11 @@ $(function(){
 	var randomNum = Math.floor( Math.random()*14 );
 	var message = MessageRandomList[randomNum];
 	
-	if($('.msg').text()===''){
+	//通常メッセージが空ならの指定ができないので、両方表示することにいったんする。
+	if($('.msg').text() ==''){
 		$('.msg_random').text(message);
 	}
+	$('.msg_random').text(message);
 
 	
 	//続き読むのやつ
@@ -108,9 +110,9 @@ $(function(){
 	//password表示・非表示
 	$('.toggle-password').click(function(){
 		// iconの切り替え
-		$(this).toggleClass('fa-eye-slash fa-eye');
+		$(this).toggleClass('fa-eye fa-eye-slash');
 		// 入力フォームの取得
-		let input = $(this).parent().prev('input');
+		let input = $(this).parent().parent().parent().parent().find('input');
 		// type切替
 		if (input.attr('type') == 'password') {
 			input.attr('type', 'text');

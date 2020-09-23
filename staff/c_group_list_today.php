@@ -4,12 +4,10 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
-require_once("../class/meeting.class.php");
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
 
 $obj =new Meeting();
 $rows =$obj->getGroomBrideGrouopAllDate();
@@ -30,13 +28,16 @@ $today= date("Y-m-d");
 				<button class="sort_day_btn no_d"><a href="c_group_list_nd.php">納品未</a></button>
 				<button class="sort_day_btn no_d"><a href="c_group_list_serch.php">検索</a></button>
 				</p>
-				<div id="mainView">
-					<table class="list">
+				
+				<div id="mainView" class="table-scroll">
+					<table class="list c_gropup_list">
 					
-					<tr class="c_group_list">
-						<th class="list_id_num"><p>ID</p></th><th class="list_id_num"><p>board</p></th><th class="list_id_num"><p class="font_mini">見積・請求書</p></th>
-						<th class="list_r_day"><p>予約日</p></th><th class="list_c_name"><p>新郎名</p></th><th class="list_c_name"><p>新婦名</p></th><th class="list_p_name"><p>プラン</p></th>
+					<tr class="c_group_list_head">
+						<th class="list_id_num"><p class="line_h_40">ID</p></th><th class="list_id_num"><p class="font_mini_no_padding">連絡<br>note</p></th><th class="list_id_num"><p class="font_mini_no_padding">見積書<br>請求書</p></th>
+						<th class="list_r_day"><p class="line_h_40">予約日</p></th><th class="list_c_name"><p class="line_h_40">新郎名</p></th>
+						<th class="list_c_name"><p class="line_h_40">新婦名</p></th><th class="list_p_name"><p class="line_h_40">プラン</p></th>
 					</tr>
+
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<?php if($row["reserve_day"]==$today): ?>
 					<tr>

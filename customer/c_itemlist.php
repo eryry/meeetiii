@@ -32,8 +32,11 @@ $r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 			<section>
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
-				<p>撮影プラン： <?php echo h($r["p_name"]);	?> </p>
-				
+				<p class="m_bottom_35">撮影プラン： <?php echo h($r["p_name"]);	?> </p>
+			</section>
+			<section>
+				<img src="../image/photoplan-icon01.png" class="fuwafuwa4">
+
 				<div class="itemlist_cos">
 					
 					<?php if($_SESSION["p_wear"]=="kimono"): ?>
@@ -131,23 +134,26 @@ $r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 					<?php endforeach; ?>
 					</ul>
 				<div>
-						<script>
-							$('.del').submit(function(){
-								var form_id= '#'+$(this).attr('id');
-								console.log(form_id);
-								var item = $(this).attr('id').p.text();
-								console.log(item);
-								var res =confirm(item + 'を本当に削除しますか？');
-								if(res==true){
-									return true;
-								}else{
-									return false;
-								}
-							});	
-						</script>
-
 			</section>
 		</main>
-		<?php include("footer_for_customerpage.php"); ?>
+		<script>
+			$('.del').submit(function(){
+				/*
+				var form_id= '#'+$(this).attr('id');
+				
+				console.log(form_id);
+				var item = $(this).attr('id').p.text();
+				console.log(item);
+				*/
+				var res =confirm('本当に削除しますか？');
+				if(res==true){
+					return true;
+				}else{
+					return false;
+				}
+			});	
+		</script>
+
+<?php include("footer_for_customerpage.php"); ?>
 
 

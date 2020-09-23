@@ -45,10 +45,11 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($getgdata["p_name"]);	?> </p>
+				<h2 class="m_top_30">登録・更新</h2>
 				<div class="remark">
-				<p class="font_mini">出来上がった商品は、こちらの住所あてに発送いたします。</p>
-				<p class="font_mini">新居未定の場合は、商品お届け先をご入力ください。</p>
-				<p class="font_mini">※入力がない場合は、商品お届け先確認後の発送となります。</p>
+					<p>出来上がった商品は、こちらの住所あてに発送いたします。</p>
+					<p>新居未定の場合は、商品お届け先をご入力ください。</p>
+					<p">※入力がない場合は、商品お届け先確認後の発送となります。</p>
 				</div>
 			</section>
 			<section>

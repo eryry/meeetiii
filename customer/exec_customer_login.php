@@ -1,11 +1,15 @@
 <?php
 session_start();
-
 if(empty($_POST["c_id"])||empty($_POST["c_pass"])) {
+	if(empty($_POST["c_id"])){
+		$_SESSION["err_msg_cid"]="IDを入力してください";
+	}
+	if(empty($_POST["c_pass"])){
+		$_SESSION["err_msg_cpass"]="パスワードを入力してください";
+	}
 	header("Location: ../index.php?err=1");
 	exit();
 }
-
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
@@ -46,7 +50,7 @@ $youbi = $week[$hi];
 $_SESSION["rd"] =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
 
-header("Location: c_top.php");
+header("Location: c_group_top.php");
 
 //print_r($_POST);
 //print_r($_SESSION);

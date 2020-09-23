@@ -77,20 +77,25 @@ foreach($all_msg as $val){
 						<p><?php echo h($c_data["b_name"]); ?></p>
 					</div>
 				</div>
+				<?php if(strtotime($today)<=strtotime($reserve_day)): ?>
+				<p>撮影当日まであと <span class="font_big"><?php echo $day; ?></span>日</p>
+				<?php endif; ?>
 				
 				<div class="messages">
 					<?php if(strtotime($today)<strtotime($reserve_day)): ?>
+					
 					<p class="msg">
-						<?php
-						 foreach($all_msg as $val) {
-							if($day==$val["m_id"]){
-							 $msg=$obj->getMessageByMId($val["m_id"]);
-							 echo $msg["m_body"];
-							}
-						 };
-						?>
-					</p>
+ 						<?php foreach($all_msg as $val) {
+ 						if($day==$val["m_id"]){
+ 							$msg=$obj->getMessageByMId($val["m_id"]);
+ 							echo nl2br($msg["m_body"]);
+ 						}else{
+ 							$msg["m_body"]="";
+						}
+						};
+						?></p><br>
 					<p class="msg_random"></p>
+					
 					<?php elseif(strtotime($today)>strtotime($reserve_day) && $_SESSION["d_product"]==0): ?>
 					<p>撮影データまたはアルバムの商品出来上がりまで少しお待ちください！</p>
 					<?php elseif(strtotime($today)==strtotime($reserve_day)): ?>
@@ -98,15 +103,10 @@ foreach($all_msg as $val){
 					<?php endif; ?>
 				</div>
 				
-				<?php if(strtotime($today)<=strtotime($reserve_day)): ?>
-				<p>撮影当日まであと <span class="font_big"><?php echo $day; ?></span>日</p>
-				<p>撮影当日の京都の天気予報 【  】</p>
-				<?php endif; ?>
-				
 			</section>
 			
 			<section>
-				<h2>お知らせ</h2>
+				<img src="../image/icon-bird02.png" class="fuwafuwa"><img src="../image/icon-bird02.png" class="fuwafuwa_mini"><h2>お知らせ</h2><img src="../image/photoplan-title-icon02.png" class="fuwafuwa2">
 				<div class="notice_wrapper">
 				<table class="list_noborder c_g_top_notice">
 					<tr>
@@ -132,7 +132,7 @@ foreach($all_msg as $val){
 						<p>投稿はまだありません。</p>
 						<?php endif; ?></td>
 					</tr>
-					<tr>
+					<tr class="bgc_gray_only">
 						<th class="c_g_top_notice1"><p class="font_mini_no_padding">schedule</p></th>
 						<td class="c_g_top_notice2"><p class="font_mini_no_padding">期限超過</p></td>
 						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><a href="c_schedule.php"><?php echo $limit_over_message; ?></a></p></td>
@@ -142,7 +142,7 @@ foreach($all_msg as $val){
 						<td class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></td>
 						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><?php if($_SESSION["estimate"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $est_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></p></td>
 					</tr>
-					<tr>
+					<tr class="bgc_gray_only">
 						<th class="c_g_top_notice1"><p class="font_mini_no_padding">請求書</p></th>
 						<td class="c_g_top_notice2"><p class="font_mini_no_padding">投稿</p></td>
 						<td class="c_g_top_notice3"><p class="font_mini_no_padding"><?php if($_SESSION["invoce"]==1) echo "<a href=\"c_paymentdata.php\">";?><?php echo $inv_sub;?><?php if($_SESSION["estimate"]==1) echo "</a>";?></p></td>

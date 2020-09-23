@@ -23,7 +23,7 @@ $rows =$obj->getPlan();
 			<section>
 					<table class="p_list">
 					<tr>
-						<th class="list_id_num"><p>P_ID</p></th><th class="list_p_name"><p>プラン名</p></th><th class="list_p_wear"><p>プラン衣装種類</p></th><th class="list_p_btn"><p>変更・修正</p></th>
+						<th class="list_id_num"><p>P_ID</p></th><th class="list_p_name"><p>プラン名</p></th><th class="list_p_wear"><p>プラン衣装種類</p></th><th class="list_p_link"><p>変更・修正</p></th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<tr>

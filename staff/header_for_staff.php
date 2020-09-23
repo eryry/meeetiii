@@ -2,7 +2,7 @@
 <html lang="ja">
 	<head>
 		<mate charset="utf-8">
-		<title>meeting app | staff page</title>
+		<title>meeetiii | staff page</title>
 		<meta name="viewport" content="width=device-width">
 		<!-- reset css  -->
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
@@ -25,11 +25,13 @@
 	</head>
 	<body>
 		<header class="staff">
-			<ul>
-				<li><a href="staff_top.php">TOP</a></li>
-				<li><a href="c_group_list.php">c_list<a></li>
-				<li class="sp_logo"><img src="../image/header_logo.png" alt="ロゴ"></li>
-				<li><a href="plan_list.php">Plan<a></li>
-				<li><a id="logout" href="exec_staff_logout.php">logout</a></li>
-			</ul>
+			<nav>
+				<ul>
+					<li><a href="staff_top.php">TOP</a></li>
+					<li><a href="c_group_list.php">G-LIST</a></li>
+					<li class="pc_only">meeetiii<span class="font_mini">for staff</span></li>
+					<li><a href="plan_list.php">PLAN</a></li>
+					<li><a id="logout" href="exec_staff_logout.php">LogOut</a></li>
+				</ul>
+			</nav>
 		</header>

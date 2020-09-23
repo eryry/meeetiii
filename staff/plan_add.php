@@ -25,9 +25,9 @@ unset($_SESSION["err_msg_pwear"]);
 
 <?php require_once("header_for_staff.php"); ?>
 
-		<main>
+		<main class="plan_add_main">
+			<section  class="plan_add_section">
 			<h1>新規プラン登録</h1>
-			<section>
 				<form action="exec_plan_add.php" method="post">
 					<table class="plan_add_table">
 						<tr>
@@ -49,12 +49,10 @@ unset($_SESSION["err_msg_pwear"]);
 							</td>
 						</tr>
 					</table>
-				
 				<p><input type="submit" value="新規プラン登録"></p>
 				</form>
-				
-				<p><a href="plan_list.php">プラン一覧ページへ</a></p>
-
+			</section>
+			<section>
 			</section>
 		</main>
 		

@@ -38,7 +38,7 @@ $_SESSION["invoce"]=$c_data["invoce"];
 		require_once("header_for_staff_inCpage.php");
 	}
 ?>
-		<main>
+		<main class="payment_main">
 			<div id="title_wrapper">
 				<h1>見積書・請求書<br><span class="font_mini_no_padding">estimate・invoce</span></h1>
 			</div>
@@ -56,6 +56,11 @@ $_SESSION["invoce"]=$c_data["invoce"];
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
 				
+			</section>
+			<section class="payment_section">
+				<img src="../image/photoplan-icon01.png" class="fuwafuwa2">
+				<p class="m_bottom_20 payment_atention">見積書・請求書が発行されると、書類データへのリンク先が表示されます。</p>
+
 				<div class="toukou">
 					<h2>見 積 書</h2>
 					

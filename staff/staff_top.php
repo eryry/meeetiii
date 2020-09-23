@@ -28,19 +28,27 @@ $msgs=$obj->getMessage();
 			<h1>スタッフ用TOP</h1>
 			<section>
 			<p>ログイン中のスタッフ名: <?php echo h($_SESSION["s_name"]);?></p>
-			<?php if(empty($groups)) echo "担当顧客で期限超過ありのお客様はありません。";?>
+			<?php if(empty($groups)) echo "担当顧客で期限超過ありのお客様はありません";?>
+			
 			<?php if(!empty($groups)): ?>
-			<p>期限超過がある担当のお客様の一覧</p>
-			<div id="mainView">
-				<table class="list_noborder">
-					<tr>
-						<th class="list_id_num"><p>ID</p></th>
-						<th class="list_r_day">予約日</th><th class="list_c_name"><p>新郎名</p></th><th class="list_c_name"><p>新婦名</p></th><th><p>掲示板投稿状況</p></th>
+			</section>
+			<section>
+			<h2>期限超過がある担当のお客様の一覧</h2><br>
+			
+				<div id="mainView" class="table-scroll">
+					<table class="list c_gropup_list c_list">
+					
+					<tr class="c_group_list_head">
+						<th class="list_id_num"><p>ID</p></th><th class="list_id_num"><p>連絡</p></th><th class="list_id_num"><p class="font_mini">見積書<br>請求書</p></th>
+						<th class="list_r_day"><p>予約日</p></th><th class="list_c_name"><p>新郎名</p></th><th class="list_c_name"><p>新婦名</p></th>
+						<th class="list_board_notice"><p>連絡note投稿状況</p></th>
 					</tr>
 					<?php while($row=$rows->fetch(PDO::FETCH_ASSOC)): ?>
 					<?php if(!empty($groups) && $row["limit_over"]==1 && $row["group_id"]==$groups["c_group_id"]): ?>
 					<tr>
-						<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
+						<td class="list_id_num c_group_list_head"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
+						<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
+						<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-file-alt"></i></a></p></td>
 						<td class="list_r_day"><p><?php 
 							//撮影予約日の表示（曜日も日本語で）
 							$reserve_day = $row["reserve_day"];
@@ -52,7 +60,7 @@ $msgs=$obj->getMessage();
 						?></p></td>
 						<td class="list_c_name"><p><?php echo h($row["g_name"]); ?></p></td>
 						<td class="list_c_name"><p><?php echo h($row["b_name"]); ?></p></td>
-						<td>
+						<td class="list_board_notice">
 							<?php $b_data = $obj->getBoardNewCreatedDate($row["group_id"]); ?>
 							<?php if(!empty($b_data)): ?>
 							<p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>">date:
@@ -71,7 +79,7 @@ $msgs=$obj->getMessage();
 							}
 							;?></a><p>
 							<?php elseif(empty($b_data)): ?>
-							<p>投稿はまだありません</p>。
+							<p>投稿はまだありません</p>
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -81,12 +89,27 @@ $msgs=$obj->getMessage();
 			</div>
 			<?php endif; ?>
 			</section>
+			
+			<section>
+				<h2>各種登録リンク</h2>
+				<div>
+				<button class="update_btn"><a href="c_group_id_add.php">顧客グループ登録</a></button>
+				<button class="update_btn"><a href="c_add.php">顧客個人登録</a></button>
+				<button class="update_btn"><a href="plan_add.php">プラン登録</a></button>
+				</div>
+			</section>
+			
+			
 			<?php if($staff["role"]==1): ?>
 			<section>
+				<h2>管理者用リンク</h2>
+				<div>
 				<button class="update_btn"><a href="message_list.php">メッセージ　登録・更新・一覧</a></button>
 				<button class="update_btn"><a href="staff_add.php">スタッフ　登録・更新・一覧<a></button>
+				</div>
 			</section>
 			<?php endif; ?>
+
 		</main>
 		
 <?php require_once("footer_for_staffpage.php"); ?>

@@ -41,48 +41,45 @@ if(!empty($_GET["key"])){
 		<button class="sort_day_btn past_day"><a href="c_group_list_p.php">撮影済</a></button>
 		<button class="sort_day_btn no_d"><a href="c_group_list_nd.php">納品未</a></button>
 		<button class="sort_day_btn no_d activ_page_btn"><a href="">検索</a></button>
-		
 		</p>
-		<div id="mainView">
-			<form action="" method="get">
-			<p>お客様名で検索
-				<input type="" name="key"> 
-				<button class=""><input type="submit" value="検索"></button></p>
-			</form>
 		
+		<form action="" method="get">
+		<p>お客様名で検索
+			<input type="text" name="key" class="serch_name"> 
+			<button class=""><input type="submit" value="検索"></button></p>
+		</form>
+		
+		<div id="mainView" class="table-scroll">
 			<?php if(!empty($_GET["key"])): ?>
-			<table class="list">
-			
-					<tr class="c_group_list">
-						<th class="list_id_num"><p>ID</p></th><th class="list_id_num"><p>board</p></th><th class="list_id_num"><p class="font_mini">見積・請求書</p></th>
-						<th class="list_r_day"><p>予約日</p></th><th class="list_c_name"><p>新郎名</p></th><th class="list_c_name"><p>新婦名</p></th><th class="list_p_name"><p>プラン</p></th>
-					</tr>
-			
-			<?php foreach($rows as $row): ?>
-			<?php if($row["group_id"]==$serch["c_group_id"]): ?>
+			<table class="list c_gropup_list">
+				<tr class="c_group_list_head">
+					<th class="list_id_num"><p class="line_h_40">ID</p></th><th class="list_id_num"><p class="font_mini_no_padding">連絡<br>note</p></th><th class="list_id_num"><p class="font_mini_no_padding">見積書<br>請求書</p></th>
+					<th class="list_r_day"><p class="line_h_40">予約日</p></th><th class="list_c_name"><p class="line_h_40">新郎名</p></th>
+					<th class="list_c_name"><p class="line_h_40">新婦名</p></th><th class="list_p_name"><p class="line_h_40">プラン</p></th>
+				</tr>
+				<?php foreach($rows as $row): ?>
+				<?php if($row["group_id"]==$serch["c_group_id"]): ?>
 
-
-			<tr>
-				<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
-				<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
-				<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-file-alt"></i></a></p></td>
-				<td class="list_r_day"><p><?php 
-					//撮影予約日の表示（曜日も日本語で）
-					$reserve_day = $row["reserve_day"];
-					$week = ["日","月","火","水","木","金","土"];
-					$hi = date('w', strtotime($reserve_day));
-					$youbi = $week[$hi];
-					$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
-					echo h($rd); 
-				?></p></td>
-						<td class="list_c_name"><p><?php echo h($row["g_name"]); ?></p></td>
-						<td class="list_c_name"><p><?php echo h($row["b_name"]); ?></p></td>
-						<td class="list_p_name"><p><?php echo h($row["p_name"]); ?></p></td>
-			</tr>
+				<tr>
+					<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
+					<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
+					<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-file-alt"></i></a></p></td>
+					<td class="list_r_day"><p><?php 
+						//撮影予約日の表示（曜日も日本語で）
+						$reserve_day = $row["reserve_day"];
+						$week = ["日","月","火","水","木","金","土"];
+						$hi = date('w', strtotime($reserve_day));
+						$youbi = $week[$hi];
+						$rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
+						echo h($rd); 
+					?></p></td>
+					<td class="list_c_name"><p><?php echo h($row["g_name"]); ?></p></td>
+					<td class="list_c_name"><p><?php echo h($row["b_name"]); ?></p></td>
+					<td class="list_p_name"><p><?php echo h($row["p_name"]); ?></p></td>
+				</tr>
 			
-			<?php endif;?>
-
-			<?php endforeach; ?>
+				<?php endif;?>
+				<?php endforeach; ?>
 			</table>
 			<?php endif; ?>
 		</div>

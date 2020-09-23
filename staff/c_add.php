@@ -66,7 +66,7 @@ unset($_SESSION["err_msg_check_cid"]);
 						</tr>
 						<tr>
 							<th><p><label for="c_id">顧客ID</label><span class="required_color">必須</span></p></th>
-							<td><input type="text" name="c_id" id="c_id" placeholder="*半角数字/半角アルファベット">
+							<td><input type="text" name="c_id" id="c_id" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベット">
 							<span class="red"><?php echo $err_msg_cid;?><?php echo $err_msg_check_cid;?></span>
 							</td>
 						</tr>
@@ -77,11 +77,11 @@ unset($_SESSION["err_msg_check_cid"]);
 							</td>
 						</tr>
 						<tr>
-							<th><p><label for="c_pass">パスワード</label><span class="required_color">必須</span></p></th>
+							<th><p><label for="c_pass">パスワード</label><span class="field-icon"><i toggle="password-field" class="fas fa-eye toggle-password"></i></span><span class="required_color">必須</span></p></th>
 							<td>
 								<p class="pass_area">
-									<input type="password" autocomplete="new-password" name="c_pass" id="c_pass" placeholder="*半角数字/半角アルファベット">
-									<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
+									<input type="password" autocomplete="new-password" name="c_pass" id="c_pass" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベット">
+									
 								</p>
 							<span class="red"><?php echo $err_msg_cpass;?></span>
 							</td>

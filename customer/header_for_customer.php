@@ -25,12 +25,16 @@
 		<script src="../js/lightbox.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<header>
-			<ul>
-				<li><a href="c_group_top.php">our</a></li>
-				<li><a href="c_board.php">board</a></li>
-				<li class="sp_logo"><img src="../image/header_logo.png" alt="ロゴ"></li>
-				<li><a href="c_top.php">my page</a></li>
-				<li><a id="logout" href="exec_logout.php">logout</a></li>
-			</ul>
+		<header class="header_for_c">
+			<nav>
+				<ul>
+					<li><a href="c_group_top.php">ふたり</a></li>
+					<li><a href="c_board.php">連絡ノート</a></li>
+					<li><a href="c_schedule.php">予定</a></li>
+					<li class="pc_only">meeetiii</li>
+					<li><a href="c_paymentdata.php">書類</a></li>
+					<li><a href="c_itemlist.php">アイテム</a></li>
+					<li><a href="c_top.php">わたし</a></li>
+				</ul>
+			</nav>
 		</header>

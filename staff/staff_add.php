@@ -58,7 +58,7 @@ unset($_SESSION["err_msg_update_sid"]);
 					<table class="staff_add_table">
 						<tr>
 							<th><p><label for="s_id">スタッフID</label><span class="required_color">必須</span></p></th>
-							<td><input type="text" name="s_id" id="s_id" placeholder="*半角数字/半角アルファベッ">
+							<td><input type="text" name="s_id" id="s_id" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベッ">
 								<span class="red"><?php echo $err_msg_sid; ?><?php echo $err_msg_check_sid;?></span>
 							</td>
 						</tr>
@@ -69,18 +69,20 @@ unset($_SESSION["err_msg_update_sid"]);
 							</td>
 						</tr>
 						<tr>
-							<th><p><label for="s_pass">パスワード</label><span class="required_color">必須</span></p></th>
+						<div class="pass_area">
+							<th><p><label for="s_pass">パスワード</label><span class="field-icon"><i toggle="password-field" class="fas fa-eye toggle-password"></i></span><span class="required_color">必須</span></p></th>
 							<td>
-								<p class="pass_area">
-									<input type="password" autocomplete="new-password" name="s_pass" id="s_pass" placeholder="*半角数字/半角アルファベット">
-									<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
+								<p>
+									<input type="password" autocomplete="new-password" name="s_pass" id="s_pass" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベット">
+									
 								</p>
 								<span class="red"><?php echo $err_msg_spass; ?></span>
 							</td>
+							</div>
 						</tr>
 						<tr>
 							<th><p><label for="s_mail">メールアドレス</label></p></th>
-							<td><input type="text" name="s_mail" id="s_mail">
+							<td><input type="text" name="s_mail" id="s_mail" pattern="^[0-9A-Za-z]+$">
 							</td>
 						</tr>
 						<tr>
@@ -120,11 +122,11 @@ unset($_SESSION["err_msg_update_sid"]);
 							<td><input type="text" name="s_name" id="s_name"></td>
 						</tr>
 						<tr>
-							<th><p><label for="s_pass">パスワード</label></p></th>
+							<th><p><label for="s_pass">パスワード</label><span class="field-icon"><i toggle="password-field" class="fas fa-eye toggle-password"></i></span></p></th>
 							<td>
 								<p class="pass_area">
-									<input type="password" autocomplete="new-password" name="s_pass" id="s_pass" placeholder="*半角数字/半角アルファベット">
-									<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
+									<input type="password" autocomplete="new-password" name="s_pass" id="s_pass" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベット">
+									
 								</p>
 							</td>
 						</tr>

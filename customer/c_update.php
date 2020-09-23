@@ -43,13 +43,13 @@ $c_myphoto=$row["c_myphoto"];
 			<table class="c_update_table">
 				<tr>
 					<th><p>グループID</p></th>
-					<td>
+					<td class="bgc_gray">
 					<p><input type="hidden" name="c_group_id" value="<?php echo intVal($c_group_id);?>">
 					<?php echo $c_group_id; ?></p></td>
 				</tr>
 				<tr>
 					<th><p>顧客ID</p></th>
-					<td>
+					<td class="bgc_gray">
 					<p><input type="hidden" name="c_id" value="<?php echo h($c_id);?>">
 					<?php echo $c_id; ?></p></td>
 				</tr>
@@ -57,13 +57,13 @@ $c_myphoto=$row["c_myphoto"];
 				<!--
 				<tr>
 					<th>予約日</th>
-					<td>
+					<td class="bgc_gray">
 					<input type="hidden" name="reserve_day" value="<?php echo h($reserve_day);?>">
 					<?php echo $reserve_day; ?></td>
 				</tr>
 				<tr>
 					<th>予約日来店時間</th>
-					<td>
+					<td class="bgc_gray">
 					<input type="hidden" name="reserve_time" value="<?php echo h($reserve_time);?>">
 					<?php echo $reserve_time; ?></td>
 				</tr>
@@ -74,11 +74,11 @@ $c_myphoto=$row["c_myphoto"];
 					<td><input type="text" name="c_name" id="c_name" value="<?php echo h($c_name); ?>"></td>
 				</tr>
 				<tr>
-					<th><p><label for="c_pass">パスワード</label></p></th>
+					<th><p><label for="c_pass">パスワード</label><span class="field-icon"><i toggle="password-field" class="fas fa-eye toggle-password"></i></span></p></th>
 					<td>
 					<p class="pass_area">
-						<input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value="" placeholder="半角数字/アルファベットで入力ください">
-						<span class="field-icon"><i toggle="password-field" class="fas fa-eye-slash toggle-password"></i></span>
+						<input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value="" pattern="^[0-9A-Za-z]+$" placeholder="半角数字/アルファベットで入力ください">
+						
 					</p>
 					</td>
 				</tr>

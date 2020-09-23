@@ -31,19 +31,21 @@ if(empty($_GET["p_id"])) {
 
 <?php require_once("header_for_staff.php"); ?>
 
-		<main>
-			<section>
-			<h1>プラン編集ページ</h1>
+		<main class="plan_update_main">
+			<section class="plan_update_section">
+			<h2>プラン編集ページ</h2>
 			<br>
-			<p>※ここでの編集内容は、すでに登録済みのお客様データも連動して変更されます。</p>
+			<div class="remark">
+			<p>※ここでの編集内容は、すでに登録済みのお客様データも連動して変更されます。ご注意ください。</p>
+			</div>
 			<br>
 				<form action="exec_plan_update.php" method="post" class="update_plan">
 					<table class="p_update_table">
 						<tr>
 							<th><p>プランID</p></th>
-							<td>
+							<td class="bgc_gray">
 							<input type="hidden" name="p_id" value="<?php echo $p_id;?>">
-							<p><?php echo intVal($p_id); ?></p></td>
+							<p class="font_mini3"><?php echo intVal($p_id); ?></p></td>
 						</tr>
 						<tr>
 							<th><p><label for="p_name">プラン名</label></p></th>

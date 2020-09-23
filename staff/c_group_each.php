@@ -234,7 +234,7 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 				<h2>グループ登録情報</h2><br>
 				<button class="update_link"><a href="c_group_update.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">顧客グループ情報更新ページへ</a></button>
 				
-				<table class="list c_group_each_table">
+				<table class="list c_group_each_table c_top">
 					<tr>
 						<th><p>新居</p></th>
 						<td><p>〒<?php echo h($new_zip); ?><br>
@@ -265,7 +265,8 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 			<section>
 				<h2>進捗状況</h2><p><span class="limit_over"></p></span><br>
 				<button class="update_link"><a href="c_group_each_mane.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">マネジメント（スケジュール）ページへ</a></button>
-				<table class="list c_group_each_mg_table">
+				
+				<table class="list schedule schedule_s">
 					<tr>
 						<th class="check"><p>未・済</p></th><th class="todo"><p>管理項目</p></th><th class="limit"><p>期日</p></th>
 					</tr>

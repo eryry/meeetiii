@@ -53,7 +53,7 @@ unset($_SESSION["err_msg_rd"]);
 					<table class="c_group_add_table">
 						<tr>
 							<th><p><label for="c_group_id">グループID</label><span class="required_color">必須</span></p></th>
-							<td><input type="number" name="c_group_id" id="c_group_id" placeholder="半角数字/すでに登録済みのNoは登録不可">
+							<td><input type="number" name="c_group_id" id="c_group_id" pattern="^[0-9]+$" placeholder="半角数字/すでに登録済みのNoは登録不可">
 							<span class="red"><?php echo $err_msg_cgid; ?></span>
 							</td>
 						</tr>
@@ -80,19 +80,23 @@ unset($_SESSION["err_msg_rd"]);
 						</tr>
 						<tr>
 							<th><p><label for="estimate">見積もり発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済見積もりを投稿してください</span></p></th>
-							<td><p>発行未</p></td>
+							<td class="bgc_gray">
+							<p>発行未</p></td>
 						</tr>
 						<tr>
 							<th><p><label for="invoce">請求書発行状況</label><span class="font_mini">※発行済みの場合は投稿画面で発行済請求書を投稿してください</span></p></th>
-							<td><p>発行未</p></td>
+							<td class="bgc_gray">
+							<p>発行未</p></td>
 						</tr>
 						<tr>
 							<th><p><label for="payment">支払い状況</label><span class="font_mini">※支払い済みの場合はマネジメント画面で更新してください</span></p></th>
-							<td><p>支払未<p></td>
+							<td class="bgc_gray">
+							<p>支払未<p></td>
 						</tr>
 						<tr>
 							<th><p><label for="d_product">商品納品状況</label><span class="font_mini">※納品済みの場合はマネジメント画面で更新してください</span></p></th>
-							<td><p>納品未</p></td>
+							<td class="bgc_gray">
+							<p>納品未</p></td>
 						</tr>
 						<tr>
 							<th><p><label for="zip">新居郵便番号</label></p></th>

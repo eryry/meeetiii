@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2020-09-23 00:46:01
--- サーバのバージョン： 10.4.11-MariaDB
--- PHP のバージョン: 7.4.5
+-- 生成日時: 2020-09-23 17:48:42
+-- サーバのバージョン： 10.4.14-MariaDB
+-- PHP のバージョン: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -88,7 +88,9 @@ INSERT INTO `board` (`b_id`, `c_group_id`, `submit_member_id`, `body`, `board_ph
 (97, 4, 'katoeri', 'うめは、トイプードルです。', 1, '2020-09-21 17:09:50'),
 (98, 6, 'katoeri', '', 1, '2020-09-21 18:01:16'),
 (99, 9, 'eri', 'サニタイズ追加したので、\r\n投稿テストです。', 1, '2020-09-22 09:23:50'),
-(100, 9, 'eri', '', 1, '2020-09-22 10:16:04');
+(100, 9, 'eri', '', 1, '2020-09-22 10:16:04'),
+(101, 9, 'kiyo', 'あ。', 0, '2020-09-23 03:55:15'),
+(102, 9, 'ume', 'あ？', 0, '2020-09-23 03:55:46');
 
 -- --------------------------------------------------------
 
@@ -122,7 +124,7 @@ INSERT INTO `customers` (`c_id`, `c_group_id`, `c_name`, `c_pass`, `c_mail`, `c_
 ('eri', 9, 'えり', '$2y$10$assTB6p8jr3ihxZrcosONOpYW8UVRNHUdNsYUvkrZz0SJn84E44/e', 'eri@eri.net', '000', '6020802', '', 1, 1),
 ('kawachi', 12, '河内', '$2y$10$LgUmwP767RwJytFCr/bC0esh5l8Kwd.PEsLxYmyWSE6AT5wsnF.Mu', '', '', '', '', 0, 1),
 ('kawada', 6, '川田', '$2y$10$XOjjeMNNDsa30.te/OKZxeJGflYMZFEl6Sry8mRBReeCYNcTZeygG', '', '', '', '', 1, 0),
-('kiyo', 9, 'きよ', '$2y$10$T7OiooR6OVtDcRs44u23Su7kf.tbjGX3KImRsXcts9cxl89KjCkOS', 'kiyo@gmail.com', '09036133955', '6020802', '京都府京都市上京区鶴山町', 0, 1),
+('kiyo', 9, 'きよ', '$2y$10$kN3lUbSAaZ5PLGq9L0pjWuW4gwIeq/9grVLG3n/AQaTj/hzAvytT2', 'kiyo@gmail.com', '09036133955', '6020802', '京都府京都市上京区鶴山町', 0, 1),
 ('moe', 4, 'もえ', '$2y$10$MVkZJoo1XwR2oCm.rsi7UePnnDXHjnMPI7rRULzgpYdhWE8Dd7KLW', '', '', '', '', 1, 1),
 ('nobita', 5, '野比のび太', '$2y$10$4pDuuMz7DAMjrQh3lPgPXu6WYdspd644cfj3MkxAW8Vw0hXH5IH2K', 'nobi@nobita.net', '0903330000', '', '', 0, 1),
 ('shizuka', 5, 'しずか', '$2y$10$59tSn92djWcIJp.QyTNHB.ARjp/MZpC2CSrERDpkz3a4dR3Q9sZi6', '', '', '', '', 1, 0),
@@ -173,7 +175,7 @@ INSERT INTO `c_groups` (`c_group_id`, `p_id`, `reserve_day`, `reserve_time`, `es
 (6, 2, '2020-09-10', '10:22:00', 1, 1, 1, 0, '1', '', 0, 0, 0, 0, 0, 'ume', 0),
 (7, 5, '2020-10-30', '12:00:00', 1, 1, 0, 0, '', '', 0, 0, 0, 0, 0, '', 0),
 (8, 6, '2020-06-05', '07:00:00', 1, 1, 1, 1, '', '', 0, 0, 0, 0, 0, '', 0),
-(9, 2, '2020-12-19', '05:00:00', 1, 0, 0, 0, '2223333', '夢の国', 1, 1, 1, 1, 1, '', 0),
+(9, 2, '2020-09-25', '05:00:00', 1, 0, 0, 0, '2223333', '夢の国', 1, 1, 1, 1, 1, '担当スタッフを選択', 0),
 (10, 6, '2020-10-08', '10:00:00', 1, 1, 0, 0, '', '', 0, 0, 1, 1, 0, 'sawara', 1),
 (11, 4, '2020-11-11', '06:00:00', 1, 1, 0, 0, '1234567', 'Firenze Via della cernaia102', 0, 1, 1, 1, 1, 'katoeri', 0),
 (12, 9, '2020-09-21', '11:30:00', 1, 0, 1, 0, '5860000', '大阪府河内長野市', 1, 1, 1, 1, 1, 'katoeri', 1),
@@ -198,9 +200,6 @@ CREATE TABLE `list` (
 INSERT INTO `list` (`list_id`, `c_group_id`, `list_item`) VALUES
 (1, 9, '指輪'),
 (2, 9, '足袋'),
-(4, 9, 'サスペンダー'),
-(5, 9, 'おにぎり'),
-(6, 9, 'ネイルチップ'),
 (7, 9, 'お金'),
 (8, 2, 'どらやき'),
 (12, 2, '今川焼'),
@@ -222,7 +221,8 @@ INSERT INTO `list` (`list_id`, `c_group_id`, `list_item`) VALUES
 (77, 10, 'おにぎり'),
 (78, 3, '赤いもの'),
 (79, 3, '青いもの'),
-(80, 3, 'どらやき');
+(80, 3, 'どらやき'),
+(83, 10, 'みたらし団子');
 
 -- --------------------------------------------------------
 
@@ -390,13 +390,13 @@ ALTER TABLE `staff`
 -- テーブルのAUTO_INCREMENT `board`
 --
 ALTER TABLE `board`
-  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `b_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- テーブルのAUTO_INCREMENT `list`
 --
 ALTER TABLE `list`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- テーブルのAUTO_INCREMENT `managements`

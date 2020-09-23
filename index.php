@@ -1,12 +1,36 @@
 <?php
 session_start();
+
+if(!empty($_SESSION["err_msg_cid"])){
+	$err_msg_cid=$_SESSION["err_msg_cid"];
+}else{
+	$err_msg_cid="";
+}
+if(!empty($_SESSION["err_msg_cpass"])){
+	$err_msg_cpass=$_SESSION["err_msg_cpass"];
+}else{
+	$err_msg_cpass="";
+}
+unset($_SESSION["err_msg_cid"]);
+unset($_SESSION["err_msg_cpass"]);
+
 $_SESSION=[];
 setcookie ("session_name","",time()-1800);
 session_destroy();
 
+$c_pass = password_hash('kiyo',PASSWORD_DEFAULT);
+//echo $c_pass;
 
-$c_pass = password_hash('eri',PASSWORD_DEFAULT);
-echo $c_pass;
+function h($str) {
+	return htmlspecialchars($str,ENT_QUOTES);
+}
+require_once("class/meeting.class.php");
+$obj= new Meeting();
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -28,36 +52,40 @@ echo $c_pass;
 		<script src="js/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
-		<header>
-			<h1>ログイン<span class="required_color">必須</span></h1>
+		<header class="index">
+			<div>
+			<img class="header_img" src="image/photoplan-title-icon02.png" alt="ヘッダー用デザイン"><img class="logo" src="image/meeetiii2.png"><img class="header_img"src="image/photoplan-icon01.png" alt="ヘッダー用デザイン">
+			</div>
 		</header>
-		<main>
-			<section>
+		<main class="top_main">
+			<section class="top_section">
+			<p><img src="image/staff_image.png" class="hunwari"></p>
+			<h1  class="login_title">ログイン</h1>
 				<form action="customer/exec_customer_login.php" method="post">
 					<table class="login_table">
 						<tr>
-							<th><p><label for="c_id">顧客ID</label><p></th>
-							<td><input type="text" name="c_id" id="c_id"></td>
+							<th><p><label for="c_id">顧客ID</label><span class="required_color">必須</span></p></th>
+							<td><input type="text" name="c_id" id="c_id" pattern="^[0-9A-Za-z]+$">
+							<span class="red"><?php echo $err_msg_cid; ?></span></td>
 						</tr>
 						<tr>
-							<th><p><label for="c_pass">パスワード</label></p></th>
-							<td><input type="password" autocomplete="current-password" name="c_pass" id="c_pass">
+							<th><p><label for="c_pass">パスワード</label><span class="required_color">必須</span></p></th>
+							<td><input type="password" autocomplete="current-password" name="c_pass" id="c_pass" pattern="^[0-9A-Za-z]+$">
+							<span class="red"><?php echo $err_msg_cpass; ?></span></td>
 							</td>
 						</tr>
-
 					</table>
 				
 				<p><input class="sub_btn" type="submit" value="LOGIN"></p>
 				</form>
 			
 			</section>
-			
-			<p><a href="staff/staff_login.php">管理者用ページ</a></p>
+			<section class="top_section_bottom">
+			<button><a href="staff/staff_login.php">管理者用ページ</a></button>
+			</section>
 		</main>
-		<footer>
-		
-		</footer>
-	<script src=""></script>
+
+		<script src=""></script>
 	</body>
 </html>
 

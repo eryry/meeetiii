@@ -23,7 +23,7 @@ $obj = new Meeting();
 
 
 
-}
+
 $p_name=h($_POST["p_name"]);
 $p_wear=h($_POST["p_wear"]);
 
