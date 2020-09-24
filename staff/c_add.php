@@ -81,7 +81,6 @@ unset($_SESSION["err_msg_check_cid"]);
 							<td>
 								<p class="pass_area">
 									<input type="password" autocomplete="new-password" name="c_pass" id="c_pass" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベット">
-									
 								</p>
 							<span class="red"><?php echo $err_msg_cpass;?></span>
 							</td>
@@ -113,11 +112,8 @@ unset($_SESSION["err_msg_check_cid"]);
 							</td>
 						</tr>
 					</table>
-				
 				<p><input type="submit" value="新規顧客登録"></p>
 				</form>
-
-				
 			</section>
 	</main>
 <?php require_once("footer_for_staffpage.php"); ?>

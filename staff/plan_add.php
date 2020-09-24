@@ -19,12 +19,9 @@ if(!empty($_SESSION["err_msg_pwear"])){
 unset($_SESSION["err_msg_pname"]);
 unset($_SESSION["err_msg_pwear"]);
 
-
-
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main class="plan_add_main">
 			<section  class="plan_add_section">
 			<h1>新規プラン登録</h1>
@@ -55,6 +52,4 @@ unset($_SESSION["err_msg_pwear"]);
 			<section>
 			</section>
 		</main>
-		
 <?php include("footer_for_staffpage.php"); ?>
-

@@ -7,7 +7,6 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
-
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
@@ -28,11 +27,9 @@ $c_address=$row["c_address"];
 $c_gender=$row["c_gender"];
 $c_myphoto=$row["c_myphoto"];
 
-//print_r($row);
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
-
 <main>
 	<div id="title_wrapper">
 		<h1>更新・確認<br><span class="font_mini_no_padding">my data</span></h1>
@@ -78,7 +75,6 @@ $c_myphoto=$row["c_myphoto"];
 					<td>
 					<p class="pass_area">
 						<input type="password" autocomplete="current-password" name="c_pass" id="c_pass" value="" pattern="^[0-9A-Za-z]+$" placeholder="半角数字/アルファベットで入力ください">
-						
 					</p>
 					</td>
 				</tr>
@@ -120,14 +116,8 @@ $c_myphoto=$row["c_myphoto"];
 					</td>
 				</tr>
 			</table>
-		
-		<button><input class="sub_btn" type="submit" value="お客様情報更新"></button>
+			<button><input class="sub_btn" type="submit" value="お客様情報更新"></button>
 		</form>
-
-	
 	</section>
 </main>
 <?php include("footer_for_customerpage.php"); ?>
-
-
-

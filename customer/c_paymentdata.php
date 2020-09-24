@@ -4,16 +4,14 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
 	header("Location: ../index.php?err=no_login");
 	exit();
 }
+function h($str) {
+	return htmlspecialchars($str,ENT_QUOTES);
+}
 require_once("../class/meeting.class.php");
 $obj= new Meeting();
 
 //スタッフがスタッフログインして（お客様ログインなしで）お客様ページ見れるための準備。
 if(!empty($_SESSION["s_id"])) $_SESSION["c_group_id"]=$_GET["group_id"];
-
-//サニタイズ関数
-function h($str) {
-	return htmlspecialchars($str,ENT_QUOTES);
-}
 
 $resg = $obj->getCustomerGrouopByGId($_SESSION["c_group_id"]);
 $_SESSION["reserve_day"] =$resg["reserve_day"];
@@ -52,26 +50,21 @@ $_SESSION["invoce"]=$c_data["invoce"];
 					}; 
 				?>
 				</p>
-				
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
-				
 			</section>
 			<section class="payment_section">
 				<img src="../image/photoplan-icon01.png" class="fuwafuwa2">
 				<p class="m_bottom_20 payment_atention">見積書・請求書が発行されると、書類データへのリンク先が表示されます。</p>
-
 				<div class="toukou">
 					<h2>見 積 書</h2>
-					
 					<?php if(!empty($_SESSION["s_id"])): ?>
 					<form action="exec_sub_estimate.php" method="post" enctype="multipart/form-data" class="sub_file">
-					<input type="file" name="estimate"><br>
-					<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
-					<input type="submit" value="見積もり投稿">
+						<input type="file" name="estimate"><br>
+						<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
+						<input type="submit" value="見積もり投稿">
 					</form>
 					<?php endif; ?>
-					
 					<?php if($c_data["estimate"]==1): ?>
 					<p>見積書発行：あり
 					<button class="pay_btn"><a href="exec_estimate_dl.php">見積書を表示</a></button></p>
@@ -79,14 +72,13 @@ $_SESSION["invoce"]=$c_data["invoce"];
 					<p>見積書発行：未</p>
 					<?php endif; ?>
 				</div>
-				
 				<div class="toukou">
 					<h2>請 求 書</h2>
 					<?php if(!empty($_SESSION["s_id"])): ?>
 					<form action="exec_sub_invoce.php" method="post" enctype="multipart/form-data" class="sub_file">
-					<input type="file" name="invoce"><br>
-					<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
-					<input type="submit" value="請求書投稿">
+						<input type="file" name="invoce"><br>
+						<input type="hidden" name="c_group_id" value="<?php echo intVal($_SESSION["c_group_id"]); ?>">
+						<input type="submit" value="請求書投稿">
 					</form>
 					<?php endif; ?>
 					<?php if($c_data["invoce"]==1): ?>
@@ -96,8 +88,6 @@ $_SESSION["invoce"]=$c_data["invoce"];
 					<p>請求書発行：未</p>
 					<?php endif ?>
 				</div>
-				
-				
 			</section>
 		</main>
 <?php 

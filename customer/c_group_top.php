@@ -4,12 +4,11 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
 	header("Location: ../index.php?err=no_login");
 	exit();
 }
-require_once("../class/meeting.class.php");
-$obj= new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj= new Meeting();
 
 //撮影当日までの日数表示用
 $today = date('y-m-d');
@@ -39,22 +38,20 @@ if($_SESSION["limit_over"]==0){
 //日にち指定のメッセージ表示用
 $all_msg=$obj->getMessage();
 foreach($all_msg as $val){
-							if($day==$val["m_id"]){
-							 $msg=$obj->getMessageByMId($val["m_id"]);
-							 echo $msg["m_body"];
-							}};
+if($day==$val["m_id"]){
+ $msg=$obj->getMessageByMId($val["m_id"]);
+ //echo $msg["m_body"];
+}};
 
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
-		
 		<main>
 			<div id="title_wrapper">
 				<h1>ふたりのページ<br><span class="font_mini_no_padding">bride & groom page</span></h1>
 			</div>
 			<section>
 				<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?></p>
-				
 				<p>撮影予約日： <?php echo h($rd);	?> </p>
 				<p>撮影プラン： <?php echo h($c_data["p_name"]);	?> </p>
 			</section>
@@ -80,31 +77,26 @@ foreach($all_msg as $val){
 				<?php if(strtotime($today)<=strtotime($reserve_day)): ?>
 				<p>撮影当日まであと <span class="font_big"><?php echo $day; ?></span>日</p>
 				<?php endif; ?>
-				
 				<div class="messages">
 					<?php if(strtotime($today)<strtotime($reserve_day)): ?>
-					
 					<p class="msg">
  						<?php foreach($all_msg as $val) {
- 						if($day==$val["m_id"]){
- 							$msg=$obj->getMessageByMId($val["m_id"]);
- 							echo nl2br($msg["m_body"]);
- 						}else{
- 							$msg["m_body"]="";
-						}
+	 						if($day==$val["m_id"]){
+	 							$msg=$obj->getMessageByMId($val["m_id"]);
+	 							echo nl2br($msg["m_body"]);
+	 						}else{
+	 							$msg["m_body"]="";
+							}
 						};
 						?></p><br>
 					<p class="msg_random"></p>
-					
 					<?php elseif(strtotime($today)>strtotime($reserve_day) && $_SESSION["d_product"]==0): ?>
 					<p>撮影データまたはアルバムの商品出来上がりまで少しお待ちください！</p>
 					<?php elseif(strtotime($today)==strtotime($reserve_day)): ?>
 					<p>今日は撮影本番！ですね！！楽しみましょう♪</p>
 					<?php endif; ?>
 				</div>
-				
 			</section>
-			
 			<section>
 				<img src="../image/icon-bird02.png" class="fuwafuwa"><img src="../image/icon-bird02.png" class="fuwafuwa_mini"><h2>お知らせ</h2><img src="../image/photoplan-title-icon02.png" class="fuwafuwa2">
 				<div class="notice_wrapper">
@@ -117,16 +109,16 @@ foreach($all_msg as $val){
 						<a href="c_board.php">日   時:
 						<?php echo date("Y/m/d H:i",strtotime($b_data["created"])); ?> <br>
 						投稿者:<?php 
-						if($b_data["submit_member_id"]== $c_data["g_id"]){
-							echo h($c_data["g_name"]);
-						}else if($b_data["submit_member_id"]== $c_data["b_id"]){
-							echo h($c_data["b_name"]);
-						}else{
-							//最新投稿者名がスタッフだった場合用にスタッフ情報取得
-							$s_id=$b_data["submit_member_id"];
-							$staff_data=$obj->getStaffById($s_id);
-							echo "スタッフ：".h($staff_data["s_name"]);
-						}
+							if($b_data["submit_member_id"]== $c_data["g_id"]){
+								echo h($c_data["g_name"]);
+							}else if($b_data["submit_member_id"]== $c_data["b_id"]){
+								echo h($c_data["b_name"]);
+							}else{
+								//最新投稿者名がスタッフだった場合用にスタッフ情報取得
+								$s_id=$b_data["submit_member_id"];
+								$staff_data=$obj->getStaffById($s_id);
+								echo "スタッフ：".h($staff_data["s_name"]);
+							}
 						;?></a></p>
 						<?php elseif(empty($b_data)): ?>
 						<p>投稿はまだありません。</p>
@@ -151,7 +143,6 @@ foreach($all_msg as $val){
 				</div>
 				<br>
 				<button class="update_btn"><a href="c_group_info.php">予約内容確認ページへ</a></button>
-
 			</section>
 		</main>
-		<?php include("footer_for_customerpage.php"); ?>
+<?php include("footer_for_customerpage.php"); ?>

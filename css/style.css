@@ -272,19 +272,19 @@ img.header_img {
 .messages p.msg_random{
 	background: linear-gradient(transparent 50%, #def8fb 0%);
 	display: inline;
+	font-size:clamp(10px,10px + .8vw,13px);
 	margin-top:10px;
 	margin-bottom:20px;
 	text-align:left;
-	font-size:clamp(10px,10px + .8vw,13px);
-
 }
 .messages p.msg{
 	font-weight:bold;
 	background: linear-gradient(transparent 50%, #ffcfca 0%);
+	display: inline;
 	font-size:clamp(10px,10px + .8vw,13px);
 	margin-top:4px;
 	margin-bottom:20px;
-	display: inline;
+	text-align:left;
 }
 
 
@@ -466,7 +466,7 @@ table tr td.todo_detail{
 table tr td.check,
 table tr td.todo,
 table tr td.limit {
-	font-size:clamp(12px,10px + .7vw,14px);
+	font-size:clamp(11px,10px + .4vw,14px);
 }
 
 /* -- 2枠テーブル -- */
@@ -893,8 +893,8 @@ table.msg_list {
 	width: clamp(200px,85vw,400px);
 	margin:auto;
 }
-.payment_atention{
-	text-align:left;
+.payment_atention {
+	text-align:left !important;
 }
 
 /* --- keijiban--- */
@@ -1100,6 +1100,11 @@ span.limit_over{
 
 
 @media screen and (min-width: 480px) {
-.pc_only{
-	display:inline-block;
+	.pc_only{
+		display:inline-block;
+	}
+	br.sp_only{
+		display:none;
+	}
+	
 }

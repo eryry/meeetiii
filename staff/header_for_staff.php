@@ -28,7 +28,7 @@
 			<nav>
 				<ul>
 					<li><a href="staff_top.php">TOP</a></li>
-					<li><a href="c_group_list.php">G-LIST</a></li>
+					<li><a href="c_group_list.php">C LIST</a></li>
 					<li class="pc_only">meeetiii<span class="font_mini">for staff</span></li>
 					<li><a href="plan_list.php">PLAN</a></li>
 					<li><a id="logout" href="exec_staff_logout.php">LogOut</a></li>

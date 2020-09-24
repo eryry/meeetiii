@@ -53,9 +53,6 @@ if( !empty($_POST["add"]) ){
 	}
 	$staff=$obj->getStaffById($_POST["s_id"]);
 	
-	
-
-	
 	//カラの欄があったら、元のデータをそのまま入れてUPDATEする設定
 	if(empty($_POST["s_name"])){
 		$s_name=$staff["s_name"];
@@ -80,10 +77,5 @@ if( !empty($_POST["add"]) ){
 	
 	$obj->staffUpdate($_POST["s_id"],$s_name,$s_pass,$s_mail,$role);
 }
-
-//print_r($_POST);
-//header("Location:staff_add_fin.php");
-
-
 
 ?>

@@ -4,24 +4,21 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 $rows =$obj->getPlan();
 
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main>
 			<h1>プラン一覧</h1>
 			<section>
-					<table class="p_list">
+				<table class="p_list">
 					<tr>
 						<th class="list_id_num"><p>P_ID</p></th><th class="list_p_name"><p>プラン名</p></th><th class="list_p_wear"><p>プラン衣装種類</p></th><th class="list_p_link"><p>変更・修正</p></th>
 					</tr>
@@ -41,12 +38,8 @@ $rows =$obj->getPlan();
 						<td class="list_p_link update_link_mini"><a href="plan_update.php?p_id=<?php echo $row["p_id"];?>">変更・更新</a></td>
 					</tr>
 					<?php endwhile; ?>
-					</table>
-				
+				</table>
 				<button class="add_link"><a href="plan_add.php">新規プラン登録ページへ</a></button>
-
-			
 			</section>
 		</main>
 <?php include("footer_for_staffpage.php"); ?>
-

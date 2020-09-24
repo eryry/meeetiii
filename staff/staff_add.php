@@ -49,7 +49,6 @@ unset($_SESSION["err_msg_update_sid"]);
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main>
 			<h1>スタッフ 登録・一覧・更新</h1>
 			<section>
@@ -99,10 +98,8 @@ unset($_SESSION["err_msg_update_sid"]);
 				<p><input type="submit" value="新規スタッフ登録" name="add"></p>
 				</form>
 			</section>
-			
 			<section id="staffupdate">
 				<h2>スタッフ情報更新</h2>
-				
 				<form action="exec_staff_add.php" method="post" autocomplete="off">
 					<table class="staff_update_table">
 						<tr>
@@ -126,7 +123,6 @@ unset($_SESSION["err_msg_update_sid"]);
 							<td>
 								<p class="pass_area">
 									<input type="password" autocomplete="new-password" name="s_pass" id="s_pass" pattern="^[0-9A-Za-z]+$" placeholder="*半角数字/半角アルファベット">
-									
 								</p>
 							</td>
 						</tr>

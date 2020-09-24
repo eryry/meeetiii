@@ -4,12 +4,11 @@ if(empty($_SESSION["c_id"])) {
 	header("Location: ../index.php?err=no_login");
 	exit();
 }
-require_once("../class/meeting.class.php");
-$obj= new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj= new Meeting();
 
 $reserve_day = $_SESSION["reserve_day"];
 //撮影予約日の表示（曜日も日本語で）
@@ -40,15 +39,14 @@ if(empty($c_address)) $c_address="未入力";
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
-
 <main>
 	<div id="title_wrapper">
 		<h1>マイページ<br><span class="font_mini_no_padding">my page</span></h1>
 	</div>
 	<section>
-	<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?> <button class="logout_link"><a id="logout" href="exec_logout.php">logout</a></button> </p>
-	<p>撮影予約日： <?php echo h($rd);	?> </p>
-	<p>撮影プラン： <?php echo h($_SESSION["p_name"]);	?> </p>
+		<p>ログイン中のお名前：<?php echo h($_SESSION["c_name"]); ?> <button class="logout_link"><a id="logout" href="exec_logout.php">logout</a></button> </p>
+		<p>撮影予約日： <?php echo h($rd);	?> </p>
+		<p>撮影プラン： <?php echo h($_SESSION["p_name"]);	?> </p>
 	</section>
 	<section>
 		<h2>登録情報</h2>
@@ -114,8 +112,6 @@ if(empty($c_address)) $c_address="未入力";
 				</td>
 			</tr>
 		</table>
-		
-		
 	</section>	
 	<section>
 		<button  class="update_btn"><a href="c_update.php">個人登録情報更新ページへ</a></button>

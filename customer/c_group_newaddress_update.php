@@ -5,13 +5,11 @@ if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
  header("Location: ../index.php");
  exit();
 }
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 $obj->getCustomerById($_SESSION["c_id"]);
 
@@ -22,7 +20,6 @@ $row  = $obj->getCustomerById($c_id);
 $getgdata = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 $new_zip=$getgdata["new_zip"];
 $new_address=$getgdata["new_address"];
-
 
 $reserve_day = $_SESSION["reserve_day"];
 $week = ["日","月","火","水","木","金","土"];
@@ -35,7 +32,6 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
-
 		<main>
 			<div id="title_wrapper">
 				<h1>ご新居登録・更新<br><span class="font_mini_no_padding">new address</span></h1>
@@ -64,14 +60,8 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 							<td><input type="text" name="new_address" id="address" value="<?php echo h($new_address); ?>"></td>
 						</tr>
 					</table>
-				
-				<p><input class="sub_btn" type="submit" value="新居情報登録・更新"></p>
-				</form>
-				
-			
+					<p><input class="sub_btn" type="submit" value="新居情報登録・更新"></p>
+				</form>			
 			</section>
 		</main>
-		<?php include("footer_for_customerpage.php"); ?>
-
-
-
+<?php include("footer_for_customerpage.php"); ?>

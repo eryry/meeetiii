@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if(!empty($_SESSION["err_msg_s_id"])){
 	$err_msg_s_id=$_SESSION["err_msg_s_id"];
 }else{
@@ -21,9 +20,9 @@ session_destroy();
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+
 require_once("../class/meeting.class.php");
 $obj= new Meeting();
-
 
 ?>
 
@@ -53,7 +52,6 @@ $obj= new Meeting();
 		<main class="staff_login_main">
 			<section class="staff_login_section">
 			<p><img src="../image/photoplan-icon01.png" class="hunwari"></p>
-
 			<h1 class="login_title">スタッフログイン</h1><br>
 				<form action="exec_staff_login.php" method="post">
 					<table class="login_table">
@@ -69,17 +67,13 @@ $obj= new Meeting();
 							<span class="red"><?php echo $err_msg_s_pass; ?></span></td>
 						</tr>
 					</table>
-				
-				<p><input class="sub_btn" type="submit" value="staff LOGIN"></p>
-				</form>			
-			
+					<p><input class="sub_btn" type="submit" value="staff LOGIN"></p>
+				</form>
 			</section>
 		</main>
 		<footer class="staff">
-		
 		</footer>
-	<script src="../jquery-3.5.1.min.js"></script>
-	<script src=""></script>
+		<script src="../jquery-3.5.1.min.js"></script>
+		<script src=""></script>
 	</body>
 </html>
-

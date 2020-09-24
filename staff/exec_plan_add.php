@@ -21,14 +21,10 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
-
-
-
 $p_name=h($_POST["p_name"]);
 $p_wear=h($_POST["p_wear"]);
 
 $obj->planAdd($p_name,$p_wear);
 header("Location:plan_add_fin.php");
-
 
 ?>

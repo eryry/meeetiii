@@ -27,10 +27,6 @@ function h($str) {
 require_once("class/meeting.class.php");
 $obj= new Meeting();
 
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -75,17 +71,13 @@ $obj= new Meeting();
 							</td>
 						</tr>
 					</table>
-				
-				<p><input class="sub_btn" type="submit" value="LOGIN"></p>
+					<p><input class="sub_btn" type="submit" value="LOGIN"></p>
 				</form>
-			
 			</section>
 			<section class="top_section_bottom">
-			<button><a href="staff/staff_login.php">管理者用ページ</a></button>
+				<button><a href="staff/staff_login.php">管理者用ページ</a></button>
 			</section>
 		</main>
-
 		<script src=""></script>
 	</body>
 </html>
-

@@ -5,7 +5,6 @@ if(empty($_SESSION["s_id"])) {
 	exit();
 }
 
-
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
@@ -19,9 +18,5 @@ $obj->submitEstimate($_POST["c_group_id"],$estimate);
 
 header("Location:c_paymentdata.php?group_id={$_POST['c_group_id']}");
 //print_r($_POST);
-
-
-
-
 
 ?>

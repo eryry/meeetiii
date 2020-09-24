@@ -35,10 +35,8 @@ if(!empty($_FILES["board_photo"])) {
 	$obj->saveBoardImage($row["bid"]);
 }
 
-
 header("Location:c_board.php?group_id={$_POST['c_group_id']}");
 //print_r($_SESSION);
 //print_r($_POST);
-
 
 ?>

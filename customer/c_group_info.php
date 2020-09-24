@@ -1,17 +1,14 @@
 <?php
 session_start();
-
 if(empty($_SESSION["c_id"])) {
  header("Location:../index.php");
  exit();
 }
-
-require_once("../class/meeting.class.php");
-$obj =new Meeting();
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
+$obj =new Meeting();
 
 $reserve_day = $_SESSION["reserve_day"];
 //撮影予約日の表示（曜日も日本語で）
@@ -56,7 +53,6 @@ if(empty($_SESSION["new_address"])) {
 	$new_address=$_SESSION["new_address"];
 }
 
-
 ?>
 
 <?php require_once("header_for_customer.php"); ?>
@@ -68,8 +64,8 @@ if(empty($_SESSION["new_address"])) {
 				<p>ご新居情報は、ご自身で入力・更新可能です。</p>
 				<button class="update_btn"><a href="c_group_newaddress_update.php">ご新居入力・更新ページへ</a></button>
 				<div class="remark">
-				<p class="font_mini">※ご新居情報以外で間違いがある場合は、お電話または掲示板からご連絡ください</p>
-				<p class="font_mini">※ご新居情報は、商品お届け先になります。新居未定時はお届け希望住所を入力ください。</p>
+					<p class="font_mini">※ご新居情報以外で間違いがある場合は、お電話または掲示板からご連絡ください</p>
+					<p class="font_mini">※ご新居情報は、商品お届け先になります。新居未定時はお届け希望住所を入力ください。</p>
 				</div>
 			</section>
 			<section class="c_g_check">
@@ -117,5 +113,4 @@ if(empty($_SESSION["new_address"])) {
 				</table>
 		</section>
 	</main>
-		<?php include("footer_for_customerpage.php"); ?>
-
+<?php include("footer_for_customerpage.php"); ?>

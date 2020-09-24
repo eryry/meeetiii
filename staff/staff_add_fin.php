@@ -5,11 +5,9 @@ if(empty($_SESSION["s_id"])) {
 	exit();
 }
 
-
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main>
 			<h1>スタッフ登録完了ページ</h1>
 			<section>
@@ -17,10 +15,8 @@ if(empty($_SESSION["s_id"])) {
 				<p><a href="staff_login.php">ログインページへ</a></p>
 			</section>
 		<footer>
-		
 		</footer>
 	<script src="../jquery-3.5.1.min.js"></script>
 	<script src=""></script>
 	</body>
 </html>
-

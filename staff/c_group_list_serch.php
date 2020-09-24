@@ -4,33 +4,27 @@ if(empty($_SESSION["s_id"])) {
 	header("Location:staff_login.php?err=no_login");
 	exit();
 }
-
-require_once("../class/meeting.class.php");
-
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
+require_once("../class/meeting.class.php");
 
 $obj =new Meeting();
 $rows =$obj->getGroomBrideGrouopAllDate();
 //$row2=$rows->fetch(PDO::FETCH_ASSOC);
 
-
-
 if(!empty($_GET["key"])){
 	$serchs=$obj->getCustomerDataByKey($_GET["key"]);
-	print_r($serchs);
+	//print_r($serchs);
 	//["c_group_id"];
 	foreach($serchs as $serch){
-		echo $serch["c_group_id"];
+		//echo $serch["c_group_id"];
 	}
 }
-
 
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 <main>
 	<h1>お客様グループ一覧</h1>
 	<section>
@@ -42,13 +36,12 @@ if(!empty($_GET["key"])){
 		<button class="sort_day_btn no_d"><a href="c_group_list_nd.php">納品未</a></button>
 		<button class="sort_day_btn no_d activ_page_btn"><a href="">検索</a></button>
 		</p>
-		
 		<form action="" method="get">
-		<p>お客様名で検索
-			<input type="text" name="key" class="serch_name"> 
-			<button class=""><input type="submit" value="検索"></button></p>
+			<p>お客様名で検索
+				<input type="text" name="key" class="serch_name"> 
+				<button class=""><input type="submit" value="検索"></button>
+			</p>
 		</form>
-		
 		<div id="mainView" class="table-scroll">
 			<?php if(!empty($_GET["key"])): ?>
 			<table class="list c_gropup_list">
@@ -58,8 +51,8 @@ if(!empty($_GET["key"])){
 					<th class="list_c_name"><p class="line_h_40">新婦名</p></th><th class="list_p_name"><p class="line_h_40">プラン</p></th>
 				</tr>
 				<?php foreach($rows as $row): ?>
-				<?php if($row["group_id"]==$serch["c_group_id"]): ?>
-
+				<?php foreach($serchs as $serch): ;?>
+				<?php if($row["group_id"]==$serch["c_group_id"]): ;?>
 				<tr>
 					<td class="list_id_num"><p><a href="c_group_each.php?group_id=<?php echo $row["group_id"];?>" ><?php echo $row["group_id"];?></a></p></td>
 					<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
@@ -77,8 +70,8 @@ if(!empty($_GET["key"])){
 					<td class="list_c_name"><p><?php echo h($row["b_name"]); ?></p></td>
 					<td class="list_p_name"><p><?php echo h($row["p_name"]); ?></p></td>
 				</tr>
-			
 				<?php endif;?>
+				<?php endforeach; ?>
 				<?php endforeach; ?>
 			</table>
 			<?php endif; ?>
@@ -86,4 +79,3 @@ if(!empty($_GET["key"])){
 	</section>
 </main>
 <?php require_once("footer_for_staffpage.php"); ?>
-

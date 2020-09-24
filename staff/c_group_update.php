@@ -10,7 +10,6 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
-
 //選択用プラン一覧取得
 $rows= $obj->getPlan();
 //スタッフ一覧取得
@@ -47,7 +46,6 @@ if($res["d_product"]==0) {
 		<main>
 			<section>
 			<h1>顧客グループ情報編集ページ</h1>
-			
 			<div>
 			<h2>グループ情報編集</h2>
 				<form action="exec_group_update.php" method="post">
@@ -116,16 +114,10 @@ if($res["d_product"]==0) {
 								</select></p>
 							</td>
 						</tr>
-
 					</table>
-				
-				<p><input type="submit" value="グループ情報更新"></p>
+					<p><input type="submit" value="グループ情報更新"></p>
 				</form>
 			</div>
 			</section>
 		</main>
-		
 <?php include("footer_for_staffpage.php"); ?>
-
-
-

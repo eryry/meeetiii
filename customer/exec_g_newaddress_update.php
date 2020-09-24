@@ -19,8 +19,5 @@ $_SESSION["new_zip"]=$resg["new_zip"];
 $_SESSION["new_address"]=$resg["new_address"];
 
 header("Location: c_group_info.php");
-//print_r($_POST);
-
 
 ?>
-

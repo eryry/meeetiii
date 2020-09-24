@@ -287,7 +287,7 @@ class Meeting{
 	
 	//スケジュール用に、G_IDの予約日から逆算日取得
 	public function getScheduleDateByGId($c_group_id) {
-	 $sql  ="SELECT reserve_day,DATE_ADD(reserve_day, INTERVAL -2 DAY) AS before_2day, ";
+	 $sql  ="SELECT c_group_id,reserve_day,DATE_ADD(reserve_day, INTERVAL -2 DAY) AS before_2day, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 DAY) AS before_3day, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -1 WEEK) AS before_1week, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -2 WEEK) AS before_2week, ";
@@ -309,7 +309,7 @@ class Meeting{
 	 $stmt = $this->pdo->prepare($sql);
 	 $stmt ->bindValue(":s_id",$s_id,PDO::PARAM_STR);
 	 $stmt ->execute();
-	 $rows =  $stmt->fetch(PDO::FETCH_ASSOC);
+	 $rows =  $stmt->fetchAll(PDO::FETCH_ASSOC);
 	 return $rows;
 	}
 	

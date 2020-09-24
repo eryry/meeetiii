@@ -7,7 +7,6 @@ if(empty($_SESSION["s_id"])) {
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
-
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
@@ -218,7 +217,6 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main>
 			<h1>お客様個別ページ</h1>
 			<section>
@@ -233,7 +231,6 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 			<section>
 				<h2>グループ登録情報</h2><br>
 				<button class="update_link"><a href="c_group_update.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">顧客グループ情報更新ページへ</a></button>
-				
 				<table class="list c_group_each_table c_top">
 					<tr>
 						<th><p>新居</p></th>
@@ -261,11 +258,9 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 					</tr>
 				</table>
 			</section>
-			
 			<section>
 				<h2>進捗状況</h2><p><span class="limit_over"></p></span><br>
 				<button class="update_link"><a href="c_group_each_mane.php?group_id=<?php echo intVal($_SESSION["group_id"]);?>">マネジメント（スケジュール）ページへ</a></button>
-				
 				<table class="list schedule schedule_s">
 					<tr>
 						<th class="check"><p>未・済</p></th><th class="todo"><p>管理項目</p></th><th class="limit"><p>期日</p></th>
@@ -299,7 +294,6 @@ $a2me =  date('Y年n月j日', strtotime($s_day["after_2month"]))."(".$a2my.")";
 						<td class="check"><p><?php echo $estimate; ?></p></td><td class="todo"><p>見積り書発行</p></td><td class="limit"><p>ご契約時にお渡し</p></td>
 					</tr>
 				</table>
-				
 			</section>
 		</main>
 <?php require_once("footer_for_staffpage.php"); ?>

@@ -13,11 +13,7 @@ $rows =$obj->getPlan();
 $rows2=$obj->getStaff();
 
 $err_msg_id="";
-/*
-if(){
-	$err_msg_id="すでに登録済みのNoです。別のNoを入力ください。";
-}
-*/
+
 if(!empty($_SESSION["err_msg_cgid"])){
 	$err_msg_cgid=$_SESSION["err_msg_cgid"];
 	//print_r($_SESSION["err_msg_cgid"]);
@@ -35,16 +31,19 @@ if(!empty($_SESSION["err_msg_rd"])){
 }else{
 	$err_msg_rd="";
 }
-
+if(!empty($_SESSION["err_msg_check_cgid"])){
+	$err_msg_check_cgid=$_SESSION["err_msg_check_cgid"];
+}else{
+	$err_msg_check_cgid="";
+}
 unset($_SESSION["err_msg_cgid"]);
 unset($_SESSION["err_msg_pid"]);
 unset($_SESSION["err_msg_rd"]);
-
+unset($_SESSION["err_msg_check_cgid"]);
 
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main>
 			<h1>新規顧客グループ登録</h1>
 			<section>
@@ -54,7 +53,7 @@ unset($_SESSION["err_msg_rd"]);
 						<tr>
 							<th><p><label for="c_group_id">グループID</label><span class="required_color">必須</span></p></th>
 							<td><input type="number" name="c_group_id" id="c_group_id" pattern="^[0-9]+$" placeholder="半角数字/すでに登録済みのNoは登録不可">
-							<span class="red"><?php echo $err_msg_cgid; ?></span>
+							<span class="red"><?php echo $err_msg_cgid; ?><?php echo 	$err_msg_check_cgid; ?></span>
 							</td>
 						</tr>
 						<tr>
@@ -118,10 +117,8 @@ unset($_SESSION["err_msg_rd"]);
 							</td>
 						</tr>
 						</table>
-				
 				<p><input type="submit" value="新規グループ登録"></p>
 				</form>
-			
 			</section>
 		</main>
 <?php require_once("footer_for_staffpage.php"); ?>

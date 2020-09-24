@@ -11,10 +11,8 @@ if(empty($_GET["p_id"])) {
 function h($str) {
 	return htmlspecialchars($str,ENT_QUOTES);
 }
-
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
-
 
 if(empty($_GET["p_id"])) {
 	$p_id="";
@@ -30,7 +28,6 @@ if(empty($_GET["p_id"])) {
 ?>
 
 <?php require_once("header_for_staff.php"); ?>
-
 		<main class="plan_update_main">
 			<section class="plan_update_section">
 			<h2>プラン編集ページ</h2>
@@ -73,6 +70,4 @@ if(empty($_GET["p_id"])) {
 				</form>
 			</section>
 		</main>
-		
 <?php include("footer_for_staffpage.php"); ?>
-
