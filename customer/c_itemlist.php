@@ -12,13 +12,13 @@ $obj= new Meeting();
 
 $list_data=$obj->getItemListByGId($_SESSION["c_group_id"]);
 
-//予約日表示用
+// 予約日表示用
 $reserve_day = $_SESSION["reserve_day"];
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
-//予約プラン名表示用
+// 予約プラン名表示用
 $r = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
 ?>

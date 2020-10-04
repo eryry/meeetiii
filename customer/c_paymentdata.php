@@ -10,7 +10,7 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj= new Meeting();
 
-//スタッフがスタッフログインして（お客様ログインなしで）お客様ページ見れるための準備。
+// スタッフがスタッフログインして（お客様ログインなしで）お客様ページ見れるための準備。
 if(!empty($_SESSION["s_id"])) $_SESSION["c_group_id"]=$_GET["group_id"];
 
 $resg = $obj->getCustomerGrouopByGId($_SESSION["c_group_id"]);
@@ -24,7 +24,7 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
 $c_data = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
-//ログイン中に情報更新があった場合の為に、SESSIONに再代入
+// ログイン中に情報更新があった場合の為に、SESSIONに再代入
 $_SESSION["estimate"]=$c_data["estimate"];
 $_SESSION["invoce"]=$c_data["invoce"];
 ?>

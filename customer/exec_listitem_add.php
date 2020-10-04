@@ -13,8 +13,8 @@ $obj = new Meeting();
 
 $obj->listItemAdd($_POST["c_group_id"],$_POST["list_item"]);
 header("Location: c_itemlist.php?ok");
-//print_r($_SESSION);
-//print_r($_POST);
+// print_r($_SESSION);
+// print_r($_POST);
 
 
 ?>

@@ -11,10 +11,10 @@ require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
 
-//GETのグループIDをセッションに格納
+// GETのグループIDをセッションに格納
 if(!empty($_GET["group_id"])) $_SESSION["group_id"]=$_GET["group_id"];
 
-//グループに登録されている予約情報をセッションに格納
+// グループに登録されている予約情報をセッションに格納
 $resg = $obj->getCustomerGrouopByGId($_SESSION["group_id"]);
 $_SESSION["p_id"]        =$resg["p_id"];
 $_SESSION["reserve_day"] =$resg["reserve_day"];
@@ -36,8 +36,8 @@ $_SESSION["place_fixed"] =$resg["place_fixed"];
 if(!empty($resg["s_id"])){
 	$staffData=$obj->getStaffById($resg["s_id"]);
 }
-//期限確認用(overならover/over_s クラスつける）
-//overときに、$limit_over_count +1する
+// 期限確認用(overならover/over_s クラスつける）
+// overときに、$limit_over_count +1する
 $limit_over_count=0;
 $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
 $today = date('y-m-d');
@@ -96,7 +96,7 @@ if($_SESSION["estimate"]==0){
 	$limit_estimate="";
 }
 
-//$limit_overが0の時は0じゃないとき、1をデータベースに登録する
+// $limit_overが0の時は0じゃないとき、1をデータベースに登録する
 if($limit_over_count==0){
 	$limit_over=0;
 }else{
@@ -104,7 +104,7 @@ if($limit_over_count==0){
 }
 $obj->updateLimitOver($_SESSION["group_id"],$limit_over);
 
-//未・完了表示
+// 未・完了表示
 if($_SESSION["estimate"]==0) {
 	$estimate="☐未発行";
 }else {
@@ -156,7 +156,7 @@ $resp=$obj->getPlanById($_SESSION["p_id"]);
 $_SESSION["p_name"]=$resp["p_name"];
 $_SESSION["p_wear"]=$resp["p_wear"];
 
-//入力がない場合も想定した新居表示設定
+// 入力がない場合も想定した新居表示設定
 if(empty($_SESSION["new_zip"])) {
 	$new_zip="未定 又は 未入力";
 }else {
@@ -168,24 +168,24 @@ if(empty($_SESSION["new_address"])) {
 	$new_address=$_SESSION["new_address"];
 }
 
-//GIDから新郎、新婦の情報も取得
+// GIDから新郎、新婦の情報も取得
 $c_data = $obj->getGroomBrideGrouopByGId($_SESSION["group_id"]);
 
-//カスタマー情報をC_IDから取得 新郎
+// カスタマー情報をC_IDから取得 新郎
 $g_data=$obj->getCustomerById($c_data["g_id"]);
-//カスタマー情報をC_IDから取得 新婦
+// カスタマー情報をC_IDから取得 新婦
 $b_data=$obj->getCustomerById($c_data["b_id"]);
 
-//撮影予約日の表示（曜日も日本語で）
+// 撮影予約日の表示（曜日も日本語で）
 $reserve_day = $_SESSION["reserve_day"];
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
-//時間表示
+// 時間表示
 $time=date('H:i',strtotime($_SESSION["group_id"]));
 
-//予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
+// 予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
 $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
 $b2d = date('w', strtotime($s_day["before_2day"]));
 $b3d = date('w', strtotime($s_day["before_3day"]));

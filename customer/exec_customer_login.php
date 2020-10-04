@@ -13,13 +13,13 @@ if(empty($_POST["c_id"])||empty($_POST["c_pass"])) {
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
-//ログイン情報から、お客様個人の情報をセッションデータに格納
+// ログイン情報から、お客様個人の情報をセッションデータに格納
 $res = $obj->customerLogin($_POST["c_id"],$_POST["c_pass"]);
 $_SESSION["c_name"]=$res["c_name"];
 $_SESSION["c_id"]  =$res["c_id"];
 $_SESSION["c_group_id"]  =$res["c_group_id"];
 
-//ログインしたお客様個人情報のグループ情報から、グループに登録されている予約情報をセッションに格納
+// ログインしたお客様個人情報のグループ情報から、グループに登録されている予約情報をセッションに格納
 $resg = $obj->getCustomerGrouopByGId($_SESSION["c_group_id"]);
 $_SESSION["reserve_day"] =$resg["reserve_day"];
 $_SESSION["reserve_time"]=$resg["reserve_time"];
@@ -37,13 +37,13 @@ $_SESSION["cos_fitting"] =$resg["cos_fitting"];
 $_SESSION["place_fixed"] =$resg["place_fixed"];
 $_SESSION["limit_over"]  =$resg["limit_over"];
 
-//グループのp_id情報からプラン名、プラン衣装取ってきてセッションデータに格納
+// グループのp_id情報からプラン名、プラン衣装取ってきてセッションデータに格納
 $resp=$obj->getPlanById($_SESSION["p_id"]);
 $_SESSION["p_name"]=$resp["p_name"];
 $_SESSION["p_wear"]=$resp["p_wear"];
 
 $reserve_day = $_SESSION["reserve_day"];
-//撮影予約日の表示（曜日も日本語で）
+// 撮影予約日の表示（曜日も日本語で）
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
@@ -52,7 +52,7 @@ $_SESSION["rd"] =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
 header("Location: c_group_top.php");
 
-//print_r($_POST);
-//print_r($_SESSION);
+// print_r($_POST);
+// print_r($_SESSION);
 ?>
 

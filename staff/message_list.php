@@ -11,7 +11,7 @@ require_once("../class/meeting.class.php");
 $obj =new Meeting();
 $msgs =$obj->getMessage();
 
-//エラー表示
+// エラー表示
 if(!empty($_SESSION["err_msg_mid"])){
 	$err_msg_mid=$_SESSION["err_msg_mid"];
 }else{

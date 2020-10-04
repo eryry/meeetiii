@@ -16,7 +16,7 @@ $err_msg_id="";
 
 if(!empty($_SESSION["err_msg_cgid"])){
 	$err_msg_cgid=$_SESSION["err_msg_cgid"];
-	//print_r($_SESSION["err_msg_cgid"]);
+	// print_r($_SESSION["err_msg_cgid"]);
 }else{
 	$err_msg_cgid="";
 }
@@ -27,7 +27,7 @@ if(!empty($_SESSION["err_msg_pid"])){
 }
 if(!empty($_SESSION["err_msg_rd"])){
 	$err_msg_rd=$_SESSION["err_msg_rd"];
-	//print_r($_SESSION["err_msg_rd"]);
+	// print_r($_SESSION["err_msg_rd"]);
 }else{
 	$err_msg_rd="";
 }

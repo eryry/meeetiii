@@ -8,7 +8,7 @@ if(empty($_SESSION["s_id"])) {
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
-//ファイル送信されたら、$invoceの値は1．なければ0(初期値0にしている）
+// ファイル送信されたら、$invoceの値は1．なければ0(初期値0にしている）
 if(!empty($_FILES["invoce"])) {
 	$estimate=1;
 }else{

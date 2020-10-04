@@ -10,7 +10,7 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
-//担当者表示用
+// 担当者表示用
 $resg = $obj->getCustomerGrouopByGId($_SESSION["group_id"]);
 if(!empty($resg["s_id"])){
 	$staffData=$obj->getStaffById($resg["s_id"]);
@@ -18,7 +18,7 @@ if(!empty($resg["s_id"])){
 
 $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["group_id"]);
 
-//期限確認用(overならover/over_s クラスつける）
+// 期限確認用(overならover/over_s クラスつける）
 $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
 $today = date('y-m-d');
 $today=strtotime($today);
@@ -67,9 +67,9 @@ if($_SESSION["estimate"]==0){
 	$limit_estimate="";
 }
 
-//グループ情報取得
+// グループ情報取得
 $g_data=$obj->getCustomerGrouopByGId($_SESSION["group_id"]);
-//未・完了表示
+// 未・完了表示
 if($_SESSION["estimate"]==0) {
 	$estimate="☐ 未発行";
 }else {
@@ -116,16 +116,16 @@ if($_SESSION["place_fixed"]==0) {
 	$place_fixed="☑ 決定済";
 }
 
-//予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
+// 予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
 $s_day=$obj->getScheduleDateByGId($_SESSION["group_id"]);
 
-//撮影予約日の表示（曜日も日本語で）
+// 撮影予約日の表示（曜日も日本語で）
 $reserve_day = $_SESSION["reserve_day"];
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
-//時間表示
+// 時間表示
 $time=date('H:i',strtotime($_SESSION["group_id"]));
 
 $b2d = date('w', strtotime($s_day["before_2day"]));

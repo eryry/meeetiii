@@ -45,7 +45,7 @@ $msgs=$obj->getMessage();
 							<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
 							<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-file-alt"></i></a></p></td>
 							<td class="list_r_day"><p><?php 
-								//撮影予約日の表示（曜日も日本語で）
+								// 撮影予約日の表示（曜日も日本語で）
 								$reserve_day = $row["reserve_day"];
 								$week = ["日","月","火","水","木","金","土"];
 								$hi = date('w', strtotime($reserve_day));
@@ -67,7 +67,7 @@ $msgs=$obj->getMessage();
 								}else if($b_data["submit_member_id"]== $c_data["b_id"]){
 									echo h($c_data["b_name"]);
 								}else{
-									//最新投稿者名がスタッフだった場合用にスタッフ情報取得
+									// 最新投稿者名がスタッフだった場合用にスタッフ情報取得
 									$s_id=$b_data["submit_member_id"];
 									$staff_data=$obj->getStaffById($s_id);
 									echo "スタッフ：".h($staff_data["s_name"]);

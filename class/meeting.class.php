@@ -11,7 +11,7 @@ class Meeting{
 		$this->pdo = new PDO($dsn,$dbuser,$dbpass);
 	}
 
-	//プラン登録
+	// プラン登録
 	public function planAdd($p_name,$p_wear){
 		$sql = "INSERT INTO plans(p_name,p_wear) VALUES(:p_name,:p_wear)";
 		$stmt = $this->pdo->prepare($sql);
@@ -20,7 +20,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//スタッフ登録
+	// スタッフ登録
 	public function staffAdd($s_id,$s_name,$s_pass,$s_mail,$role) {
 		$sql="INSERT INTO staff(s_id,s_name,s_pass,s_mail,role) VALUES(:s_id,:s_name,:s_pass,:s_mail,:role)";
 		$stmt = $this->pdo->prepare($sql);
@@ -32,7 +32,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//メッセージ登録
+	// メッセージ登録
 	public function msgAdd($m_id,$m_body){
 		$sql = "INSERT INTO messages(m_id,m_body) VALUES(:m_id,:m_body)";
 		$stmt = $this->pdo->prepare($sql);
@@ -41,7 +41,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//カスタマーグループ登録
+	// カスタマーグループ登録
 	public function customerGroupAdd($c_group_id,$p_id,$reserve_day,$reserve_time,$new_zip,$new_address,$s_id) {
 		$sql  ="INSERT INTO c_groups(c_group_id,p_id,reserve_day,reserve_time,new_zip,new_address,s_id) ";
 		$sql .="VALUES(:c_group_id,:p_id,:reserve_day,:reserve_time,:new_zip,:new_address,:s_id)";
@@ -56,7 +56,7 @@ class Meeting{
 		$stmt->execute();
 	}	
 	
-	//カスタマー登録
+	// カスタマー登録
 	public function customerAdd($c_group_id,$c_id,$c_name,$c_pass,$c_tell,$c_mail,$c_zip,$c_address,$c_gender) {
 		$sql  ="INSERT INTO customers(c_group_id,c_id,c_name,c_pass,c_tell,c_mail,c_zip,c_address,c_gender) ";
 		$sql .="VALUES(:c_group_id,:c_id,:c_name,:c_pass,:c_tell,:c_mail,:c_zip,:c_address,:c_gender)";
@@ -73,7 +73,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//お客様ページリストアイテム登録
+	// お客様ページリストアイテム登録
 	public function listItemAdd($c_group_id,$list_item){
 		$sql = "INSERT INTO list(c_group_id,list_item) VALUES(:c_group_id,:list_item)";
 		$stmt = $this->pdo->prepare($sql);
@@ -82,7 +82,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//掲示板投稿機能(未完成　画像投稿なしでも 1が入っていてしまう。）
+	// 掲示板投稿機能(未完成　画像投稿なしでも 1が入っていてしまう。）
 	public function submitBoard($c_group_id,$submit_member_id,$body,$board_photo){
 		$sql  = "INSERT INTO board(c_group_id,submit_member_id,body,board_photo) ";
 		$sql .= "VALUES(:c_group_id,:submit_member_id,:body,:board_photo)";
@@ -94,7 +94,7 @@ class Meeting{
 		$stmt ->execute();
 	}
 	
-	//掲示板投稿一覧をc_group_idにあわせて表示するこれは表示できるけど、スタッフ投稿が表示されない
+	// 掲示板投稿一覧をc_group_idにあわせて表示するこれは表示できるけど、スタッフ投稿が表示されない
 	public function getBoardDataByGId($c_group_id) {
 		$sql  = "SELECT b_id,body,created,submit_member_id,board_photo ";
 		$sql .= "FROM board ";
@@ -106,7 +106,7 @@ class Meeting{
 		return  $row;
 	}
 	
-	//アイテムリストお客様投稿分グループIDで取ってくる
+	// アイテムリストお客様投稿分グループIDで取ってくる
 	public function getItemListByGId($c_group_id) {
 		$sql ="SELECT * FROM list WHERE c_group_id=:c_group_id";
 		$stmt=$this->pdo->prepare($sql);
@@ -116,7 +116,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//スタッフログイン
+	// スタッフログイン
 	public function staffLogin($s_id,$s_pass){
 		$sql="SELECT * FROM staff WHERE s_id=:s_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -131,7 +131,7 @@ class Meeting{
 		}
 	}
 	
-	//カスタマーログイン
+	// カスタマーログイン
 	public function customerLogin($c_id,$c_pass){
 		$sql="SELECT * FROM customers WHERE c_id=:c_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -146,7 +146,7 @@ class Meeting{
 		}
 	}
 	
-	//カスタマー情報をC_IDから取得
+	// カスタマー情報をC_IDから取得
 	public function getCustomerById($c_id){
 		$sql = "SELECT * FROM customers WHERE c_id=:c_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -156,7 +156,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//スタッフ情報をS_IDから取得
+	// スタッフ情報をS_IDから取得
 	public function getStaffById($s_id){
 		$sql = "SELECT * FROM staff WHERE s_id=:s_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -165,21 +165,21 @@ class Meeting{
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		return $row;
 	}
-	//スタッフ情報取得
+	// スタッフ情報取得
 	public function getStaff() {
 		$sql="SELECT * FROM staff";
 		$rs = $this->pdo->query($sql);
 		return $rs;
 	}
 
-	//メッセージ情報取得
+	// メッセージ情報取得
 	public function getMessage() {
 		$sql="SELECT * FROM messages";
 		$rs = $this->pdo->query($sql);
 		$row = $rs->fetchAll(PDO::FETCH_ASSOC);
 		return $row;
 	}
-	//メッセージ情報をm_idで取得
+	// メッセージ情報をm_idで取得
 	public function getMessageByMId($m_id) {
 		$sql="SELECT m_body FROM messages WHERE m_id=:m_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -189,17 +189,17 @@ class Meeting{
 		return $row;
 	}
 	
-	//カスタマー情報更新
+	// カスタマー情報更新
 	
 	
-	//カスタマーグループ取得(顧客登録時のグループNo表示用）
+	// カスタマーグループ取得(顧客登録時のグループNo表示用）
 	public function getCustomerGroup() {
 		$sql="SELECT * FROM c_groups";
 		$rs = $this->pdo->query($sql);
 		return $rs;
 	}
 	
-	//ログインした顧客ごとのグループIDからグループ情報取得
+	// ログインした顧客ごとのグループIDからグループ情報取得
 	public function getCustomerGrouopByGId($c_group_id) {
 		$sql = "SELECT * FROM c_groups,customers ";
 		$sql .="WHERE c_groups.c_group_id=customers.c_group_id ";
@@ -211,7 +211,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//顧客ごとのグループIDから、新郎・新婦の各情報とグループ情報をまとめて取得
+	// 顧客ごとのグループIDから、新郎・新婦の各情報とグループ情報をまとめて取得
 	public function getGroomBrideGrouopByGId($c_group_id) {
 		$sql  ="SELECT groom.c_name AS g_name,bride.c_name AS b_name,groom.c_id AS g_id,bride.c_id AS b_id, ";
 		$sql .="groom.c_myphoto AS g_myphoto,bride.c_myphoto AS b_myphoto, ";
@@ -229,7 +229,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//新郎・新婦の各情報とグループ情報をまとめて取得して予約日順表示
+	// 新郎・新婦の各情報とグループ情報をまとめて取得して予約日順表示
 	public function getGroomBrideGrouopAllDate() {
 		$sql  ="SELECT groom.c_name AS g_name,bride.c_name AS b_name, ";
 		$sql .="reserve_day,p_name,c_groups.c_group_id AS group_id,d_product,payment,limit_over ";
@@ -243,7 +243,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//新郎・新婦の各情報とグループ情報をまとめて取得して予約日順表示 JSON化
+	// 新郎・新婦の各情報とグループ情報をまとめて取得して予約日順表示 JSON化
 	public function getGroomBrideGrouopAllDateJSON() {
 		$sql  ="SELECT groom.c_name AS g_name,bride.c_name AS b_name,reserve_day,p_name,c_groups.c_group_id AS group_id ";
 		$sql .="FROM customers AS groom,customers AS bride,c_groups,plans ";
@@ -258,7 +258,7 @@ class Meeting{
 		return $json;
 	}
 	
-	//お客様情報一覧情報取得
+	// お客様情報一覧情報取得
 	public function getCustomerAllData() {
 		$sql  = "SELECT customers.c_group_id,reserve_day,p_name,c_name,c_gender ";
 		$sql .= "FROM c_groups,plans,customers ";
@@ -268,14 +268,14 @@ class Meeting{
 		return $res;
 	}
 	
-	//プラン取得
+	// プラン取得
 	public function getPlan() {
 		$sql="SELECT p_id,p_name,p_wear FROM plans";
 		$rs = $this->pdo->query($sql);
 		return $rs;
 	}
 	
-	//プランIDからプラン情報取得
+	// プランIDからプラン情報取得
 	public function getPlanById($p_id) {
 		$sql="SELECT p_id,p_name,p_wear FROM plans WHERE p_id=:p_id";
 		$stmt= $this->pdo->prepare($sql);
@@ -285,7 +285,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//スケジュール用に、G_IDの予約日から逆算日取得
+	// スケジュール用に、G_IDの予約日から逆算日取得
 	public function getScheduleDateByGId($c_group_id) {
 	 $sql  ="SELECT c_group_id,reserve_day,DATE_ADD(reserve_day, INTERVAL -2 DAY) AS before_2day, ";
 	 $sql .="DATE_ADD(reserve_day, INTERVAL -3 DAY) AS before_3day, ";
@@ -303,7 +303,7 @@ class Meeting{
 	 return $row;
 	}
 	
-	//スタッフが自分の担当のお客様で期限切れがあるGIDを取得
+	// スタッフが自分の担当のお客様で期限切れがあるGIDを取得
 	public function getLimitOverBySId($s_id){
 	 $sql  ="SELECT c_group_id FROM c_groups WHERE s_id=:s_id AND limit_over=1";
 	 $stmt = $this->pdo->prepare($sql);
@@ -313,7 +313,7 @@ class Meeting{
 	 return $rows;
 	}
 	
-	//お客様情報を、名前検索で取得
+	// お客様情報を、名前検索で取得
 	public function getCustomerDataByKey($key){
 		$sql  ="SELECT c_name,customers.c_group_id FROM c_groups,customers ";
 		$sql .="WHERE c_groups.c_group_id=customers.c_group_id AND c_name LIKE :key ORDER BY reserve_day DESC";
@@ -324,7 +324,7 @@ class Meeting{
 		return $rows;
 	}
 	
-	//プラン情報更新UPDATE
+	// プラン情報更新UPDATE
 	public function planUpdate($p_id,$p_name,$p_wear){ 
 		$sql="UPDATE plans SET p_name=:p_name,p_wear=:p_wear WHERE p_id=:p_id"; 
 		$stmt=$this->pdo->prepare($sql);
@@ -333,7 +333,8 @@ class Meeting{
 		$stmt->bindValue(":p_id",$p_id,PDO::PARAM_INT);
 		$stmt->execute();
 	}
-	//message情報更新UPDATE
+	
+	// message情報更新UPDATE
 	public function msgUpdate($m_id,$m_body){ 
 		$sql="UPDATE messages SET m_body=:m_body WHERE m_id=:m_id"; 
 		$stmt=$this->pdo->prepare($sql);
@@ -342,7 +343,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//staff情報更新UPDATE
+	// staff情報更新UPDATE
 	public function staffUpdate($s_id,$s_name,$s_pass,$s_mail,$role){ 
 		$sql="UPDATE staff SET s_name=:s_name,s_pass=:s_pass,s_mail=:s_mail,role=:role WHERE s_id=:s_id"; 
 		$stmt=$this->pdo->prepare($sql);
@@ -354,7 +355,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//カスタマーグループ情報更新
+	// カスタマーグループ情報更新
 	public function customerGroupUpdate($c_group_id,$p_id,$reserve_day,$reserve_time,$new_zip,$new_address,$s_id) {
 		$sql  ="UPDATE c_groups SET p_id=:p_id,reserve_day=:reserve_day,reserve_time=:reserve_time, ";
 		$sql .="new_zip=:new_zip,new_address=:new_address,s_id=:s_id ";
@@ -370,7 +371,7 @@ class Meeting{
 		$stmt->execute();
 	}	
 	
-	//マネジメント情報登録（グループIDの情報を踏まえての更新になる。）
+	// マネジメント情報登録（グループIDの情報を踏まえての更新になる。）
 	public function groupManageDataUpdate($c_group_id,$d_product,$before2days,$payment,$make_reh,$cos_fixed,$cos_fitting,$place_fixed){
 		$sql  ="UPDATE c_groups SET d_product=:d_product,before2days=:before2days,payment=:payment, ";
 		$sql .="make_reh=:make_reh,cos_fixed=:cos_fixed,cos_fitting=:cos_fitting,place_fixed=:place_fixed ";
@@ -387,7 +388,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//グループの期限過ぎ（limit_over）情報をUPDATE
+	// グループの期限過ぎ（limit_over）情報をUPDATE
 	public function updateLimitOver($c_group_id,$limit_over){
 		$sql ="UPDATE c_groups SET limit_over=:limit_over WHERE c_group_id=:c_group_id";
 		$stmt= $this->pdo->prepare($sql);
@@ -396,7 +397,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//顧客G新居情報更新(お客様ページでお客様が操作可能）
+	// 顧客G新居情報更新(お客様ページでお客様が操作可能）
 	public function groupNewaddressUpdate($c_group_id,$new_zip,$new_address) {
 		$sql  ="UPDATE c_groups SET new_zip=:new_zip,new_address=:new_address ";
 		$sql .="WHERE c_group_id=:c_group_id";
@@ -407,7 +408,7 @@ class Meeting{
 		$stmt->execute();
 	}
 	
-	//顧客情報更新(お客様ページでお客様が操作可能）
+	// 顧客情報更新(お客様ページでお客様が操作可能）
 	public function customerUpdate($c_id,$c_name,$c_pass,$c_mail,$c_tell,$c_zip,$c_address,$c_gender){ 
 		$sql  ="UPDATE customers SET c_name=:c_name,c_pass=:c_pass,c_mail=:c_mail, ";
 		$sql .="c_tell=:c_tell,c_zip=:c_zip,c_address=:c_address,c_gender=:c_gender ";
@@ -424,7 +425,7 @@ class Meeting{
 		$stmt->execute();
 	}
 
-	//顧客写真投稿 写真に保存先と保存名(g_id or b_id　＋.jpg)を指定する
+	// 顧客写真投稿 写真に保存先と保存名(g_id or b_id　＋.jpg)を指定する
 	public function saveImage($c_id,$c_myphoto) {
 		$sql  = "UPDATE customers SET c_myphoto=:c_myphoto WHERE c_id=:c_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -434,11 +435,11 @@ class Meeting{
 		move_uploaded_file($_FILES["c_myphoto"]["tmp_name"],"../image/upload/c_myphoto/".$c_id.".jpg");
 	}
 	
-	//掲示板写真投稿 写真に保存先と保存名(b_id or created　＋.jpg)を指定する
+	// 掲示板写真投稿 写真に保存先と保存名(b_id or created　＋.jpg)を指定する
 	public function saveBoardImage($b_id) {
 		move_uploaded_file($_FILES["board_photo"]["tmp_name"],"../image/upload/board_photo/".$b_id.".jpg");
 	}
-	//掲示板投稿最新投稿日の表示
+	// 掲示板投稿最新投稿日の表示
 	public function getBoardNewCreatedDate($c_group_id){
 		$sql ="SELECT * FROM board WHERE c_group_id=:c_group_id ORDER BY created DESC LIMIT 1";
 		$stmt = $this->pdo->prepare($sql);
@@ -448,7 +449,7 @@ class Meeting{
 		return $row;
 	}
 	
-	//見積もり投稿 データに保存先と保存名(c_group_id　＋.jpg)を指定する＆グループのestimateの値を1に書き換える
+	// 見積もり投稿 データに保存先と保存名(c_group_id　＋.jpg)を指定する＆グループのestimateの値を1に書き換える
 	public function submitEstimate($c_group_id,$estimate) {
 		$sql  = "UPDATE c_groups SET estimate=:estimate WHERE c_group_id=:c_group_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -467,7 +468,7 @@ class Meeting{
 		move_uploaded_file($_FILES["invoce"]["tmp_name"],"../image/upload/invoce/".$c_group_id."_invoce.jpg");
 	}
 
-	//撮影当日までの日数表示するための、日付差を求める。
+	// 撮影当日までの日数表示するための、日付差を求める。
 	public function dayDiff($date1, $date2) {
 		// 日付をUNIXタイムスタンプに変換
 		$timestamp1 = strtotime($date1);
@@ -479,7 +480,7 @@ class Meeting{
 	  return $daydiff;
 	}
 	
-	//アイテムリストから投稿済みリスト削除機能
+	// アイテムリストから投稿済みリスト削除機能
 	public function listDelete($list_id) {
 		$sql ="DELETE FROM list WHERE list_id=:list_id";
 		$stmt = $this->pdo->prepare($sql);

@@ -41,7 +41,7 @@ if(empty($_POST["update"])){
 	$obj->msgUpdate($m_id,$m_body);
 }
 header("Location:message_list.php");
-//print_r($_POST);
+// print_r($_POST);
 
 
 ?>

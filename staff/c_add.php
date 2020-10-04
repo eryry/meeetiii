@@ -33,6 +33,8 @@ if(!empty($_SESSION["err_msg_cpass"])){
 }else{
 	$err_msg_cpass="";
 }
+
+
 if(!empty($_SESSION["err_msg_check_cid"])){
 	$err_msg_check_cid=$_SESSION["err_msg_check_cid"];
 }else{

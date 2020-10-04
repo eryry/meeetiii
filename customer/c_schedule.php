@@ -13,7 +13,7 @@ $obj= new Meeting();
 $resg = $obj->getCustomerGrouopByGId($_SESSION["c_group_id"]);
 $_SESSION["reserve_day"] =$resg["reserve_day"];
 
-//予約日表示用
+// 予約日表示用
 $reserve_day = $_SESSION["reserve_day"];
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
@@ -22,7 +22,7 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
 $c_data = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
-//予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
+// 予約日から、2・3日前、2週間前、3週間前、1か月前の日付取得
 $s_day=$obj->getScheduleDateByGId($_SESSION["c_group_id"]);
 $b2d = date('w', strtotime($s_day["before_2day"]));
 $b3d = date('w', strtotime($s_day["before_3day"]));
@@ -43,7 +43,7 @@ $b2we =  date('Y年n月j日', strtotime($s_day["before_2week"]))."(".$b2wy.")";
 $b3we =  date('Y年n月j日', strtotime($s_day["before_3week"]))."(".$b3wy.")";
 $b1me =  date('Y年n月j日', strtotime($s_day["before_1month"]))."(".$b1my.")";
 
-//期限確認用(overならover/over_s クラスつける）
+// 期限確認用(overならover/over_s クラスつける）
 $s_day=$obj->getScheduleDateByGId($_SESSION["c_group_id"]);
 $today = date('y-m-d');
 $today=strtotime($today);
@@ -93,7 +93,7 @@ if($_SESSION["estimate"]==0){
 	$limit_estimate="";
 }
 
-//未・完了表示
+// 未・完了表示
 if($_SESSION["estimate"]==0) {
 	$estimate="☐ 未発行";
 }else {

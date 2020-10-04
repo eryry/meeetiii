@@ -1,0 +1,17 @@
+LOGIN DATA
+
+お客様
+sample1
+	ID azusa
+	PW azusa
+samle2
+	ID nobita
+	PW nobita
+	
+スタッフ
+	ID yasuda
+	PW yasuyasu
+	
+管理者
+	ID katoeri
+	PW katokato

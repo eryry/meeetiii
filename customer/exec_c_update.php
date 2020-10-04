@@ -53,7 +53,7 @@ $files=$_POST["c_myphoto"];
 
 $obj->customerUpdate($_SESSION["c_id"],$c_name,$c_pass,$c_mail,$c_tell,$c_zip,$c_address,$c_gender);
 
-//ファイル送信されたら、$c_myphotoの値は1にしてUPDATEする
+// ファイル送信されたら、$c_myphotoの値は1にしてUPDATEする
 if(!empty($_FILES["c_myphoto"]["tmp_name"])) {
 	$c_myphoto=1;
 	$obj->saveImage($_SESSION["c_id"],$c_myphoto);

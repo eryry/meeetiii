@@ -16,7 +16,7 @@ $obj->getCustomerById($_SESSION["c_id"]);
 $c_id = $_SESSION["c_id"];
 $row  = $obj->getCustomerById($c_id);
 
-//Gに登録されている新居データ入力欄に表示するための、Gデータ情報取得
+// Gに登録されている新居データ入力欄に表示するための、Gデータ情報取得
 $getgdata = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 $new_zip=$getgdata["new_zip"];
 $new_address=$getgdata["new_address"];
@@ -27,7 +27,7 @@ $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
-//print_r($row);
+// print_r($row);
 
 ?>
 

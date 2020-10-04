@@ -11,7 +11,7 @@ require_once("../class/meeting.class.php");
 $obj =new Meeting();
 $staffs=$obj->getStaff();
 
-//追加時のエラーメッセージ
+// 追加時のエラーメッセージ
 if(!empty($_SESSION["err_msg_sid"])){
 	$err_msg_sid=$_SESSION["err_msg_sid"];
 }else{

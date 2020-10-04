@@ -10,37 +10,37 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj= new Meeting();
 
-//撮影当日までの日数表示用
+// 撮影当日までの日数表示用
 $today = date('y-m-d');
 $day= $obj->dayDiff($today,$_SESSION["reserve_day"]);
 $reserve_day = $_SESSION["reserve_day"];
-//撮影予約日の表示（曜日も日本語で）
+// 撮影予約日の表示（曜日も日本語で）
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
-//見積もり・請求書発行確認用
+// 見積もり・請求書発行確認用
 $c_data = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 if($_SESSION["estimate"]==0) {$est_sub="なし";} else {$est_sub="あり";}
 if($_SESSION["invoce"]==0)   {$inv_sub="なし";} else {$inv_sub="あり";}
 
 $b_data = $obj->getBoardNewCreatedDate($_SESSION["c_group_id"]);
 
-//schedule期限オーバー確認
+// schedule期限オーバー確認
 if($_SESSION["limit_over"]==0){
 	$limit_over_message="なし";
 }else{
 	$limit_over_message="あり";
 }
-//echo $day;
+// echo $day;
 
-//日にち指定のメッセージ表示用
+// 日にち指定のメッセージ表示用
 $all_msg=$obj->getMessage();
 foreach($all_msg as $val){
 if($day==$val["m_id"]){
  $msg=$obj->getMessageByMId($val["m_id"]);
- //echo $msg["m_body"];
+ // echo $msg["m_body"];
 }};
 
 ?>
@@ -114,7 +114,7 @@ if($day==$val["m_id"]){
 							}else if($b_data["submit_member_id"]== $c_data["b_id"]){
 								echo h($c_data["b_name"]);
 							}else{
-								//最新投稿者名がスタッフだった場合用にスタッフ情報取得
+								// 最新投稿者名がスタッフだった場合用にスタッフ情報取得
 								$s_id=$b_data["submit_member_id"];
 								$staff_data=$obj->getStaffById($s_id);
 								echo "スタッフ：".h($staff_data["s_name"]);

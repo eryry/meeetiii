@@ -11,7 +11,7 @@ $obj = new Meeting();
 
 $obj->listDelete($_POST["list_id"]);
 header("Location: c_itemlist.php");
-//print_r($_SESSION);
-//print_r($_POST);
+// print_r($_SESSION);
+// print_r($_POST);
 
 ?>

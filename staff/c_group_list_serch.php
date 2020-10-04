@@ -11,14 +11,14 @@ require_once("../class/meeting.class.php");
 
 $obj =new Meeting();
 $rows =$obj->getGroomBrideGrouopAllDate();
-//$row2=$rows->fetch(PDO::FETCH_ASSOC);
+// $row2=$rows->fetch(PDO::FETCH_ASSOC);
 
 if(!empty($_GET["key"])){
 	$serchs=$obj->getCustomerDataByKey($_GET["key"]);
-	//print_r($serchs);
-	//["c_group_id"];
+	// print_r($serchs);
+	// ["c_group_id"];
 	foreach($serchs as $serch){
-		//echo $serch["c_group_id"];
+		// echo $serch["c_group_id"];
 	}
 }
 
@@ -58,7 +58,7 @@ if(!empty($_GET["key"])){
 					<td class="list_id_num"><p><a href="../customer/c_board.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-clipboard"></i></a></p></td>
 					<td class="list_id_num"><p><a href="../customer/c_paymentdata.php?group_id=<?php echo $row["group_id"];?>"><i class="far fa-file-alt"></i></a></p></td>
 					<td class="list_r_day"><p><?php 
-						//撮影予約日の表示（曜日も日本語で）
+						// 撮影予約日の表示（曜日も日本語で）
 						$reserve_day = $row["reserve_day"];
 						$week = ["日","月","火","水","木","金","土"];
 						$hi = date('w', strtotime($reserve_day));

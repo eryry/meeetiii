@@ -11,7 +11,7 @@ require_once("../class/meeting.class.php");
 $obj= new Meeting();
 
 $reserve_day = $_SESSION["reserve_day"];
-//撮影予約日の表示（曜日も日本語で）
+// 撮影予約日の表示（曜日も日本語で）
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
@@ -21,10 +21,10 @@ $c_id = $_SESSION["c_id"];
 $row  = $obj->getCustomerById($c_id);
 
 $c_group_id  = $row["c_group_id"];
-//$reserve_day = $row["reserve_day"];
-//$reserve_time= $row["reserve_time"];
+//$ reserve_day = $row["reserve_day"];
+//$ reserve_time= $row["reserve_time"];
 $c_name = $row["c_name"];
-//$c_pass = $row["c_pass"];
+//$ c_pass = $row["c_pass"];
 $c_tell = $row["c_tell"];
 $c_mail = $row["c_mail"];
 $c_zip  = $row["c_zip"];

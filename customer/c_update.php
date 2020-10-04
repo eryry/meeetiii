@@ -16,8 +16,8 @@ $c_id = $_SESSION["c_id"];
 $row  = $obj->getCustomerById($c_id);
 
 $c_group_id  = $row["c_group_id"];
-//$reserve_day = $row["reserve_day"];
-//$reserve_time= $row["reserve_time"];
+// $reserve_day = $row["reserve_day"];
+// $reserve_time= $row["reserve_time"];
 $c_name = $row["c_name"];
 $c_pass = $row["c_pass"];
 $c_tell = $row["c_tell"];

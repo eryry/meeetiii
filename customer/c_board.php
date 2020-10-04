@@ -10,11 +10,11 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj= new Meeting();
 
-//スタッフがスタッフログインして（お客様ログインなしで）お客様ページ見れるための準備。
+// スタッフがスタッフログインして（お客様ログインなしで）お客様ページ見れるための準備。
 if(!empty($_SESSION["s_id"])) $_SESSION["c_group_id"]=$_GET["group_id"];
 
-//お客様は自身ログイン時にセッションに各種データ積み込まれるが、
-//スタッフログインでは積み込まれないので、ページ最初に予約日積み込んでおく。
+// お客様は自身ログイン時にセッションに各種データ積み込まれるが、
+// スタッフログインでは積み込まれないので、ページ最初に予約日積み込んでおく。
 $resg = $obj->getCustomerGrouopByGId($_SESSION["c_group_id"]);
 $_SESSION["reserve_day"] =$resg["reserve_day"];
 
@@ -26,10 +26,10 @@ $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
 
 $row = $obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
-//投稿があったら表示する
+// 投稿があったら表示する
 $rows = $obj->getBoardDataByGId($_SESSION["c_group_id"]);
 
-//スタッフとしてログインしてきた場合の、GIDで顧客情報取得
+// スタッフとしてログインしてきた場合の、GIDで顧客情報取得
 $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 
 ?>
@@ -85,11 +85,11 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 						<?php if($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==1): ?>
 						<img src="../image/upload/c_myphoto/<?php echo $c_data["g_id"];?>.jpg" alt="新郎画像" id="c_photo_border">
 						<?php elseif($row["submit_member_id"]== $c_data["g_id"] && $c_data["g_myphoto"]==0): ?>
-						<img src="../image/noimage.png">
+						<img src="../image/noimage.png" id="c_photo_border">
 						<?php elseif($row["submit_member_id"]== $c_data["b_id"] && $c_data["b_myphoto"]==1): ?>
 						<img src="../image/upload/c_myphoto/<?php echo $c_data["b_id"];?>.jpg" alt="新婦画像" id="c_photo_border">
 						<?php elseif($row["submit_member_id"]== $c_data["b_id"] && $c_data["b_myphoto"]==0): ?>
-						<img src="../image/noimage.png">
+						<img src="../image/noimage.png" id="c_photo_border">
 						<?php else:?>
 						<img src="../image/staff_image.png">
 						<?php endif; ?>
@@ -101,7 +101,7 @@ $c_data=$obj->getGroomBrideGrouopByGId($_SESSION["c_group_id"]);
 								}else if($row["submit_member_id"]== $c_data["b_id"]){
 									echo h($c_data["b_name"]);
 								}else{
-									//スタッフ情報取得
+									// スタッフ情報取得
 									$s_id=$row["submit_member_id"];
 									$staff_data=$obj->getStaffById($s_id);
 									echo "staff-".h($staff_data["s_name"]);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 	<head>
-		<mate charset="utf-8">
+		<meta charset="utf-8">
 		<title>meeting app | staff page</title>
 		<meta name="viewport" content="width=device-width">
 		<!-- reset css  -->

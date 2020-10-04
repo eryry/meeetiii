@@ -8,7 +8,7 @@ if(empty($_SESSION["s_id"])) {
 require_once("../class/meeting.class.php");
 $obj = new Meeting();
 
-//ファイル送信されたら、$estimateの値は1．なければ0(初期値0にしている）
+// ファイル送信されたら、$estimateの値は1．なければ0(初期値0にしている）
 if(!empty($_FILES["estimate"])) {
 	$estimate=1;
 }else{
@@ -17,6 +17,6 @@ if(!empty($_FILES["estimate"])) {
 $obj->submitEstimate($_POST["c_group_id"],$estimate);
 
 header("Location:c_paymentdata.php?group_id={$_POST['c_group_id']}");
-//print_r($_POST);
+// print_r($_POST);
 
 ?>

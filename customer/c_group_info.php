@@ -11,15 +11,15 @@ require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
 $reserve_day = $_SESSION["reserve_day"];
-//撮影予約日の表示（曜日も日本語で）
+// 撮影予約日の表示（曜日も日本語で）
 $week = ["日","月","火","水","木","金","土"];
 $hi = date('w', strtotime($reserve_day));
 $youbi = $week[$hi];
 $rd =  date('Y年n月j日', strtotime($reserve_day))."(".$youbi.")";
-//時間表示
+// 時間表示
 $time=date('H:i',strtotime($_SESSION["c_group_id"]));
 
-//未・完了表示
+// 未・完了表示
 if($_SESSION["estimate"]==0) {
 	$estimete="☐未発行";
 }else {
@@ -41,7 +41,7 @@ if($_SESSION["d_product"]==0) {
 	$d_product="☑納品済";
 }
 
-//入力がない場合も想定した新居表示設定
+// 入力がない場合も想定した新居表示設定
 if(empty($_SESSION["new_zip"])) {
 	$new_zip="☐未入力";
 }else {

@@ -12,7 +12,7 @@ $obj = new Meeting();
 
 
 if( !empty($_POST["add"]) ){
-	//更新ではなく追加なら
+	// 更新ではなく追加なら
 		$staff=$obj->getStaffById($_POST["s_id"]);
 
 	if( empty($_POST["s_id"]) || empty($_POST["s_name"]) || empty($_POST["s_pass"]) ) {
@@ -45,7 +45,7 @@ if( !empty($_POST["add"]) ){
 	$obj->staffAdd($s_id,$s_name,$s_pass,$s_mail,$role);
 	
 }else{
-	//更新ボタンが押されたの場合
+	// 更新ボタンが押されたの場合
 	if(empty($_POST["s_id"])) {
 		$_SESSION["err_msg_update_sid"]="スタッフIDを選択してください";
 		header("Location: staff_add.php#staffupdate");
@@ -53,7 +53,7 @@ if( !empty($_POST["add"]) ){
 	}
 	$staff=$obj->getStaffById($_POST["s_id"]);
 	
-	//カラの欄があったら、元のデータをそのまま入れてUPDATEする設定
+	// カラの欄があったら、元のデータをそのまま入れてUPDATEする設定
 	if(empty($_POST["s_name"])){
 		$s_name=$staff["s_name"];
 	}else{

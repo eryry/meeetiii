@@ -10,15 +10,15 @@ function h($str) {
 require_once("../class/meeting.class.php");
 $obj =new Meeting();
 
-//選択用プラン一覧取得
+// 選択用プラン一覧取得
 $rows= $obj->getPlan();
-//スタッフ一覧取得
+// スタッフ一覧取得
 $rows2=$obj->getStaff();
-//グループIDから情報引っ張ってくる
+// グループIDから情報引っ張ってくる
 $res=$obj->getCustomerGrouopByGId($_GET["group_id"]);
-//print_r($res);
+// print_r($res);
 
-//未・完了表示
+// 未・完了表示
 if($res["estimate"]==0) {
 	$estimate="☐未発行";
 }else {
