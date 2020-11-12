@@ -19,16 +19,17 @@ if( !empty($_POST["add"]) ){
 		print_r($_POST);
 		if( empty($_POST["s_id"]) ){
 			$_SESSION["err_msg_sid"]="スタッフIDを入力してください";
+		}else if($staff["s_id"]==$_POST["s_id"]) {
+			$_SESSION["err_msg_check_sid"]="すでに登録済みのidです。別のidを入力してください。";
 		}
+		
 		if( empty($_POST["s_name"]) ){
 			$_SESSION["err_msg_sname"]="登録スタッフ名を入力してください";
 		}
 		if( empty($_POST["s_pass"]) ){
 			$_SESSION["err_msg_spass"]="パスワードを入力してください";
 		}
-		if($staff["s_id"]==$_POST["s_id"]){
-			$_SESSION["err_msg_check_sid"]="すでに登録済みのidです。別のidを入力してください。";
-		}
+		
 		header("Location: staff_add.php?err=1");
 		exit();
 	}
@@ -43,7 +44,7 @@ if( !empty($_POST["add"]) ){
 	$s_mail=h($_POST["s_mail"]);
 	$role=$_POST["role"];
 	$obj->staffAdd($s_id,$s_name,$s_pass,$s_mail,$role);
-	
+		
 }else{
 	// 更新ボタンが押されたの場合
 	if(empty($_POST["s_id"])) {
@@ -77,5 +78,8 @@ if( !empty($_POST["add"]) ){
 	
 	$obj->staffUpdate($_POST["s_id"],$s_name,$s_pass,$s_mail,$role);
 }
+
+	header("Location:staff_add.php");
+
 
 ?>

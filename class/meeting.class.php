@@ -458,7 +458,7 @@ class Meeting{
 		$stmt ->execute();
 		move_uploaded_file($_FILES["estimate"]["tmp_name"],"../image/upload/estimate/".$c_group_id."_estimate.jpg");
 	}	
-	//請求書投稿 データに保存先と保存名(c_group_id　＋.jpg)を指定する＆グループのestimateの値を1に書き換える
+	//請求書投稿 データに保存先と保存名(c_group_id　＋.jpg)を指定する＆グループのinvoceの値を1に書き換える
 	public function submitInvoce($c_group_id,$invoce) {
 		$sql  = "UPDATE c_groups SET invoce=:invoce WHERE c_group_id=:c_group_id";
 		$stmt = $this->pdo->prepare($sql);
@@ -466,6 +466,16 @@ class Meeting{
 		$stmt ->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
 		$stmt ->execute();
 		move_uploaded_file($_FILES["invoce"]["tmp_name"],"../image/upload/invoce/".$c_group_id."_invoce.jpg");
+	}
+	
+	//当日スケジュール投稿 データに保存先と保存名(c_group_id　＋.jpg)を指定する＆グループのscheduleの値を1に書き換える
+	public function submitSchedule($c_group_id,$schedule) {
+		$sql  = "UPDATE c_groups SET schedule=:schedule WHERE c_group_id=:c_group_id";
+		$stmt = $this->pdo->prepare($sql);
+		$stmt ->bindValue(":schedule",$schedule,PDO::PARAM_INT);
+		$stmt ->bindValue(":c_group_id",$c_group_id,PDO::PARAM_INT);
+		$stmt ->execute();
+		move_uploaded_file($_FILES["schedule"]["tmp_name"],"../image/upload/schedule/".$c_group_id."_schedule.jpg");
 	}
 
 	// 撮影当日までの日数表示するための、日付差を求める。

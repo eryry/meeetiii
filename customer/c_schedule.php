@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(empty($_SESSION["c_id"]) && empty($_SESSION["s_id"])) {
+if(empty($_SESSION["c_id"])) {
 	header("Location: ../index.php?err=no_login");
 	exit();
 }

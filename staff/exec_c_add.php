@@ -54,8 +54,7 @@ $c_zip=h($_POST["c_zip"]);
 $c_address=h($_POST["c_address"]);
 $c_gender=intVal($_POST["c_gender"]);
 $obj->customerAdd($_POST["c_group_id"],$c_id,$c_name,$c_pass,$c_tell,$c_mail,$c_zip,$c_address,$c_gender);
-// header("Location:c_add_fin.php");
-// print_r($_POST);
-// print_r($_SESSION);
+header("Location:c_add_fin.php");
+
 
 ?>
